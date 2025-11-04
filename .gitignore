@@ -375,3 +375,4 @@ data/.DS_Store
 tests/
 .vscode/
 old_files/
+.Rproj.user

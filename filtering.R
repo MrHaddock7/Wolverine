@@ -1,3 +1,5 @@
+library("dada2")
+
 path <- "./Data/trimmed"
 
 list.files(path)

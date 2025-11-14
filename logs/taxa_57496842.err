@@ -1,0 +1,215 @@
+R/4.3.1: Nearly all CRAN and BioConductor packages are installed and available
+by loading the module R_packages/4.3.1 
+R_packages/4.3.1: Note that loading some spatial analysis packages, especially geo-related packages, might
+R_packages/4.3.1: require you to load additional modules prior to use. monocle3 is such a package. See
+R_packages/4.3.1: 'module help R_packages/4.3.1'
+
+R_packages/4.3.1: The RStudio packages pane is disabled when loading this module, due to RStudio slowdowns
+R_packages/4.3.1: because there are >20000 available packages. *All packages are still available.*  For 
+R_packages/4.3.1: more information and instructions to re-enable the packages pane (not recommended) see
+R_packages/4.3.1: 'module help R_packages/4.3.1'
+
+cp: kan inte ta status på ”test_taxa.R”: Filen eller katalogen finns inte
+cp: kan inte ta status på ”savepoint1.RData”: Filen eller katalogen finns inte
+Loading required package: Rcpp
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: BiocParallel
+Loading required package: Biostrings
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+Loading required package: IRanges
+Loading required package: XVector
+Loading required package: GenomeInfoDb
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: Rsamtools
+Loading required package: GenomicRanges
+Loading required package: GenomicAlignments
+Loading required package: SummarizedExperiment
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+Loading required package: Rcpp
+279608 paired-reads (in 46 unique pairings) successfully merged out of 286949 (in 110 pairings) input.
+Duplicate sequences in merged output.
+341443 paired-reads (in 485 unique pairings) successfully merged out of 348390 (in 1075 pairings) input.
+Duplicate sequences in merged output.
+417247 paired-reads (in 788 unique pairings) successfully merged out of 428909 (in 2538 pairings) input.
+Duplicate sequences in merged output.
+473477 paired-reads (in 941 unique pairings) successfully merged out of 489047 (in 2932 pairings) input.
+Duplicate sequences in merged output.
+457406 paired-reads (in 458 unique pairings) successfully merged out of 462499 (in 1228 pairings) input.
+Duplicate sequences in merged output.
+436181 paired-reads (in 1091 unique pairings) successfully merged out of 452473 (in 3342 pairings) input.
+Duplicate sequences in merged output.
+348786 paired-reads (in 1199 unique pairings) successfully merged out of 365045 (in 4027 pairings) input.
+Duplicate sequences in merged output.
+417493 paired-reads (in 496 unique pairings) successfully merged out of 428740 (in 1648 pairings) input.
+Duplicate sequences in merged output.
+485994 paired-reads (in 1051 unique pairings) successfully merged out of 504956 (in 3215 pairings) input.
+Duplicate sequences in merged output.
+511783 paired-reads (in 416 unique pairings) successfully merged out of 523031 (in 854 pairings) input.
+Duplicate sequences in merged output.
+406103 paired-reads (in 322 unique pairings) successfully merged out of 415539 (in 977 pairings) input.
+Duplicate sequences in merged output.
+321884 paired-reads (in 951 unique pairings) successfully merged out of 337299 (in 2210 pairings) input.
+Duplicate sequences in merged output.
+483563 paired-reads (in 1715 unique pairings) successfully merged out of 508461 (in 5989 pairings) input.
+Duplicate sequences in merged output.
+313108 paired-reads (in 990 unique pairings) successfully merged out of 330130 (in 2553 pairings) input.
+Duplicate sequences in merged output.
+508418 paired-reads (in 2247 unique pairings) successfully merged out of 544452 (in 7492 pairings) input.
+Duplicate sequences in merged output.
+338124 paired-reads (in 388 unique pairings) successfully merged out of 357326 (in 829 pairings) input.
+Duplicate sequences in merged output.
+414424 paired-reads (in 450 unique pairings) successfully merged out of 426605 (in 1195 pairings) input.
+Duplicate sequences in merged output.
+377855 paired-reads (in 416 unique pairings) successfully merged out of 389281 (in 1117 pairings) input.
+Duplicate sequences in merged output.
+431517 paired-reads (in 496 unique pairings) successfully merged out of 445130 (in 1256 pairings) input.
+Duplicate sequences in merged output.
+230628 paired-reads (in 421 unique pairings) successfully merged out of 235587 (in 894 pairings) input.
+Duplicate sequences in merged output.
+259364 paired-reads (in 305 unique pairings) successfully merged out of 266974 (in 706 pairings) input.
+Duplicate sequences in merged output.
+397622 paired-reads (in 1537 unique pairings) successfully merged out of 422344 (in 5428 pairings) input.
+Duplicate sequences in merged output.
+292970 paired-reads (in 529 unique pairings) successfully merged out of 302897 (in 1348 pairings) input.
+Duplicate sequences in merged output.
+373350 paired-reads (in 1003 unique pairings) successfully merged out of 392189 (in 3318 pairings) input.
+Duplicate sequences in merged output.
+72697 paired-reads (in 62 unique pairings) successfully merged out of 74848 (in 128 pairings) input.
+Duplicate sequences in merged output.
+408239 paired-reads (in 1142 unique pairings) successfully merged out of 426382 (in 3529 pairings) input.
+Duplicate sequences in merged output.
+343956 paired-reads (in 816 unique pairings) successfully merged out of 356568 (in 2405 pairings) input.
+Duplicate sequences in merged output.
+402210 paired-reads (in 1149 unique pairings) successfully merged out of 421088 (in 4065 pairings) input.
+Duplicate sequences in merged output.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Identified 7571 bimeras out of 14659 input sequences.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.
+Duplicate sequences detected and merged.

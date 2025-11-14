@@ -1,0 +1,349 @@
+ [1] "filtered"                            
+ [2] "P34104_258_S152_L001_R1_001.fastq.gz"
+ [3] "P34104_258_S152_L001_R2_001.fastq.gz"
+ [4] "P34104_301_S153_L001_R1_001.fastq.gz"
+ [5] "P34104_301_S153_L001_R2_001.fastq.gz"
+ [6] "P34104_302_S154_L001_R1_001.fastq.gz"
+ [7] "P34104_302_S154_L001_R2_001.fastq.gz"
+ [8] "P34104_303_S155_L001_R1_001.fastq.gz"
+ [9] "P34104_303_S155_L001_R2_001.fastq.gz"
+[10] "P34104_304_S156_L001_R1_001.fastq.gz"
+[11] "P34104_304_S156_L001_R2_001.fastq.gz"
+[12] "P34104_305_S157_L001_R1_001.fastq.gz"
+[13] "P34104_305_S157_L001_R2_001.fastq.gz"
+[14] "P34104_306_S158_L001_R1_001.fastq.gz"
+[15] "P34104_306_S158_L001_R2_001.fastq.gz"
+[16] "P34104_307_S159_L001_R1_001.fastq.gz"
+[17] "P34104_307_S159_L001_R2_001.fastq.gz"
+[18] "P34104_308_S160_L001_R1_001.fastq.gz"
+[19] "P34104_308_S160_L001_R2_001.fastq.gz"
+[20] "P34104_309_S161_L001_R1_001.fastq.gz"
+[21] "P34104_309_S161_L001_R2_001.fastq.gz"
+[22] "P34104_310_S162_L001_R1_001.fastq.gz"
+[23] "P34104_310_S162_L001_R2_001.fastq.gz"
+[24] "P34104_311_S163_L001_R1_001.fastq.gz"
+[25] "P34104_311_S163_L001_R2_001.fastq.gz"
+[26] "P34104_312_S164_L001_R1_001.fastq.gz"
+[27] "P34104_312_S164_L001_R2_001.fastq.gz"
+[28] "P34104_313_S165_L001_R1_001.fastq.gz"
+[29] "P34104_313_S165_L001_R2_001.fastq.gz"
+[30] "P34104_314_S166_L001_R1_001.fastq.gz"
+[31] "P34104_314_S166_L001_R2_001.fastq.gz"
+[32] "P34104_315_S167_L001_R1_001.fastq.gz"
+[33] "P34104_315_S167_L001_R2_001.fastq.gz"
+[34] "P34104_316_S168_L001_R1_001.fastq.gz"
+[35] "P34104_316_S168_L001_R2_001.fastq.gz"
+[36] "P34104_317_S169_L001_R1_001.fastq.gz"
+[37] "P34104_317_S169_L001_R2_001.fastq.gz"
+[38] "P34104_318_S170_L001_R1_001.fastq.gz"
+[39] "P34104_318_S170_L001_R2_001.fastq.gz"
+[40] "P34104_319_S171_L001_R1_001.fastq.gz"
+[41] "P34104_319_S171_L001_R2_001.fastq.gz"
+[42] "P34104_320_S172_L001_R1_001.fastq.gz"
+[43] "P34104_320_S172_L001_R2_001.fastq.gz"
+[44] "P34104_321_S173_L001_R1_001.fastq.gz"
+[45] "P34104_321_S173_L001_R2_001.fastq.gz"
+[46] "P34104_322_S174_L001_R1_001.fastq.gz"
+[47] "P34104_322_S174_L001_R2_001.fastq.gz"
+[48] "P34104_323_S175_L001_R1_001.fastq.gz"
+[49] "P34104_323_S175_L001_R2_001.fastq.gz"
+[50] "P34104_324_S176_L001_R1_001.fastq.gz"
+[51] "P34104_324_S176_L001_R2_001.fastq.gz"
+[52] "P34104_325_S177_L001_R1_001.fastq.gz"
+[53] "P34104_325_S177_L001_R2_001.fastq.gz"
+[54] "P34104_326_S178_L001_R1_001.fastq.gz"
+[55] "P34104_326_S178_L001_R2_001.fastq.gz"
+[56] "P34104_327_S179_L001_R1_001.fastq.gz"
+[57] "P34104_327_S179_L001_R2_001.fastq.gz"
+ [1] "P34104_258_S152_" "P34104_301_S153_" "P34104_302_S154_" "P34104_303_S155_"
+ [5] "P34104_304_S156_" "P34104_305_S157_" "P34104_306_S158_" "P34104_307_S159_"
+ [9] "P34104_308_S160_" "P34104_309_S161_" "P34104_310_S162_" "P34104_311_S163_"
+[13] "P34104_312_S164_" "P34104_313_S165_" "P34104_314_S166_" "P34104_315_S167_"
+[17] "P34104_316_S168_" "P34104_317_S169_" "P34104_318_S170_" "P34104_319_S171_"
+[21] "P34104_320_S172_" "P34104_321_S173_" "P34104_322_S174_" "P34104_323_S175_"
+[25] "P34104_324_S176_" "P34104_325_S177_" "P34104_326_S178_" "P34104_327_S179_"
+[1] TRUE
+[1] TRUE
+filtFs
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_258_S152_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_301_S153_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_302_S154_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_303_S155_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_304_S156_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_305_S157_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_306_S158_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_307_S159_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_308_S160_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_309_S161_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_310_S162_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_311_S163_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_312_S164_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_313_S165_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_314_S166_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_315_S167_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_316_S168_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_317_S169_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_318_S170_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_319_S171_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_320_S172_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_321_S173_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_322_S174_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_323_S175_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_324_S176_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_325_S177_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_326_S178_F_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_327_S179_F_filt.fastq.gz 
+                                                                                       1 
+filtRs
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_258_S152_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_301_S153_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_302_S154_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_303_S155_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_304_S156_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_305_S157_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_306_S158_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_307_S159_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_308_S160_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_309_S161_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_310_S162_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_311_S163_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_312_S164_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_313_S165_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_314_S166_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_315_S167_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_316_S168_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_317_S169_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_318_S170_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_319_S171_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_320_S172_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_321_S173_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_322_S174_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_323_S175_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_324_S176_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_325_S177_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_326_S178_R_filt.fastq.gz 
+                                                                                       1 
+/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_327_S179_R_filt.fastq.gz 
+                                                                                       1 
+[1] 28
+[1] 28
+ [1] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_258_S152_F_filt.fastq.gz"
+ [2] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_301_S153_F_filt.fastq.gz"
+ [3] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_302_S154_F_filt.fastq.gz"
+ [4] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_303_S155_F_filt.fastq.gz"
+ [5] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_304_S156_F_filt.fastq.gz"
+ [6] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_305_S157_F_filt.fastq.gz"
+ [7] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_306_S158_F_filt.fastq.gz"
+ [8] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_307_S159_F_filt.fastq.gz"
+ [9] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_308_S160_F_filt.fastq.gz"
+[10] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_309_S161_F_filt.fastq.gz"
+[11] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_310_S162_F_filt.fastq.gz"
+[12] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_311_S163_F_filt.fastq.gz"
+[13] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_312_S164_F_filt.fastq.gz"
+[14] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_313_S165_F_filt.fastq.gz"
+[15] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_314_S166_F_filt.fastq.gz"
+[16] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_315_S167_F_filt.fastq.gz"
+[17] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_316_S168_F_filt.fastq.gz"
+[18] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_317_S169_F_filt.fastq.gz"
+[19] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_318_S170_F_filt.fastq.gz"
+[20] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_319_S171_F_filt.fastq.gz"
+[21] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_320_S172_F_filt.fastq.gz"
+[22] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_321_S173_F_filt.fastq.gz"
+[23] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_322_S174_F_filt.fastq.gz"
+[24] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_323_S175_F_filt.fastq.gz"
+[25] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_324_S176_F_filt.fastq.gz"
+[26] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_325_S177_F_filt.fastq.gz"
+[27] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_326_S178_F_filt.fastq.gz"
+[28] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_327_S179_F_filt.fastq.gz"
+ [1] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_258_S152_R_filt.fastq.gz"
+ [2] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_301_S153_R_filt.fastq.gz"
+ [3] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_302_S154_R_filt.fastq.gz"
+ [4] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_303_S155_R_filt.fastq.gz"
+ [5] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_304_S156_R_filt.fastq.gz"
+ [6] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_305_S157_R_filt.fastq.gz"
+ [7] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_306_S158_R_filt.fastq.gz"
+ [8] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_307_S159_R_filt.fastq.gz"
+ [9] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_308_S160_R_filt.fastq.gz"
+[10] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_309_S161_R_filt.fastq.gz"
+[11] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_310_S162_R_filt.fastq.gz"
+[12] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_311_S163_R_filt.fastq.gz"
+[13] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_312_S164_R_filt.fastq.gz"
+[14] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_313_S165_R_filt.fastq.gz"
+[15] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_314_S166_R_filt.fastq.gz"
+[16] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_315_S167_R_filt.fastq.gz"
+[17] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_316_S168_R_filt.fastq.gz"
+[18] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_317_S169_R_filt.fastq.gz"
+[19] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_318_S170_R_filt.fastq.gz"
+[20] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_319_S171_R_filt.fastq.gz"
+[21] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_320_S172_R_filt.fastq.gz"
+[22] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_321_S173_R_filt.fastq.gz"
+[23] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_322_S174_R_filt.fastq.gz"
+[24] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_323_S175_R_filt.fastq.gz"
+[25] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_324_S176_R_filt.fastq.gz"
+[26] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_325_S177_R_filt.fastq.gz"
+[27] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_326_S178_R_filt.fastq.gz"
+[28] "/home/haddock/private/järv/data/trimmed_primers/filtered/P34104_327_S179_R_filt.fastq.gz"
+                                     reads.in reads.out
+P34104_258_S152_L001_R1_001.fastq.gz   351640    287553
+P34104_301_S153_L001_R1_001.fastq.gz   418621    350114
+P34104_302_S154_L001_R1_001.fastq.gz   516139    432421
+P34104_303_S155_L001_R1_001.fastq.gz   590713    492445
+P34104_304_S156_L001_R1_001.fastq.gz   565803    463995
+P34104_305_S157_L001_R1_001.fastq.gz   555314    455522
+177256620 total bases in 637667 reads from 2 samples will be used for learning the error rates.
+173163143 total bases in 637667 reads from 2 samples will be used for learning the error rates.
+Sample 1 - 287553 reads in 28145 unique sequences.
+Sample 2 - 350114 reads in 33636 unique sequences.
+Sample 3 - 432421 reads in 44432 unique sequences.
+Sample 4 - 492445 reads in 45978 unique sequences.
+Sample 5 - 463995 reads in 34632 unique sequences.
+Sample 6 - 455522 reads in 45194 unique sequences.
+Sample 7 - 372221 reads in 54526 unique sequences.
+Sample 8 - 430977 reads in 38861 unique sequences.
+Sample 9 - 507608 reads in 51768 unique sequences.
+Sample 10 - 524760 reads in 34931 unique sequences.
+Sample 11 - 416429 reads in 25778 unique sequences.
+Sample 12 - 340657 reads in 42997 unique sequences.
+Sample 13 - 517545 reads in 71013 unique sequences.
+Sample 14 - 335170 reads in 56198 unique sequences.
+Sample 15 - 559008 reads in 92088 unique sequences.
+Sample 16 - 358823 reads in 31701 unique sequences.
+Sample 17 - 427810 reads in 26992 unique sequences.
+Sample 18 - 390783 reads in 32485 unique sequences.
+Sample 19 - 447247 reads in 36088 unique sequences.
+Sample 20 - 237134 reads in 25551 unique sequences.
+Sample 21 - 268205 reads in 27268 unique sequences.
+Sample 22 - 429762 reads in 61699 unique sequences.
+Sample 23 - 305279 reads in 31832 unique sequences.
+Sample 24 - 397769 reads in 57046 unique sequences.
+Sample 25 - 74964 reads in 9668 unique sequences.
+Sample 26 - 432702 reads in 62095 unique sequences.
+Sample 27 - 361000 reads in 46436 unique sequences.
+Sample 28 - 428151 reads in 57051 unique sequences.
+Sample 1 - 287553 reads in 92037 unique sequences.
+Sample 2 - 350114 reads in 101954 unique sequences.
+Sample 3 - 432421 reads in 123341 unique sequences.
+Sample 4 - 492445 reads in 139601 unique sequences.
+Sample 5 - 463995 reads in 135114 unique sequences.
+Sample 6 - 455522 reads in 144832 unique sequences.
+Sample 7 - 372221 reads in 131984 unique sequences.
+Sample 8 - 430977 reads in 117349 unique sequences.
+Sample 9 - 507608 reads in 147260 unique sequences.
+Sample 10 - 524760 reads in 127425 unique sequences.
+Sample 11 - 416429 reads in 92966 unique sequences.
+Sample 12 - 340657 reads in 112280 unique sequences.
+Sample 13 - 517545 reads in 173968 unique sequences.
+Sample 14 - 335170 reads in 129736 unique sequences.
+Sample 15 - 559008 reads in 200192 unique sequences.
+Sample 16 - 358823 reads in 108755 unique sequences.
+Sample 17 - 427810 reads in 91036 unique sequences.
+Sample 18 - 390783 reads in 102494 unique sequences.
+Sample 19 - 447247 reads in 106890 unique sequences.
+Sample 20 - 237134 reads in 73446 unique sequences.
+Sample 21 - 268205 reads in 86592 unique sequences.
+Sample 22 - 429762 reads in 144406 unique sequences.
+Sample 23 - 305279 reads in 88432 unique sequences.
+Sample 24 - 397769 reads in 145575 unique sequences.
+Sample 25 - 74964 reads in 29077 unique sequences.
+Sample 26 - 432702 reads in 156070 unique sequences.
+Sample 27 - 361000 reads in 126165 unique sequences.
+Sample 28 - 428151 reads in 146596 unique sequences.
+dada-class: object describing DADA2 denoising results
+73 sequence variants were inferred from 28145 input unique sequences.
+Key parameters: OMEGA_A = 1e-40, OMEGA_C = 1e-40, BAND_SIZE = 16
+                                                                                                                                                                                                                                                                                                                                                                                                                                     sequence
+1 TGGGGAATTTTGGACAATGGGCGAAAGCCTGATCCAGCAATGCCGCGTGCAGGATGAAGGCCTTCGGGTTGTAAACTGCTTTTGTACGGAACGAAAAAGCTTCTCCTAATACGAGAGGCCCATGACGGTACCGTAAGAATAAGCACCGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTATGTAAGACAGATGTGAAATCCCCGGGCTCAACCTGGGAACTGCATTTGTGACTGCATGGCTAGAGTACGGTAGAGGGGGATGGAATTCCGCGTGTAGCAGTGAAATGCGTAGATATGCGGAGGAACACCGATGGCGAAGGCAATCCCCTGGACCTGTACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACA
+2                           TGGGGAATATTGCACAATGGAGGGAACTCTGATGCAGCGACGCCGCGTGAACGAAGAAGGCTTTCGAGTCGTAAAGTTCTTTTATATGGGAAGATAATGACGGTACCATAAGAAAAAGCCCCGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGGGGCTAGCGTTGTCCGGAATCACTGGGCGTAAAGGGTTCGCAGGCGGAAATGCAAGTCAGATGTAAAAGGCAGTAGCTTAACTACTGTAAGCATTTGAAACTGCATATCTTGAGAAGAGTAGAGGTAAGTGGAATTTTTAGTGTAGCGGTGAAATGCGTAGATATTAAAAAGAATACCGGTGGCGAAGGCGACTTACTGGGCTCATTCTGACGCTGAGGAACGAAAGCGTGGGTAGCAAACA
+3 TAGGGAATCTTCGGCAATGGACGAAAGTCTGACCGAGCAACGCCGCGTGAGTGAAGAAGGTTTTCGGATCGTAAAACTCTGTTGGTAGAGAAGAACGTTGGTGAGAGTGGAAAGCTCATCAAGTGACGGTAACTACCCAGAAAGGGACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTCCCGAGCGTTGTCCGGATTTATTGGGCGTAAAGCGAGCGCAGGTGGTTTATTAAGTCTGGTGTAAAAGGCAGTGGCTCAACCATTGTATGCATTGGAAACTGGTAGACTTGAGTGCAGGAGAGGAGAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGATATATGGAGGAACACCGGTGGCGAAAGCGGCTCTCTGGCCTGTAACTGACACTGAGGCTCGAAAGCGTGGGGAGCAAACA
+4 TGGGGAATTTTGGACAATGGGCGCAAGCCTGATCCAGCCATGCCGCGTGCGGGAAGAAGGCCTTCGGGTTGTAAACCGCTTTTGTCAGGGAAGAAAAGGTTCTGGCTAATACCTGGGACTCATGACGGTACCTGAAGAATAAGCACCGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTATGCAAGACAGAGGTGAAATCCCCGGGCTCAACCTGGGAACTGCCTTTGTGACTGCATGGCTAGAGTACGGTAGAGGGGGATGGAATTCCGCGTGTAGCAGTGAAATGCGTAGATATGCGGAGGAACACCGATGGCGAAGGCAATCCCCTGGACCTGTACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACA
+5 TGGGGAATTTTGGACAATGGGCGAAAGCCTGATCCAGCAATGCCGCGTGCAGGATGAAGGCCTTCGGGTTGTAAACTGCTTTTGTACGGAACGAAAAGTCTCGGGATAATACCCTGGGACCATGACGGTACCGTAAGAATAAGCACCGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTATATAAGACAGATGTGAAATCCCCGGGCTCAACCTGGGAACTGCATTTGTGACTGTATAGCTAGAGTACGGTAGAGGGGGATGGAATTCCGCGTGTAGCAGTGAAATGCGTAGATATGCGGAGGAACACCGATGGCGAAGGCAATCCCCTGGACCTGTACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACA
+6 TGGGGAATTTTGGACAATGGGCGCAAGCCTGATCCAGCAATGCCGCGTGAGTGAAGAAGGCCTTCGGGTTGTAAAGCTCTTTTGTCAGGGAAGAAACGGTGAGAGCTAATATCTTTTGCTAATGACGGTACCTGAAGAATAAGCACCGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTTTGTAAGTCTGATGTGAAATCCCCGGGCTCAACCTGGGAATTGCATTGGAGACTGCAAGGCTAGAATCTGGCAGAGGGGGGTAGAATTCCACGTGTAGCAGTGAAATGCGTAGATATGTGGAGGAACACCAATGGCGAAGGCAGCCCCCTGGGTCAAGATTGACGCTCATGCACGAAAGCGTGGGGAGCAAACA
+  abundance forward reverse nmatch nmismatch nindel prefer accept
+1     51203       1       1    131         0      0      1   TRUE
+2     35265       2       2    159         0      0      1   TRUE
+3     18450       3       3    129         0      0      1   TRUE
+4     14306       5       4    134         0      0      1   TRUE
+5     14112       6       6    133         0      0      1   TRUE
+6     13904       4       5    127         0      0      1   TRUE
+[1]    28 14659
+
+  54   65   77   79   80   83   87   92  116  120  125  127  128  129  130  131 
+   1    1    1    1    1    1    1    2    1    4    1    1    3    2    1    1 
+ 132  135  136  138  139  145  148  152  163  171  183  185  189  190  191  198 
+   1    1    2    2    1    4   36    1    1    1    2    1    3    1    5    1 
+ 201  204  205  206  208  209  210  221  230  247  256  257  259  260  273  274 
+   1    1    1    1    1    1    1    1    1    2    1    1    1    9   14   23 
+ 275  276  277  278  279  280  281  282  283  284  296  302  314  315  318  319 
+   9   87   37  105   64   11    2    3    3    7    1    1    1    1    2    2 
+ 321  322  323  326  333  336  342  344  345  346  347  349  356  361  365  369 
+   5    6    1    1    1    1    1    1    1    1    3    1    1    2    1    1 
+ 370  375  379  382  383  384  386  394  398  399  400  401  402  403  404  405 
+   2    1    2    1    2    5    5    2   12    8   24 1108 2263  541  327  321 
+ 406  407  408  409  410  411  412  413  414  415  416  417  418  419  420  421 
+ 159 1258  103  111   52   70   12   26   17   16   61   42  161  107   61  127 
+ 422  423  424  425  426  427  428  429  430  431  435  437  444  445  446  447 
+ 154   22   64   30  832 4677 1277   21    4    2    1    1   10    3    6    8 
+ 449  450  451  452  453  455  457  462  464  471  485  539 
+   3    3    4    4    5    2    1    4    1    1    1    1 
+[1]   28 7088
+[1] 0.966419
+                  input filtered denoisedF denoisedR merged nonchim
+P34104_258_S152_ 351640   287553    287124    287092 279608  279544
+P34104_301_S153_ 418621   350114    349477    348942 341443  338107
+P34104_302_S154_ 516139   432421    430332    430544 417247  403185
+P34104_303_S155_ 590713   492445    490364    490828 473477  452340
+P34104_304_S156_ 565803   463995    463291    463044 457406  447901
+P34104_305_S157_ 555314   455522    453808    453799 436181  390390

@@ -1,7 +1,7 @@
 #!/bin/bash -l
-#SBATCH -A uppmax2025-3-3       # Replace with your project, e.g. sens2024012
+#SBATCH -A uppmax2025-2-344       # Replace with your project, e.g. sens2024012
 #SBATCH -p core                  # Use the 'core' partition for normal CPU jobs
-#SBATCH -n 32                     # Number of cores
+#SBATCH -n 10                     # Number of cores
 #SBATCH -t 10:00:00              # Wall time (2 hours here)
 #SBATCH -J analysis_gm_w        # Job name
 #SBATCH -o logs/taxa_%j.out      # STDOUT (%j = job ID)
@@ -21,8 +21,8 @@ cd "$RUN_DIR"
 mkdir -p logs
 
 # -- Run the scripts: 
-Rscript filtering.R 
+Rscript /home/haddock/private/Wolverine/filtering.R 
 
-Rscript error_and_chimeras.R 
+Rscript /home/haddock/private/Wolverine/error_and_chimeras.R 
 
 #Rscript assign_taxa.R 

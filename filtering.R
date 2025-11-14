@@ -2,7 +2,7 @@ library(dada2)
 library(ShortRead)
 library(Biostrings)
 
-path <- "./Data/trimmed"
+path <- "/home/haddock/private/järv/data/trimmed_primers"
 list.files(path)
 
 # Forward and reverse fastq filenames have format: SAMPLENAME_R1_001.fastq and SAMPLENAME_R2_001.fastq

@@ -4,7 +4,8 @@ load("savepoint1.RData")
 #Learn the error rates
 errF <- learnErrors(filtFs, multithread=TRUE)
 errR <- learnErrors(filtRs, multithread=TRUE)
-plotErrors(errF, nominalQ=TRUE)
+
+#plotErrors(errF, nominalQ=TRUE)
 
 #Sample Inference
 dadaFs <- dada(filtFs, err=errF, multithread=TRUE)

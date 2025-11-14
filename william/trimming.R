@@ -1,6 +1,6 @@
 library(dada2); packageVersion("dada2")
 
-path <- '/Users/william/Library/CloudStorage/OneDrive-Uppsalauniversitet/Slutkurs/DADA2 tutorial/MiSeq_SOP'
+path <- '/Users/william/Library/CloudStorage/OneDrive-Uppsalauniversitet/Slutkurs/OneDrive_1_2025-11-11/P34104_305/02-FASTQ/250903_VH00203_554_AAH7JV3M5'
 
 list.files(path)
 
@@ -49,7 +49,7 @@ dadaRs <- dada(filtRs, err=errR, multithread = TRUE)
 dadaFs[[1]]
 
 mergers <- mergePairs(dadaFs, filtFs, dadaRs, filtRs, verbose=TRUE)
-head(mergers[[1]])
+tail(mergers[[1]])
 
 
 seqtab <- makeSequenceTable(mergers)
@@ -67,7 +67,7 @@ sum(seqtab.nochim)/sum(seqtab)
 
 
 getN <- function(x) sum(getUniques(x))
-track <- cbind(out, sapply(dadaFs, getN), sapply(dadaRs, getN), sapply(mergers, getN), rowSums(seqtab.nochim))
+track <- cbind(out, getN(dadaFs), getN(dadaRs), getN(mergers), rowSums(seqtab.nochim))
 # If processing a single sample, remove the sapply calls: e.g. replace sapply(dadaFs, getN) with getN(dadaFs)
 colnames(track) <- c("input", "filtered", "denoisedF", "denoisedR", "merged", "nonchim")
 rownames(track) <- sample.names

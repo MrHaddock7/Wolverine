@@ -6,4 +6,4 @@ taxa <- addSpecies(taxa, "./silva/silva_v138.2_assignSpecies.fa.gz")
 taxa.print <- taxa # Removing sequence rownames for display only
 rownames(taxa.print) <- NULL
 head(taxa.print)
-save(taxa, file="taxa.RData")
+save(taxa, seqtab.nochim, file="taxa.RData")

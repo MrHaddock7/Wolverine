@@ -44,7 +44,7 @@ length(unique(filtFs))
 unique(filtFs)
 unique(filtRs)
 
-out <- filterAndTrim(fnFs, filtFs, fnRs, filtRs, maxN = 0, maxEE = c(2, 2), truncQ = 2,
+out <- filterAndTrim(fnFs, filtFs, fnRs, filtRs, maxN = 0, maxEE = c(2, 4), truncQ = 2,
     minLen = 50, rm.phix = TRUE, compress = TRUE, multithread = TRUE)  # on windows, set multithread = FALSE
 head(out)
 

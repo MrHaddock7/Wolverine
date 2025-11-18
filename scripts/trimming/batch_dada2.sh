@@ -13,7 +13,7 @@ module load R/4.3.1
 module load R_packages/4.3.1
 
 # -- Create a run directory where all checkpoints are saved
-RUN_DIR="/home/haddock/private/Wolverine/runs/run_trimming_taxa_17112025_${SLURM_JOB_ID}"
+RUN_DIR="/home/haddock/private/Wolverine/runs/run_trimming_taxa_EE2_4_17112025_${SLURM_JOB_ID}"
 mkdir -p "$RUN_DIR"
 cp test_taxa.R savepoint1.RData "$RUN_DIR"/
 cd "$RUN_DIR"

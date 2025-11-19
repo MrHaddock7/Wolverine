@@ -2,7 +2,7 @@ library(dada2)
 library(ShortRead)
 library(Biostrings)
 
-path <- "/home/haddock/private/järv/data/trimmed_primers"
+path <- "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers"
 list.files(path)
 
 # Forward and reverse fastq filenames have format: SAMPLENAME_R1_001.fastq and SAMPLENAME_R2_001.fastq
@@ -44,7 +44,7 @@ length(unique(filtFs))
 unique(filtFs)
 unique(filtRs)
 
-out <- filterAndTrim(fnFs, filtFs, fnRs, filtRs, maxN = 0, maxEE = c(2, 2), truncQ = 2,
+out <- filterAndTrim(fnFs, filtFs, fnRs, filtRs, maxN = 0, maxEE = c(2, 4), truncQ = 2,
     minLen = 50, rm.phix = TRUE, compress = TRUE, multithread = TRUE)  # on windows, set multithread = FALSE
 head(out)
 

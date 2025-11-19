@@ -1,0 +1,630 @@
+  [1] "P34104_257_S151_L001_R1_001.fastq.gz"
+  [2] "P34104_257_S151_L001_R2_001.fastq.gz"
+  [3] "P34104_258_S152_L001_R1_001.fastq.gz"
+  [4] "P34104_258_S152_L001_R2_001.fastq.gz"
+  [5] "P34104_301_S153_L001_R1_001.fastq.gz"
+  [6] "P34104_301_S153_L001_R2_001.fastq.gz"
+  [7] "P34104_302_S154_L001_R1_001.fastq.gz"
+  [8] "P34104_302_S154_L001_R2_001.fastq.gz"
+  [9] "P34104_303_S155_L001_R1_001.fastq.gz"
+ [10] "P34104_303_S155_L001_R2_001.fastq.gz"
+ [11] "P34104_304_S156_L001_R1_001.fastq.gz"
+ [12] "P34104_304_S156_L001_R2_001.fastq.gz"
+ [13] "P34104_305_S157_L001_R1_001.fastq.gz"
+ [14] "P34104_305_S157_L001_R2_001.fastq.gz"
+ [15] "P34104_306_S158_L001_R1_001.fastq.gz"
+ [16] "P34104_306_S158_L001_R2_001.fastq.gz"
+ [17] "P34104_307_S159_L001_R1_001.fastq.gz"
+ [18] "P34104_307_S159_L001_R2_001.fastq.gz"
+ [19] "P34104_308_S160_L001_R1_001.fastq.gz"
+ [20] "P34104_308_S160_L001_R2_001.fastq.gz"
+ [21] "P34104_309_S161_L001_R1_001.fastq.gz"
+ [22] "P34104_309_S161_L001_R2_001.fastq.gz"
+ [23] "P34104_310_S162_L001_R1_001.fastq.gz"
+ [24] "P34104_310_S162_L001_R2_001.fastq.gz"
+ [25] "P34104_311_S163_L001_R1_001.fastq.gz"
+ [26] "P34104_311_S163_L001_R2_001.fastq.gz"
+ [27] "P34104_312_S164_L001_R1_001.fastq.gz"
+ [28] "P34104_312_S164_L001_R2_001.fastq.gz"
+ [29] "P34104_313_S165_L001_R1_001.fastq.gz"
+ [30] "P34104_313_S165_L001_R2_001.fastq.gz"
+ [31] "P34104_314_S166_L001_R1_001.fastq.gz"
+ [32] "P34104_314_S166_L001_R2_001.fastq.gz"
+ [33] "P34104_315_S167_L001_R1_001.fastq.gz"
+ [34] "P34104_315_S167_L001_R2_001.fastq.gz"
+ [35] "P34104_316_S168_L001_R1_001.fastq.gz"
+ [36] "P34104_316_S168_L001_R2_001.fastq.gz"
+ [37] "P34104_317_S169_L001_R1_001.fastq.gz"
+ [38] "P34104_317_S169_L001_R2_001.fastq.gz"
+ [39] "P34104_318_S170_L001_R1_001.fastq.gz"
+ [40] "P34104_318_S170_L001_R2_001.fastq.gz"
+ [41] "P34104_319_S171_L001_R1_001.fastq.gz"
+ [42] "P34104_319_S171_L001_R2_001.fastq.gz"
+ [43] "P34104_320_S172_L001_R1_001.fastq.gz"
+ [44] "P34104_320_S172_L001_R2_001.fastq.gz"
+ [45] "P34104_321_S173_L001_R1_001.fastq.gz"
+ [46] "P34104_321_S173_L001_R2_001.fastq.gz"
+ [47] "P34104_322_S174_L001_R1_001.fastq.gz"
+ [48] "P34104_322_S174_L001_R2_001.fastq.gz"
+ [49] "P34104_323_S175_L001_R1_001.fastq.gz"
+ [50] "P34104_323_S175_L001_R2_001.fastq.gz"
+ [51] "P34104_324_S176_L001_R1_001.fastq.gz"
+ [52] "P34104_324_S176_L001_R2_001.fastq.gz"
+ [53] "P34104_325_S177_L001_R1_001.fastq.gz"
+ [54] "P34104_325_S177_L001_R2_001.fastq.gz"
+ [55] "P34104_326_S178_L001_R1_001.fastq.gz"
+ [56] "P34104_326_S178_L001_R2_001.fastq.gz"
+ [57] "P34104_327_S179_L001_R1_001.fastq.gz"
+ [58] "P34104_327_S179_L001_R2_001.fastq.gz"
+ [59] "P34104_328_S180_L001_R1_001.fastq.gz"
+ [60] "P34104_328_S180_L001_R2_001.fastq.gz"
+ [61] "P34104_329_S181_L001_R1_001.fastq.gz"
+ [62] "P34104_329_S181_L001_R2_001.fastq.gz"
+ [63] "P34104_330_S182_L001_R1_001.fastq.gz"
+ [64] "P34104_330_S182_L001_R2_001.fastq.gz"
+ [65] "P34104_331_S183_L001_R1_001.fastq.gz"
+ [66] "P34104_331_S183_L001_R2_001.fastq.gz"
+ [67] "P34104_333_S185_L001_R1_001.fastq.gz"
+ [68] "P34104_333_S185_L001_R2_001.fastq.gz"
+ [69] "P34104_334_S186_L001_R1_001.fastq.gz"
+ [70] "P34104_334_S186_L001_R2_001.fastq.gz"
+ [71] "P34104_335_S187_L001_R1_001.fastq.gz"
+ [72] "P34104_335_S187_L001_R2_001.fastq.gz"
+ [73] "P34104_336_S188_L001_R1_001.fastq.gz"
+ [74] "P34104_336_S188_L001_R2_001.fastq.gz"
+ [75] "P34104_338_S190_L001_R1_001.fastq.gz"
+ [76] "P34104_338_S190_L001_R2_001.fastq.gz"
+ [77] "P34104_339_S191_L001_R1_001.fastq.gz"
+ [78] "P34104_339_S191_L001_R2_001.fastq.gz"
+ [79] "P34104_340_S192_L001_R1_001.fastq.gz"
+ [80] "P34104_340_S192_L001_R2_001.fastq.gz"
+ [81] "P34104_341_S193_L001_R1_001.fastq.gz"
+ [82] "P34104_341_S193_L001_R2_001.fastq.gz"
+ [83] "P34104_342_S194_L001_R1_001.fastq.gz"
+ [84] "P34104_342_S194_L001_R2_001.fastq.gz"
+ [85] "P34104_343_S195_L001_R1_001.fastq.gz"
+ [86] "P34104_343_S195_L001_R2_001.fastq.gz"
+ [87] "P34104_344_S196_L001_R1_001.fastq.gz"
+ [88] "P34104_344_S196_L001_R2_001.fastq.gz"
+ [89] "P34104_345_S197_L001_R1_001.fastq.gz"
+ [90] "P34104_345_S197_L001_R2_001.fastq.gz"
+ [91] "P34104_346_S198_L001_R1_001.fastq.gz"
+ [92] "P34104_346_S198_L001_R2_001.fastq.gz"
+ [93] "P34104_347_S199_L001_R1_001.fastq.gz"
+ [94] "P34104_347_S199_L001_R2_001.fastq.gz"
+ [95] "P34104_348_S200_L001_R1_001.fastq.gz"
+ [96] "P34104_348_S200_L001_R2_001.fastq.gz"
+ [97] "P34104_349_S201_L001_R1_001.fastq.gz"
+ [98] "P34104_349_S201_L001_R2_001.fastq.gz"
+ [99] "P34104_350_S202_L001_R1_001.fastq.gz"
+[100] "P34104_350_S202_L001_R2_001.fastq.gz"
+[101] "P34104_351_S203_L001_R1_001.fastq.gz"
+[102] "P34104_351_S203_L001_R2_001.fastq.gz"
+[103] "P34104_353_S205_L001_R1_001.fastq.gz"
+[104] "P34104_353_S205_L001_R2_001.fastq.gz"
+[105] "P34104_354_S206_L001_R1_001.fastq.gz"
+[106] "P34104_354_S206_L001_R2_001.fastq.gz"
+[107] "P34104_355_S207_L001_R1_001.fastq.gz"
+[108] "P34104_355_S207_L001_R2_001.fastq.gz"
+[109] "P34104_356_S208_L001_R1_001.fastq.gz"
+[110] "P34104_356_S208_L001_R2_001.fastq.gz"
+[111] "P34104_357_S209_L001_R1_001.fastq.gz"
+[112] "P34104_357_S209_L001_R2_001.fastq.gz"
+[113] "P34104_358_S210_L001_R1_001.fastq.gz"
+[114] "P34104_358_S210_L001_R2_001.fastq.gz"
+[115] "P34104_359_S211_L001_R1_001.fastq.gz"
+[116] "P34104_359_S211_L001_R2_001.fastq.gz"
+[117] "P34104_360_S212_L001_R1_001.fastq.gz"
+[118] "P34104_360_S212_L001_R2_001.fastq.gz"
+[119] "P34104_361_S213_L001_R1_001.fastq.gz"
+[120] "P34104_361_S213_L001_R2_001.fastq.gz"
+[121] "P34104_362_S214_L001_R1_001.fastq.gz"
+[122] "P34104_362_S214_L001_R2_001.fastq.gz"
+[123] "P34104_363_S215_L001_R1_001.fastq.gz"
+[124] "P34104_363_S215_L001_R2_001.fastq.gz"
+[125] "P34104_364_S216_L001_R1_001.fastq.gz"
+[126] "P34104_364_S216_L001_R2_001.fastq.gz"
+[127] "P34104_365_S217_L001_R1_001.fastq.gz"
+[128] "P34104_365_S217_L001_R2_001.fastq.gz"
+[129] "P34104_366_S218_L001_R1_001.fastq.gz"
+[130] "P34104_366_S218_L001_R2_001.fastq.gz"
+[131] "P34104_367_S219_L001_R1_001.fastq.gz"
+[132] "P34104_367_S219_L001_R2_001.fastq.gz"
+[133] "P34104_370_S222_L001_R1_001.fastq.gz"
+[134] "P34104_370_S222_L001_R2_001.fastq.gz"
+[135] "P34104_371_S223_L001_R1_001.fastq.gz"
+[136] "P34104_371_S223_L001_R2_001.fastq.gz"
+[137] "P34104_372_S224_L001_R1_001.fastq.gz"
+[138] "P34104_372_S224_L001_R2_001.fastq.gz"
+[139] "P34104_373_S225_L001_R1_001.fastq.gz"
+[140] "P34104_373_S225_L001_R2_001.fastq.gz"
+[141] "P34104_374_S226_L001_R1_001.fastq.gz"
+[142] "P34104_374_S226_L001_R2_001.fastq.gz"
+ [1] "P34104_257_S151_" "P34104_258_S152_" "P34104_301_S153_" "P34104_302_S154_"
+ [5] "P34104_303_S155_" "P34104_304_S156_" "P34104_305_S157_" "P34104_306_S158_"
+ [9] "P34104_307_S159_" "P34104_308_S160_" "P34104_309_S161_" "P34104_310_S162_"
+[13] "P34104_311_S163_" "P34104_312_S164_" "P34104_313_S165_" "P34104_314_S166_"
+[17] "P34104_315_S167_" "P34104_316_S168_" "P34104_317_S169_" "P34104_318_S170_"
+[21] "P34104_319_S171_" "P34104_320_S172_" "P34104_321_S173_" "P34104_322_S174_"
+[25] "P34104_323_S175_" "P34104_324_S176_" "P34104_325_S177_" "P34104_326_S178_"
+[29] "P34104_327_S179_" "P34104_328_S180_" "P34104_329_S181_" "P34104_330_S182_"
+[33] "P34104_331_S183_" "P34104_333_S185_" "P34104_334_S186_" "P34104_335_S187_"
+[37] "P34104_336_S188_" "P34104_338_S190_" "P34104_339_S191_" "P34104_340_S192_"
+[41] "P34104_341_S193_" "P34104_342_S194_" "P34104_343_S195_" "P34104_344_S196_"
+[45] "P34104_345_S197_" "P34104_346_S198_" "P34104_347_S199_" "P34104_348_S200_"
+[49] "P34104_349_S201_" "P34104_350_S202_" "P34104_351_S203_" "P34104_353_S205_"
+[53] "P34104_354_S206_" "P34104_355_S207_" "P34104_356_S208_" "P34104_357_S209_"
+[57] "P34104_358_S210_" "P34104_359_S211_" "P34104_360_S212_" "P34104_361_S213_"
+[61] "P34104_362_S214_" "P34104_363_S215_" "P34104_364_S216_" "P34104_365_S217_"
+[65] "P34104_366_S218_" "P34104_367_S219_" "P34104_370_S222_" "P34104_371_S223_"
+[69] "P34104_372_S224_" "P34104_373_S225_" "P34104_374_S226_"
+[1] TRUE
+[1] TRUE
+filtFs
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_257_S151_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_258_S152_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_301_S153_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_302_S154_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_303_S155_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_304_S156_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_305_S157_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_306_S158_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_307_S159_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_308_S160_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_309_S161_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_310_S162_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_311_S163_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_312_S164_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_313_S165_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_314_S166_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_315_S167_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_316_S168_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_317_S169_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_318_S170_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_319_S171_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_320_S172_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_321_S173_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_322_S174_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_323_S175_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_324_S176_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_325_S177_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_326_S178_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_327_S179_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_328_S180_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_329_S181_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_330_S182_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_331_S183_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_333_S185_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_334_S186_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_335_S187_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_336_S188_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_338_S190_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_339_S191_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_340_S192_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_341_S193_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_342_S194_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_343_S195_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_344_S196_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_345_S197_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_346_S198_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_347_S199_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_348_S200_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_349_S201_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_350_S202_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_351_S203_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_353_S205_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_354_S206_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_355_S207_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_356_S208_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_357_S209_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_358_S210_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_359_S211_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_360_S212_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_361_S213_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_362_S214_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_363_S215_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_364_S216_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_365_S217_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_366_S218_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_367_S219_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_370_S222_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_371_S223_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_372_S224_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_373_S225_F_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_374_S226_F_filt.fastq.gz 
+                                                                                                                   1 
+filtRs
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_257_S151_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_258_S152_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_301_S153_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_302_S154_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_303_S155_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_304_S156_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_305_S157_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_306_S158_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_307_S159_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_308_S160_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_309_S161_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_310_S162_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_311_S163_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_312_S164_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_313_S165_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_314_S166_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_315_S167_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_316_S168_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_317_S169_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_318_S170_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_319_S171_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_320_S172_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_321_S173_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_322_S174_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_323_S175_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_324_S176_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_325_S177_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_326_S178_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_327_S179_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_328_S180_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_329_S181_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_330_S182_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_331_S183_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_333_S185_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_334_S186_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_335_S187_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_336_S188_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_338_S190_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_339_S191_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_340_S192_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_341_S193_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_342_S194_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_343_S195_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_344_S196_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_345_S197_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_346_S198_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_347_S199_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_348_S200_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_349_S201_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_350_S202_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_351_S203_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_353_S205_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_354_S206_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_355_S207_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_356_S208_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_357_S209_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_358_S210_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_359_S211_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_360_S212_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_361_S213_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_362_S214_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_363_S215_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_364_S216_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_365_S217_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_366_S218_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_367_S219_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_370_S222_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_371_S223_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_372_S224_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_373_S225_R_filt.fastq.gz 
+                                                                                                                   1 
+/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_374_S226_R_filt.fastq.gz 
+                                                                                                                   1 
+[1] 71
+[1] 71
+ [1] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_257_S151_F_filt.fastq.gz"
+ [2] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_258_S152_F_filt.fastq.gz"
+ [3] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_301_S153_F_filt.fastq.gz"
+ [4] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_302_S154_F_filt.fastq.gz"
+ [5] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_303_S155_F_filt.fastq.gz"
+ [6] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_304_S156_F_filt.fastq.gz"
+ [7] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_305_S157_F_filt.fastq.gz"
+ [8] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_306_S158_F_filt.fastq.gz"
+ [9] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_307_S159_F_filt.fastq.gz"
+[10] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_308_S160_F_filt.fastq.gz"
+[11] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_309_S161_F_filt.fastq.gz"
+[12] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_310_S162_F_filt.fastq.gz"
+[13] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_311_S163_F_filt.fastq.gz"
+[14] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_312_S164_F_filt.fastq.gz"
+[15] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_313_S165_F_filt.fastq.gz"
+[16] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_314_S166_F_filt.fastq.gz"
+[17] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_315_S167_F_filt.fastq.gz"
+[18] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_316_S168_F_filt.fastq.gz"
+[19] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_317_S169_F_filt.fastq.gz"
+[20] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_318_S170_F_filt.fastq.gz"
+[21] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_319_S171_F_filt.fastq.gz"
+[22] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_320_S172_F_filt.fastq.gz"
+[23] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_321_S173_F_filt.fastq.gz"
+[24] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_322_S174_F_filt.fastq.gz"
+[25] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_323_S175_F_filt.fastq.gz"
+[26] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_324_S176_F_filt.fastq.gz"
+[27] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_325_S177_F_filt.fastq.gz"
+[28] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_326_S178_F_filt.fastq.gz"
+[29] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_327_S179_F_filt.fastq.gz"
+[30] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_328_S180_F_filt.fastq.gz"
+[31] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_329_S181_F_filt.fastq.gz"
+[32] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_330_S182_F_filt.fastq.gz"
+[33] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_331_S183_F_filt.fastq.gz"
+[34] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_333_S185_F_filt.fastq.gz"
+[35] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_334_S186_F_filt.fastq.gz"
+[36] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_335_S187_F_filt.fastq.gz"
+[37] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_336_S188_F_filt.fastq.gz"
+[38] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_338_S190_F_filt.fastq.gz"
+[39] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_339_S191_F_filt.fastq.gz"
+[40] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_340_S192_F_filt.fastq.gz"
+[41] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_341_S193_F_filt.fastq.gz"
+[42] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_342_S194_F_filt.fastq.gz"
+[43] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_343_S195_F_filt.fastq.gz"
+[44] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_344_S196_F_filt.fastq.gz"
+[45] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_345_S197_F_filt.fastq.gz"
+[46] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_346_S198_F_filt.fastq.gz"
+[47] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_347_S199_F_filt.fastq.gz"
+[48] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_348_S200_F_filt.fastq.gz"
+[49] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_349_S201_F_filt.fastq.gz"
+[50] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_350_S202_F_filt.fastq.gz"
+[51] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_351_S203_F_filt.fastq.gz"
+[52] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_353_S205_F_filt.fastq.gz"
+[53] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_354_S206_F_filt.fastq.gz"
+[54] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_355_S207_F_filt.fastq.gz"
+[55] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_356_S208_F_filt.fastq.gz"
+[56] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_357_S209_F_filt.fastq.gz"
+[57] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_358_S210_F_filt.fastq.gz"
+[58] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_359_S211_F_filt.fastq.gz"
+[59] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_360_S212_F_filt.fastq.gz"
+[60] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_361_S213_F_filt.fastq.gz"
+[61] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_362_S214_F_filt.fastq.gz"
+[62] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_363_S215_F_filt.fastq.gz"
+[63] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_364_S216_F_filt.fastq.gz"
+[64] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_365_S217_F_filt.fastq.gz"
+[65] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_366_S218_F_filt.fastq.gz"
+[66] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_367_S219_F_filt.fastq.gz"
+[67] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_370_S222_F_filt.fastq.gz"
+[68] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_371_S223_F_filt.fastq.gz"
+[69] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_372_S224_F_filt.fastq.gz"
+[70] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_373_S225_F_filt.fastq.gz"
+[71] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_374_S226_F_filt.fastq.gz"
+ [1] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_257_S151_R_filt.fastq.gz"
+ [2] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_258_S152_R_filt.fastq.gz"
+ [3] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_301_S153_R_filt.fastq.gz"
+ [4] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_302_S154_R_filt.fastq.gz"
+ [5] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_303_S155_R_filt.fastq.gz"
+ [6] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_304_S156_R_filt.fastq.gz"
+ [7] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_305_S157_R_filt.fastq.gz"
+ [8] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_306_S158_R_filt.fastq.gz"
+ [9] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_307_S159_R_filt.fastq.gz"
+[10] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_308_S160_R_filt.fastq.gz"
+[11] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_309_S161_R_filt.fastq.gz"
+[12] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_310_S162_R_filt.fastq.gz"
+[13] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_311_S163_R_filt.fastq.gz"
+[14] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_312_S164_R_filt.fastq.gz"
+[15] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_313_S165_R_filt.fastq.gz"
+[16] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_314_S166_R_filt.fastq.gz"
+[17] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_315_S167_R_filt.fastq.gz"
+[18] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_316_S168_R_filt.fastq.gz"
+[19] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_317_S169_R_filt.fastq.gz"
+[20] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_318_S170_R_filt.fastq.gz"
+[21] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_319_S171_R_filt.fastq.gz"
+[22] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_320_S172_R_filt.fastq.gz"
+[23] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_321_S173_R_filt.fastq.gz"
+[24] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_322_S174_R_filt.fastq.gz"
+[25] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_323_S175_R_filt.fastq.gz"
+[26] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_324_S176_R_filt.fastq.gz"
+[27] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_325_S177_R_filt.fastq.gz"
+[28] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_326_S178_R_filt.fastq.gz"
+[29] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_327_S179_R_filt.fastq.gz"
+[30] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_328_S180_R_filt.fastq.gz"
+[31] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_329_S181_R_filt.fastq.gz"
+[32] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_330_S182_R_filt.fastq.gz"
+[33] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_331_S183_R_filt.fastq.gz"
+[34] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_333_S185_R_filt.fastq.gz"
+[35] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_334_S186_R_filt.fastq.gz"
+[36] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_335_S187_R_filt.fastq.gz"
+[37] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_336_S188_R_filt.fastq.gz"
+[38] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_338_S190_R_filt.fastq.gz"
+[39] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_339_S191_R_filt.fastq.gz"
+[40] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_340_S192_R_filt.fastq.gz"
+[41] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_341_S193_R_filt.fastq.gz"
+[42] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_342_S194_R_filt.fastq.gz"
+[43] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_343_S195_R_filt.fastq.gz"
+[44] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_344_S196_R_filt.fastq.gz"
+[45] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_345_S197_R_filt.fastq.gz"
+[46] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_346_S198_R_filt.fastq.gz"
+[47] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_347_S199_R_filt.fastq.gz"
+[48] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_348_S200_R_filt.fastq.gz"
+[49] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_349_S201_R_filt.fastq.gz"
+[50] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_350_S202_R_filt.fastq.gz"
+[51] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_351_S203_R_filt.fastq.gz"
+[52] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_353_S205_R_filt.fastq.gz"
+[53] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_354_S206_R_filt.fastq.gz"
+[54] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_355_S207_R_filt.fastq.gz"
+[55] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_356_S208_R_filt.fastq.gz"
+[56] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_357_S209_R_filt.fastq.gz"
+[57] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_358_S210_R_filt.fastq.gz"
+[58] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_359_S211_R_filt.fastq.gz"
+[59] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_360_S212_R_filt.fastq.gz"
+[60] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_361_S213_R_filt.fastq.gz"
+[61] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_362_S214_R_filt.fastq.gz"
+[62] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_363_S215_R_filt.fastq.gz"
+[63] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_364_S216_R_filt.fastq.gz"
+[64] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_365_S217_R_filt.fastq.gz"
+[65] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_366_S218_R_filt.fastq.gz"
+[66] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_367_S219_R_filt.fastq.gz"
+[67] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_370_S222_R_filt.fastq.gz"
+[68] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_371_S223_R_filt.fastq.gz"
+[69] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_372_S224_R_filt.fastq.gz"
+[70] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_373_S225_R_filt.fastq.gz"
+[71] "/proj/rnaseq01/viroids/Viroid-transcriptome-mining/slutkurs/trimmed_primers/filtered/P34104_374_S226_R_filt.fastq.gz"
+                                     reads.in reads.out
+P34104_257_S151_L001_R1_001.fastq.gz   671149    557091
+P34104_258_S152_L001_R1_001.fastq.gz   351640    287553
+P34104_301_S153_L001_R1_001.fastq.gz   418621    350114
+P34104_302_S154_L001_R1_001.fastq.gz   516139    432421
+P34104_303_S155_L001_R1_001.fastq.gz   590713    492445
+P34104_304_S156_L001_R1_001.fastq.gz   565803    463995
+154331148 total bases in 557091 reads from 1 samples will be used for learning the error rates.
+151181290 total bases in 557091 reads from 1 samples will be used for learning the error rates.
+Sample 1 - 557091 reads in 70853 unique sequences.
+Sample 2 - 287553 reads in 28145 unique sequences.
+Sample 3 - 350114 reads in 33636 unique sequences.
+Sample 4 - 432421 reads in 44432 unique sequences.
+Sample 5 - 492445 reads in 45978 unique sequences.
+Sample 6 - 463995 reads in 34632 unique sequences.
+Sample 7 - 455522 reads in 45194 unique sequences.
+Sample 8 - 372221 reads in 54526 unique sequences.
+Sample 9 - 430977 reads in 38861 unique sequences.
+Sample 10 - 507608 reads in 51768 unique sequences.
+Sample 11 - 524760 reads in 34931 unique sequences.
+Sample 12 - 416429 reads in 25778 unique sequences.
+Sample 13 - 340657 reads in 42997 unique sequences.
+Sample 14 - 517545 reads in 71013 unique sequences.
+Sample 15 - 335170 reads in 56198 unique sequences.
+Sample 16 - 559008 reads in 92088 unique sequences.
+Sample 17 - 358823 reads in 31701 unique sequences.
+Sample 18 - 427810 reads in 26992 unique sequences.
+Sample 19 - 390783 reads in 32485 unique sequences.
+Sample 20 - 447247 reads in 36088 unique sequences.
+Sample 21 - 237134 reads in 25551 unique sequences.
+Sample 22 - 268205 reads in 27268 unique sequences.
+Sample 23 - 429762 reads in 61699 unique sequences.
+Sample 24 - 305279 reads in 31832 unique sequences.
+Sample 25 - 397769 reads in 57046 unique sequences.
+Sample 26 - 74964 reads in 9668 unique sequences.
+Sample 27 - 432702 reads in 62095 unique sequences.
+Sample 28 - 361000 reads in 46436 unique sequences.
+Sample 29 - 428151 reads in 57051 unique sequences.

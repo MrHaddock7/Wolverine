@@ -1,0 +1,15 @@
+---
+title: "Report"
+author: "XXX"
+date: "January 7, 2017"
+output: pdf_document
+---
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(phyloseq)
+library(ggplot2)
+
+plot_richness(ps, x = "Zoo", measures = c("Shannon", "Observed")) +
+  theme_bw()
+```

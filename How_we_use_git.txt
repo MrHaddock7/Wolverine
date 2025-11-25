@@ -1,0 +1,62 @@
+How to Use Git in a Simple Way
+
+1. Start by pulling from main**:
+   Always begin by pulling the latest changes from the main branch to ensure your local repository is up to date.
+
+   git checkout main
+
+   git pull
+
+2. Switch to your own branch:
+   After pulling the latest changes, switch to your own branch. If you don't have a branch yet, create one.
+
+   git checkout -b my-branch  # For creating a new branch
+   # or
+   git checkout my-branch  # For switching to an existing branch
+
+3. Merge main into your branch:
+   Ensure your branch has the latest changes from main by merging main into your branch.
+
+   git merge main
+
+4. Edit and commit your changes:
+   Make your changes to the code, then stage and commit them.
+   
+   git add .
+
+   git commit -m "Describe your changes"
+
+5. Push your changes to the remote branch:
+   Push your committed changes to the remote repository.
+
+   git push
+
+6. Switch back to main and pull again:
+   Go back to the main branch and pull the latest changes again to ensure it’s up to date.
+
+   git checkout main
+
+   git pull
+
+7. Switch back to your branch and merge main:
+   Go back to your branch and merge the latest changes from main into it.
+
+   git checkout my-branch
+
+   git merge main       (Step 4 (commit) is needed for the merge to function correctly)
+
+
+
+8. Merge your branch into main and push:
+   Finally, switch to the main branch, merge your branch into main, and push the changes.
+   
+   git checkout main
+   
+   git merge my-branch
+   
+   git push
+   
+
+Following these steps will help ensure that your branch is always in sync with the main branch and that your changes are correctly integrated into the main branch.
+
+boi

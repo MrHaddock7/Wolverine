@@ -5,34 +5,77 @@ library("dplyr")        # filter and reformat data frames
 library("tibble")       # Needed for converting column to row names
 
 ps
+ps_no_ctrl
+
+unique(sample_data(ps_no_ctrl)$Individual)
+sample_data(ps_no_ctrl)$Individual <- iconv(
+  sample_data(ps_no_ctrl)$Individual,
+  from = "latin1",
+  to   = "UTF-8"
+)
+
+asv_per_sample <- apply(otu_table(ps_no_ctrl), 1, function(x) sum(x > 0))
+asv_per_sample
 
 
-filename <- file.choose()
-ps_clean <- readRDS(filename)
-# Transform data to proportions as appropriate for Bray-Curtis distances
-ps.prop <- transform_sample_counts(ps_clean, function(otu) otu/sum(otu))
+###Check sample depth
+sample_depths <- sample_sums(ps_no_ctrl)
+sample_depths
+bad_depth <- names(sample_depths[sample_depths < 15000])
+bad_depth
+
+###Check alpha diversity and observed ASV count per sample
+library(phyloseq)
+alpha <- estimate_richness(ps_no_ctrl, measures=c("Shannon", "Observed"))
+alpha
+write.csv(alpha, "alpha_diversity.csv", row.names = TRUE)
+
+###Plot alpha
+library(phyloseq)
+library(ggplot2)
+library(dplyr)
+
+# Example: calculate Shannon diversity
+alpha_div <- estimate_richness(ps_no_ctrl, measures = "Shannon")
+
+# Combine with sample metadata
+meta <- data.frame(sample_data(ps_no_ctrl))
+alpha_meta <- cbind(alpha_div, meta)
+alpha_meta$Sex
+# Ensure Sex is a factor and include NA as a level
+alpha_meta$Sex <- factor(ifelse(is.na(alpha_meta$Sex), "NA",
+                                ifelse(alpha_meta$Sex == "1", "Female", 
+                                       ifelse(alpha_meta$Sex == 0, "Male", "NA"))),
+                         levels = c("Female", "Male", "NA"))
+
+# Plot
+ggplot(alpha_meta, aes(x = Zoo, y = Shannon, fill = Zoo)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.2, alpha = 0.5) +
+  theme_minimal() +
+  labs(x = "Sex", y = "Shannon Diversity") #+
+  #scale_fill_manual(values = c("Female" = "pink", "Male" = "lightblue", "NA" = "grey"))
+
+
+ggsave("alpha_box_per_zoo.png", width = 6, height = 5, dpi = 300)
+
+### Transform data to proportions as appropriate for Bray-Curtis distances
+ps.prop <- transform_sample_counts(ps_no_ctrl, function(otu) otu/sum(otu))
 ord.nmds.bray <- ordinate(ps.prop, method="NMDS", distance="bray")
 
-plot_ordination(ps.prop, ord.nmds.bray, color="Zoo", title="Bray NMDS")
 p <- plot_ordination(ps.prop, ord.nmds.bray, color="Zoo", title="Bray NMDS")
 
-# Extract the factor levels (non-NA Zoo groups)
-zlv <- levels(sample_data(ps.prop)$Zoo)
+p + geom_label(aes(label = NGI.ID), 
+               size = 3, 
+               alpha = 0.7)
 
-# Create a color palette for the real Zoo groups
-pal <- setNames(
-  RColorBrewer::brewer.pal(length(zlv), "Set2"),
-  zlv
-)
+ggsave("NMDS_zoo_individual.png", width = 6, height = 5, dpi = 300)
 
-# Add NA = black and plot
-p + scale_color_manual(
-  values = pal,
-  na.value = "black"
-)
+####
 
-top40 <- names(sort(taxa_sums(ps_clean), decreasing=TRUE))[1:40]
-ps.top40 <- transform_sample_counts(ps_clean, function(OTU) OTU/sum(OTU))
+
+top40 <- names(sort(taxa_sums(ps_no_ctrl), decreasing=TRUE))[1:40]
+ps.top40 <- transform_sample_counts(ps_no_ctrl, function(OTU) OTU/sum(OTU))
 ps.top40 <- prune_taxa(top40, ps.top40)
 plot_bar(ps.top40, x="Age", fill="Phylum") + facet_wrap(~Zoo, scales="free_x")  +
   geom_bar(stat="identity", color=NA) 

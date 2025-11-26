@@ -80,3 +80,22 @@ ps.top40 <- prune_taxa(top40, ps.top40)
 plot_bar(ps.top40, x="Age", fill="Phylum") + facet_wrap(~Zoo, scales="free_x")  +
   geom_bar(stat="identity", color=NA) 
 
+
+##Plot beta diversity
+library(phyloseq)
+library(vegan)
+library(ggplot2)   
+sample_data(ps_1126)$Zoo <- as.factor(sample_data(ps_1126)$Zoo)
+bc_dist <- phyloseq::distance(ps_1126, method = "bray")
+ordination <- ordinate(ps_1126, method = "PCoA", distance = bc_dist)
+p <- plot_ordination(ps_1126, ordination, color = "Zoo") +
+  geom_point(size = 4, alpha = 0.8) +
+  theme_minimal() +
+  labs(title = "Beta Diversity (PCoA) of Wolverines in Zoos")
+
+print(p)
+
+
+metadata <- as(sample_data(ps_1126), "data.frame")
+adonis_result <- vegan::adonis2(bc_dist ~ Zoo, data = metadata)
+adonis_result

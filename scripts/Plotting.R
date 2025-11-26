@@ -1,446 +1,63 @@
-# Install DADA2 package
-
-if (!requireNamespace("BiocManager", quietly = TRUE))
-  install.packages("BiocManager")
-BiocManager::install("dada2") #change version if updated
-
-if (!requireNamespace("BiocManager", quietly = TRUE))
-  install.packages("BiocManager")
-BiocManager::install("decontam")
-
-if (!requireNamespace("BiocManager", quietly = TRUE))
-  install.packages("BiocManager")
-BiocManager::install("microbiome")
-
-# Follow instructions to install cutadapt, you will do that on your computer and then
-# run it remotely in R, https://cutadapt.readthedocs.io/en/stable/installation.html
-
-##### 
-
-# load packages, check which version you have 
-
-library(dada2); packageVersion("dada2")
-library(ShortRead)
-library(cutadapt)
-library(ggplot2)
-library(MASS)
-
-library(phyloseq)
-library(Biostrings)
-library(decontam)
-library(microbiome)
-library(microbiomeutilities)
-library(vegan)
-library(eulerr)
-
-# Some extra packages to use for plotting, should be easy to find and directly install
-library(ggplot2)
-library(tidyverse)
-library(grid)
-library(ggpubr)
-library(gridExtra)
-library(RColorBrewer)
-library(dplyr)
-library(plyr)
-library(ggsignif)
-
-# you may need to change what kind of data separation you have in your metadata file
-### 1. Load metadata ----------------------------------------------------------
-
-metadata <- read.csv(
-  "C:/Users/anton/Desktop/Applied Bioinformatics/metadata.csv",
-  sep = ";",
-  stringsAsFactors = FALSE
-)
-
-# Set rownames to NGI.ID
-rownames(metadata) <- metadata$NGI.ID
-
-
-### 2. Extract sample names from seqtab.nochim --------------------------------
-
-samples.out <- rownames(seqtab.nochim)
-
-
-### 3. Clean sample names to match metadata -----------------------------------
-
-# Remove trailing underscore
-samples.clean <- sub("_$", "", samples.out)
-
-# Remove Illumina sample index (_S###)
-samples.clean <- sub("_S[0-9]+$", "", samples.clean)
-
-# Now assign cleaned names to seqtab.nochim
-rownames(seqtab.nochim) <- samples.clean
-
-
-### 4. Filter metadata to only samples that have ASV data ----------------------
-
-metadata.filtered <- metadata[samples.clean, ]
-
-# Ensure rownames match
-rownames(metadata.filtered) <- samples.clean
-
-
-### 5. Build phyloseq object --------------------------------------------------
-
-# Metadata must NOT be transposed
-t_metadata <- metadata.filtered
-
-ps_raw <- phyloseq(
-  otu_table(seqtab.nochim, taxa_are_rows = FALSE),
-  sample_data(t_metadata),
-  tax_table(taxa)
-)
-
-
-### 6. Convert sequences into ASV names ---------------------------------------
-
-dna <- Biostrings::DNAStringSet(taxa_names(ps_raw))
-names(dna) <- taxa_names(ps_raw)
-ps_raw <- merge_phyloseq(ps_raw, dna)
-
-taxa_names(ps_raw) <- paste0("ASV", seq(ntaxa(ps_raw)))
-
-
-### 7. Clean up workspace (optional) ------------------------------------------
-
-rm(
-  dadaFs, dadaRs, errF, errR, mergers, out_trim, seqtab, seqtab2, track2,
-  filtFs, filtRs, fnFs, fnRs, FWD, FWD.orients, path, REV, REV.orients
-)
-
-ps_raw
-
-####Cleaning PS#####
-get_taxa_unique(ps_raw, "Family")
-get_taxa_unique(ps_raw, "Class")
-get_taxa_unique(ps_raw, "Order")
-
-mitochondria <- phyloseq::subset_taxa(ps_raw, Family=="Mitochondria")
-mitochondria
-sample_sums(mitochondria)[order(sample_sums(mitochondria))]
-
-chloroplast <- subset_taxa(ps_raw, Order=="Chloroplast")
-chloroplast
-tax_table(chloroplast)[,1:7]
-sample_sums(chloroplast)[order(sample_sums(chloroplast))]
-
-colnames(tax_table(ps_raw))
-table(tax_table(ps_raw)[, "Kingdom"], useNA = "always")
-
-
-# Eukaryotes and unassigned (I don't have Eukaryotes in my samples)
-unassigned <- subset_taxa(ps_raw, is.na(Kingdom))
-unassigned
-tax_table(unassigned)[,1:7]
-sample_sums(unassigned)[order(sample_sums(unassigned))]
-
-#Remove eukaryotes
-eukaryotes <- subset_taxa(ps_raw, Kingdom == "Eukaryota")
-
-#Remove archaea
-archaea <- subset_taxa(ps_raw, Kingdom == "Archaea")
-tax_table(eukaryotes)[, 1:7]
-tax_table(archaea)[, 1:7]
-sample_sums(eukaryotes)[order(sample_sums(eukaryotes))]
-sample_sums(archaea)[order(sample_sums(archaea))]
-
-
-# filter mitochondria 
-badTaxa <- row.names(tax_table(mitochondria)[,1])
-allTaxa <- taxa_names(ps_raw)
-goodTaxa <- allTaxa[!(allTaxa %in% badTaxa)]
-ps_raw <- prune_taxa(goodTaxa, ps_raw)
-# filter chloroplast
-badTaxa <- row.names(tax_table(chloroplast)[,1])
-allTaxa <- taxa_names(ps_raw)
-goodTaxa <- allTaxa[!(allTaxa %in% badTaxa)]
-ps_raw <- prune_taxa(goodTaxa, ps_raw)
-# filter NA reads
-badTaxa <- row.names(tax_table(unassigned)[,1])
-allTaxa <- taxa_names(ps_raw)
-goodTaxa <- allTaxa[!(allTaxa %in% badTaxa)]
-ps_raw <- prune_taxa(goodTaxa, ps_raw)
-# filter eukaryotes reads
-badTaxa <- row.names(tax_table(eukaryotes)[,1])
-allTaxa <- taxa_names(ps_raw)
-goodTaxa <- allTaxa[!(allTaxa %in% badTaxa)]
-ps_raw <- prune_taxa(goodTaxa, ps_raw)
-# filter archaea reads
-badTaxa <- row.names(tax_table(archaea)[,1])
-allTaxa <- taxa_names(ps_raw)
-goodTaxa <- allTaxa[!(allTaxa %in% badTaxa)]
-ps_raw <- prune_taxa(goodTaxa, ps_raw)
-
-
-# filter zero ASVs
-table(taxa_sums(ps_raw) < 1)
-ps_raw
-ps_raw <- prune_taxa(taxa_sums(ps_raw) > 0, ps_raw)
-ps_raw
-# clean up some objects in work-space
-rm(mitochondria, chloroplast, allTaxa, goodTaxa, badTaxa)
-
-################################################################################
-########################## Decontam ############################################
-################################################################################
-
-# https://benjjneb.github.io/decontam/vignettes/decontam_intro.html
-# the website has a very nice introduction that we will follow
-
-# We will likely not have the DNA concentration for each sample unless you performed
-# all lab work yourself, in which case you can add the frequency method to your
-# script. It is however not necessary and we will use the prevalence method
-
-# The prevalence method requires a column in your metadata that says whether your
-# sample is a true sample or control. 
-
-# Check metadata
-head(sample_data(ps_raw))
-
-# Convert sample_data to data.frame for plotting
-df <- as.data.frame(sample_data(ps_raw))
-df$LibrarySize <- sample_sums(ps_raw)
-df <- df[order(df$LibrarySize),]
-df$Index <- seq(nrow(df))
-
-#v Converting sample data to data frame with correct ASCII
-# Ensure User_ID is character
-df$User_ID <- as.character(df$User_ID)
-
-# Convert to UTF-8 to avoid translation warnings
-df$User_ID <- iconv(df$User_ID, from = "", to = "UTF-8")
-
-# Now classify control vs sample
-df$Sample_or_Control <- ifelse(grepl("^Control_", df$User_ID),
-                               "Control",
-                               "Sample")
-
-
-# Create Sample_or_Control column based on User_ID
-df$Sample_or_Control <- ifelse(grepl("^Control_", df$User_ID),
-                               "Control",
-                               "Sample")
-
-# Plot library sizes colored by Sample_or_Control
-ggplot(df, aes(x = Index, y = LibrarySize, color = Sample_or_Control)) +
-  geom_point()
-
-# Add Sample_or_Control to ps_raw sample_data
-sample_data(ps_raw)$Sample_or_Control <- df$Sample_or_Control[match(
-  rownames(sample_data(ps_raw)), df$NGI.ID
-)]
-
-# Add negative control indicator
-sample_data(ps_raw)$is.neg <- sample_data(ps_raw)$Sample_or_Control == "Control"
-
-# Identify contaminants using prevalence method (threshold = 0.2)
-contamdf.prev <- isContaminant(ps_raw, method="prevalence", neg="is.neg", threshold=0.2)
-table(contamdf.prev$contaminant)
-
-
-
-# Transform to presence/absence for plotting
-ps.pa <- transform_sample_counts(ps_raw, function(abund) 1*(abund > 0))
-
-# Test
-# Transform counts to presence/absence for prevalence
-ps.pa <- transform_sample_counts(ps_raw, function(x) 1*(x>0))
-
-# Split into negative controls and true samples
-ps.pa.neg <- prune_samples(sample_data(ps.pa)$Sample_or_Control == "Control", ps.pa)
-ps.pa.pos <- prune_samples(sample_data(ps.pa)$Sample_or_Control == "Sample", ps.pa)
-
-# Calculate prevalence for each ASV
-prev.df <- data.frame(
-  ASV = taxa_names(ps.pa),
-  pa.neg = taxa_sums(ps.pa.neg) / nsamples(ps.pa.neg),  # prevalence in controls
-  pa.pos = taxa_sums(ps.pa.pos) / nsamples(ps.pa.pos)   # prevalence in true samples
-)
-
-# Run decontam with your chosen threshold
-threshold <- 0.2  # adjust as needed
-contamdf.prev <- isContaminant(ps_raw, method="prevalence", neg="is.neg", threshold=threshold)
-
-# Add contaminant info
-prev.df$contaminant <- contamdf.prev$contaminant
-
-# Plot prevalence
-library(ggplot2)
-ggplot(prev.df, aes(x = pa.neg, y = pa.pos, color = contaminant)) +
-  geom_point(size=2, alpha=0.7) +
-  xlab("Prevalence in negative controls") +
-  ylab("Prevalence in true samples") +
-  ggtitle(paste("Contaminant detection (threshold =", threshold, ")")) +
-  scale_color_manual(values = c("FALSE" = "blue", "TRUE" = "red")) +
-  theme_minimal() +
-  geom_abline(slope = 1, intercept = 0, linetype="dashed", color="gray") +
-  theme(legend.title = element_blank())
-
-
-# Subset to negative controls and true samples
-ps.pa.neg <- prune_samples(sample_data(ps.pa)$Sample_or_Control == "Control", ps.pa)
-ps.pa.pos <- prune_samples(sample_data(ps.pa)$Sample_or_Control == "Sample", ps.pa)
-
-# Data frame of prevalence in positive vs negative samples
-df.pa <- data.frame(
-  pa.pos = taxa_sums(ps.pa.pos),
-  pa.neg = taxa_sums(ps.pa.neg),
-  contaminant = contamdf.prev$contaminant
-)
-
-# Plot prevalence
-ggplot(data=df.pa, aes(x = pa.neg, y = pa.pos, color = contaminant)) +
-  geom_point() +
-  xlab("Prevalence (Negative Controls)") +
-  ylab("Prevalence (True Samples)")
-
-# Prune contaminants
-ps_noncontam <- prune_taxa(!contamdf.prev$contaminant, ps_raw)
-
-# Remove the 'is.neg' column from sample_data
-sample_data(ps_noncontam)$is.neg <- NULL
-
-# Check final sample_data
-sample_data(ps_noncontam)
-
-# Clean up workspace
-rm(df, df.pa, ps.pa, ps.pa.neg, ps.pa.pos, contamdf.prev)
-
-
-table(sample_data(ps_raw)$Sample_or_Control)
-
-
-###############################################################################
-################# More sample clean-up and preparation #########################
-################################################################################
-
-# Remove all the control samples since we don't need them anymore
-# I named it after my study species, call it whatever you want.
-ps_no_ctrl <- subset_samples(ps_noncontam, Sample_or_Control %in% "Sample")
-
-##### Remove very poor samples (i.e the ones with very low number of reads)
-
-sample_sums(ps_no_ctrl)[order(-sample_sums(ps_no_ctrl))]
-ps_no_ctrl = prune_samples(sample_sums(ps_no_ctrl)>=1000, ps_no_ctrl)
-
-# Check ps object
-summarize_phyloseq(ps_no_ctrl)
-
-n_raw  <- ntaxa(ps_raw)
-n_clean <- ntaxa(ps_no_ctrl)
-n_raw
-n_clean
-removed <- n_raw - n_clean
-removed
-
-removed / n_raw * 100
-
-ps.pa <- transform_sample_counts(ps_raw, function(x) 1*(x>0))
-ps.pa.neg <- prune_samples(sample_data(ps.pa)$is.neg, ps.pa)
-ps.pa.pos <- prune_samples(!sample_data(ps.pa)$is.neg, ps.pa)
-
-df.pa <- data.frame(
-  pa.pos = taxa_sums(ps.pa.pos),
-  pa.neg = taxa_sums(ps.pa.neg),
-  contaminant = contamdf.prev$contaminant
-)
-
-ggplot(df.pa, aes(x = pa.neg, y = pa.pos, color = contaminant)) +
-  geom_point() +
-  xlab("Prevalence in controls") +
-  ylab("Prevalence in samples")
-
-table(contamdf.prev$contaminant)
-
-sum_before <- sum(sample_sums(ps_raw))
-sum_after  <- sum(sample_sums(ps_no_ctrl))
-removed_reads <- sum_before - sum_after
-removed_reads
-c(sum_before, sum_after, removed_reads)
-
-
-# Choose a path and filename
-saveRDS(ps_no_ctrl, file = "C:/Users/anton/Desktop/Applied Bioinformatics/ps_no_ctrl_clean.rds")
-
-
-
 ################################################################################
 ######################### Plotting and data-exploration ########################
 ################################################################################
 
-load("~/path/to/Phyloseq_decontam")
+# Loading data
+
+source("config.R")
+
+path_ps <- paste(home, "data/ps_no_ctrl_clean.RData", sep="")
+
+load(path_ps)
+ps <- ps_no_ctrl
+
+# Transforming swedish characters fo rreadability
+df <- as.data.frame(sample_data(ps))
+
+for (col in names(df)) {
+  if (is.character(df[[col]])) {
+    df[[col]] <- iconv(df[[col]], from = "latin1", to = "UTF-8")
+  }
+}
+
+sample_data(ps) <- df
+
+
+unique(sample_data(ps)$Zoo)
+unique(sample_data(ps)$User_ID)
+unique(sample_data(ps)$Date_sampled)
+
+
+sample_data(ps) <- df
+
+
+str(sample_data(ps))
 
 # Set color-palette for plotting, you can pick your own colors here, whatever
 # suits you!
 
-color_list <- c("#8A9A5B", "#a96b17", "#d79235", "#c45c04", "#452a05", "#646444", "#353b24", "#94842b", "#302a04", "#cc6350", "#242b10")
+color_list <- c(
+  "Bacillota"      = "#FF9999",  # light red
+  "Pseudomonadota" = "#99CCFF",  # light blue
+  "Actinomycetota" = "#66CC99",  # teal
+  "Bacteroidota"   = "#FFCC66",  # light orange
+  "Chloroflexota"  = "#CC99CC",  # pastel purple
+  "Other"          = "#CCCCCC"   # grey
+)
 
 ################################################################################
 ######## Relative abundance box-plots ###########################################
 ################################################################################
 
-#Checking before and after (relative abundance)
-ps_rel_raw <- transform_sample_counts(ps_raw, function(x) x / sum(x))
-ps_rel_clean <- transform_sample_counts(ps_no_ctrl, function(x) x / sum(x))
-
-df_raw <- psmelt(ps_rel_raw)
-df_clean <- psmelt(ps_rel_clean)
-
-df_raw$Phylum[df_raw$Phylum %in% c("", " ", NA, "NA", "Unassigned")] <- "Unassigned"
-df_clean$Phylum[df_clean$Phylum %in% c("", " ", NA, "NA", "Unassigned")] <- "Unassigned"
-
-phylum_levels <- sort(unique(c(df_raw$Phylum, df_clean$Phylum)))
-df_raw$Phylum <- factor(df_raw$Phylum, levels = phylum_levels)
-df_clean$Phylum <- factor(df_clean$Phylum, levels = phylum_levels)
-
-# Before pruning
-ggplot(df_raw, aes(x = Sample, y = Abundance, fill = Phylum)) +
-  geom_bar(stat = "identity", position = "stack") +
-  theme_bw() +
-  ggtitle("Relative abundance BEFORE contaminant removal") +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, size = 6))
-
-# After pruning
-ggplot(df_clean, aes(x = Sample, y = Abundance, fill = Phylum)) +
-  geom_bar(stat = "identity", position = "stack") +
-  theme_bw() +
-  ggtitle("Relative abundance AFTER contaminant removal") +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, size = 6))
-
-# Checking abundance
-# Melt phyloseq objects
-df_raw <- psmelt(ps_raw)        # before pruning
-df_clean <- psmelt(ps_no_ctrl)  # after pruning
-
-# Fix missing phylum names
-df_raw$Phylum[df_raw$Phylum %in% c("", " ", NA, "NA", "Unassigned")] <- "Unassigned"
-df_clean$Phylum[df_clean$Phylum %in% c("", " ", NA, "NA", "Unassigned")] <- "Unassigned"
-
-# Plot absolute abundance before
-ggplot(df_raw, aes(x = Sample, y = Abundance, fill = Phylum)) +
-  geom_bar(stat = "identity", position = "stack") +
-  theme_bw() +
-  ggtitle("Absolute abundance BEFORE pruning") +
-  ylab("Read counts") +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, size = 6))
-
-# Plot absolute abundance after
-ggplot(df_clean, aes(x = Sample, y = Abundance, fill = Phylum)) +
-  geom_bar(stat = "identity", position = "stack") +
-  theme_bw() +
-  ggtitle("Absolute abundance AFTER pruning") +
-  ylab("Read counts") +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, size = 6))
-
-
 # This is for the bar-plots showing relative abundance of all samples #
 # I'll give example on phylum level, but it's then easy to change the taxonomic level 
 # and re-do it on family or genus level for example
 
+# Normalize
+ps_norm <- microbiome::transform(ps, "compositional")
+barplot_phylum <- psmelt(ps_norm)
+
 # Use the ps object that has been normalized!
-barplot_phylum <- psmelt(ps_no_ctrl)
 table(barplot_phylum$Phylum, useNA="ifany") # table of phyla
 barplot_phylum$Phylum[barplot_phylum$Phylum==""] <- "NA" # change if there are empty names to NA
 table(barplot_phylum$Phylum, useNA="ifany") # check
@@ -450,10 +67,15 @@ taxa_summary <- aggregate(barplot_phylum$Abundance, by=list(Category= barplot_ph
 taxa_summary <- taxa_summary[order(-taxa_summary$x) ,]
 taxa_summary
 
+# Calculating sum of abundances and top phyla
+taxa_summary <- aggregate(Abundance ~ Phylum, data = barplot_phylum, sum)
+taxa_summary <- taxa_summary[order(-taxa_summary$Abundance), ]
+taxa_summary
+
 #Print off all top 5 phyla (choose your own cut-off)
 list(as.character(taxa_summary[c(1:5),1]))
 
-top_phyla <- as.character(c("Actinobacteriota","Firmicutes","Bacteroidota","Proteobacteria","Desulfobacterota"))
+top_phyla <- as.character(c("Bacillota","Pseudomonadota","Actinomycetota","Bacteroidota","Chloroflexota" ))
 
 # Function
 '%!in%' <- function(x,y)!('%in%'(x,y))
@@ -468,42 +90,28 @@ for (i in seq_along(barplot_phylum$Phylum)) {
 }
 
 # Re-name NA:s as "Other"
-ps_no_ctrl$Phylum[is.na(barplot_phylum$Phylum)] <- "Other"
-
-tax <- tax_table(ps_no_ctrl)
-tax <- as.data.frame(tax)
-tax$Phylum[
-  is.na(tax$Phylum) |
-    tax$Phylum == "" |
-    tax$Phylum == " " |
-    tax$Phylum == "NA" |
-    tax$Phylum == "Unassigned"
-] <- "Unassigned"
-tax_table(ps_no_ctrl) <- as.matrix(tax)
-barplot_phylum <- psmelt(ps_no_ctrl)
-table(barplot_phylum$Phylum, useNA="ifany")
-barplot_phylum
+barplot_phylum$Phylum[is.na(barplot_phylum$Phylum)] <- "Unassigned"
 
 
 # Change order so "Other" is last, change the rest to whichever order you prefer
-barplot_phylum$Phylum <- factor(barplot_phylum$Phylum, levels= c("Actinobacteriota", "Firmicutes", "Proteobacteria", "Bacteroidota", "Desulfobacterota", "Other"))
+barplot_phylum$Phylum <- factor(barplot_phylum$Phylum, levels= c("Bacillota","Pseudomonadota","Actinomycetota","Bacteroidota","Chloroflexota", "Other"))
 levels(barplot_phylum$Phylum) # check
 
 # Turn sample_ID into factor, since they are numbers but don't want them to behave as numbers
 # or whatever you called that column
-barplot_phylum$Sample_ID <- as.factor(barplot_phylum$Sample_ID)
+barplot_phylum$NGI.ID <- as.factor(barplot_phylum$NGI.ID)
 
 # also turn whatever variable you're interested in comparing (for example location)
 # into a factor! For me it was sample type
-barplot_phylum$Sample_type <- as.factor(barplot_phylum$Sample_type)
+barplot_phylum$Zoo <- as.factor(barplot_phylum$Zoo)
 
 # Plot per individual sample sorted by sample type (or other variable)
 # In my case I have "Sample_ID", which is the number for all my samples, 
 # but your data set might have this organized differently
 
-ggplot(barplot_phylum, aes(x = Sample_ID, y=Abundance, order = Phylum)) + 
+ggplot(barplot_phylum, aes(x = NGI.ID, y=Abundance, order = Phylum)) + 
   geom_bar((aes(fill=Phylum)), stat="identity", position="stack", width = 1) +
-  ylab("Relative abundance") + xlab("Sample ID") + theme_bw() +
+  ylab("Relative abundance") + xlab("NGI ID") + theme_bw() +
   # coord_flip() + # comment out this line if you want vertical bars
   theme(panel.grid.minor=element_blank(), panel.grid.major=element_blank()) +
   theme(axis.title.x = element_text(size=13), 
@@ -514,14 +122,12 @@ ggplot(barplot_phylum, aes(x = Sample_ID, y=Abundance, order = Phylum)) +
         legend.text = element_text(size=12),
         legend.key.size=unit(0.7,"cm") ) +
   theme(axis.text.x = element_text(angle = 90)) +
-  scale_fill_manual(values=(color_list[c(10,6,8,5,4,3)])) + 
-  facet_grid(~Sample_type, scales="free", space="free") + # change this per your liking!
+  scale_fill_manual(values = color_list) + 
+  facet_grid(~Zoo, scales="free", space="free") + # change this per your liking!
   scale_y_continuous(expand = c(0,0)) +
   theme(strip.text.x = element_text(size = 8, color = "black"), 
         strip.background = element_rect(fill = "#ffffff"))
 
-# This is based in ggplot2. I would recommend looking up various ways of editing
-# the aesthetics of the plot, like text font, size, color etc. 
 # I am also using something called "facet_grid", that separates out my variable of
 # interest (sample type) into different grids.
 
@@ -530,7 +136,10 @@ ggplot(barplot_phylum, aes(x = Sample_ID, y=Abundance, order = Phylum)) +
 # This might be of interest for you, if you want to merge the samples by 
 # one variable, for example sex or location or in my case sample type
 
-ps_merged_phylum = merge_samples(ps_Lagilis, "Sample_type")
+sample_data(ps_norm)$Latitude <- as.numeric(gsub(",", ".", sample_data(ps_norm)$Latitude))
+
+ps_merged_phylum <- merge_samples(ps_norm, "Zoo")
+
 
 # Rel. abundance transformation
 merged_phylum_rel = transform_sample_counts(ps_merged_phylum, function(OTU) OTU/sum(OTU))
@@ -652,8 +261,8 @@ ggarrange(plot1_name, plot2_name, nrow = 1, labels = c("A", "B"))
 
 # Turn your sample variables into factors
 # Important that you use the normalized data set:
-sample_data(ps_rel)$Sex <- as.factor(sample_data(ps_rel)$Sex)
-sample_data(ps_rel)$Sample_type <- as.factor(sample_data(ps_rel)$Sample_type)
+sample_data(ps_norm)$Zoo <- as.factor(sample_data(ps_norm)$Zoo)
+sample_data(ps_norm)$Sex <- as.factor(sample_data(ps_norm)$Sex)
 
 ################################################################################
 # Elin's PcOA plot example
@@ -689,8 +298,8 @@ ggplot(g, aes(x=Axis.1, y=Axis.2, color=Species, fill=Species)) + theme_bw() +
         legend.text  = element_text(size = 13),
         legend.key.size = unit(0.6, "cm"),
         legend.position = "right") +
-  scale_color_manual(values = col_gir) +
-  scale_fill_manual(values  = col_gir)
+  scale_color_manual(values = color_list) +
+  scale_fill_manual(values  = color_list)
 
 ################################################################################
 # PCA plot example

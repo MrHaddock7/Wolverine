@@ -1,0 +1,25 @@
+Loading conda
+Starting picrust
+Warning - 103 input sequences aligned poorly to reference sequences (--min_align option specified a minimum proportion of 0.8 aligning to reference sequences). These input sequences will not be placed and will be excluded from downstream steps.
+
+This is the set of poorly aligned input sequences to be excluded: ASV12121, ASV5617, ASV12021, ASV13075, ASV11051, ASV2568, ASV10975, ASV564, ASV8970, ASV10713, ASV13559, ASV10605, ASV11049, ASV3596, ASV5511, ASV5495, ASV1686, ASV5012, ASV11858, ASV10956, ASV13762, ASV11464, ASV13066, ASV13563, ASV11909, ASV11643, ASV9923, ASV12137, ASV8359, ASV7923, ASV13078, ASV13057, ASV10408, ASV2010, ASV11570, ASV2061, ASV1546, ASV13624, ASV12287, ASV10702, ASV11462, ASV12501, ASV11912, ASV4450, ASV7148, ASV7873, ASV12011, ASV1348, ASV12382, ASV9012, ASV13503, ASV11577, ASV12016, ASV13111, ASV13564, ASV13558, ASV12508, ASV2063, ASV4553, ASV10703, ASV10649, ASV12381, ASV6501, ASV11300, ASV10701, ASV12033, ASV13142, ASV6585, ASV11913, ASV11375, ASV10753, ASV4731, ASV10862, ASV13708, ASV909, ASV12431, ASV11911, ASV8548, ASV8532, ASV1661, ASV11946, ASV4637, ASV13627, ASV13256, ASV13710, ASV9338, ASV6078, ASV8810, ASV7627, ASV8418, ASV12996, ASV11050, ASV13572, ASV12035, ASV13557, ASV2810, ASV12400, ASV12390, ASV4677, ASV6911, ASV4263, ASV11461, ASV12843
+
+
+Warning - 148 input sequences aligned poorly to reference sequences (--min_align option specified a minimum proportion of 0.8 aligning to reference sequences). These input sequences will not be placed and will be excluded from downstream steps.
+
+This is the set of poorly aligned input sequences to be excluded: ASV4263, ASV13075, ASV2010, ASV10605, ASV2568, ASV2940, ASV7629, ASV12501, ASV9338, ASV8418, ASV3723, ASV10909, ASV3915, ASV12431, ASV2063, ASV6775, ASV12011, ASV12508, ASV3596, ASV12016, ASV1176, ASV11462, ASV13142, ASV3488, ASV4731, ASV10649, ASV13507, ASV13057, ASV8548, ASV10408, ASV8359, ASV6585, ASV10702, ASV9116, ASV11911, ASV4450, ASV10703, ASV10956, ASV1851, ASV2027, ASV12382, ASV9012, ASV11946, ASV12381, ASV1348, ASV7873, ASV1686, ASV4438, ASV12121, ASV4637, ASV13572, ASV6114, ASV13708, ASV12287, ASV7803, ASV11577, ASV1801, ASV5014, ASV11570, ASV11375, ASV13627, ASV7148, ASV1366, ASV10100, ASV1661, ASV12400, ASV10701, ASV909, ASV11786, ASV3791, ASV13563, ASV13066, ASV5495, ASV7923, ASV7627, ASV11858, ASV9169, ASV842, ASV4677, ASV12137, ASV6935, ASV13503, ASV11300, ASV3662, ASV12996, ASV1790, ASV12585, ASV11909, ASV4553, ASV4067, ASV5012, ASV3293, ASV11913, ASV6911, ASV9923, ASV11461, ASV6078, ASV13557, ASV3545, ASV12033, ASV4221, ASV11464, ASV1546, ASV3865, ASV5617, ASV11049, ASV13558, ASV9150, ASV13007, ASV11702, ASV13559, ASV8201, ASV11912, ASV8810, ASV8970, ASV13624, ASV13564, ASV8824, ASV13762, ASV13078, ASV6501, ASV1586, ASV10713, ASV11257, ASV2051, ASV3981, ASV12021, ASV6039, ASV10975, ASV11051, ASV11121, ASV11215, ASV2810, ASV12843, ASV3440, ASV12035, ASV11050, ASV11643, ASV13256, ASV13111, ASV2061, ASV12390, ASV564, ASV7099, ASV5316, ASV5511, ASV8532, ASV10862
+
+
+
+
+
+
+
+
+8 of 13387 ASVs were above the max NSTI cut-off of 2.0 and were removed from the downstream analyses.
+
+8 of 13387 ASVs were above the max NSTI cut-off of 2.0 and were removed from the downstream analyses.
+
+
+['bac_KO', 'arc_KO'] {'bac_marker': '/home/haddock/private/Wolverine/results/picrust2_output_26_11_2025/picrust2_out_pipeline_run/bac_reduced_marker_predicted_and_nsti.tsv.gz', 'arc_marker': '/home/haddock/private/Wolverine/results/picrust2_output_26_11_2025/picrust2_out_pipeline_run/arc_reduced_marker_predicted_and_nsti.tsv.gz', 'bac_EC': '/home/haddock/private/Wolverine/results/picrust2_output_26_11_2025/picrust2_out_pipeline_run/bac_EC_predicted.tsv.gz', 'bac_KO': '/home/haddock/private/Wolverine/results/picrust2_output_26_11_2025/picrust2_out_pipeline_run/bac_KO_predicted.tsv.gz', 'arc_EC': '/home/haddock/private/Wolverine/results/picrust2_output_26_11_2025/picrust2_out_pipeline_run/arc_EC_predicted.tsv.gz', 'arc_KO': '/home/haddock/private/Wolverine/results/picrust2_output_26_11_2025/picrust2_out_pipeline_run/arc_KO_predicted.tsv.gz'}
+['bac_EC', 'arc_EC'] {'bac_marker': '/home/haddock/private/Wolverine/results/picrust2_output_26_11_2025/picrust2_out_pipeline_run/bac_reduced_marker_predicted_and_nsti.tsv.gz', 'arc_marker': '/home/haddock/private/Wolverine/results/picrust2_output_26_11_2025/picrust2_out_pipeline_run/arc_reduced_marker_predicted_and_nsti.tsv.gz', 'bac_EC': '/home/haddock/private/Wolverine/results/picrust2_output_26_11_2025/picrust2_out_pipeline_run/bac_EC_predicted.tsv.gz', 'bac_KO': '/home/haddock/private/Wolverine/results/picrust2_output_26_11_2025/picrust2_out_pipeline_run/bac_KO_predicted.tsv.gz', 'arc_EC': '/home/haddock/private/Wolverine/results/picrust2_output_26_11_2025/picrust2_out_pipeline_run/arc_EC_predicted.tsv.gz', 'arc_KO': '/home/haddock/private/Wolverine/results/picrust2_output_26_11_2025/picrust2_out_pipeline_run/arc_KO_predicted.tsv.gz'}

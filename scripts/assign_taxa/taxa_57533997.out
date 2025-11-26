@@ -1,0 +1,14 @@
+     Kingdom    Phylum      Class        Order                                
+[1,] "Bacteria" "Bacillota" "Clostridia" "Clostridiales"                      
+[2,] "Bacteria" "Bacillota" "Clostridia" "Peptostreptococcales-Tissierellales"
+[3,] "Bacteria" "Bacillota" "Clostridia" "Peptostreptococcales-Tissierellales"
+[4,] "Bacteria" "Bacillota" "Clostridia" "Peptostreptococcales-Tissierellales"
+[5,] "Bacteria" "Bacillota" "Bacilli"    "Bacillales"                         
+[6,] "Bacteria" "Bacillota" "Clostridia" "Peptostreptococcales-Tissierellales"
+     Family                  Genus              Species       
+[1,] "Clostridiaceae"        "Clostridium"      NA            
+[2,] "Peptostreptococcaceae" "Paeniclostridium" NA            
+[3,] "Peptostreptococcaceae" "Paeniclostridium" NA            
+[4,] "Peptostreptococcaceae" "Romboutsia"       "sedimentorum"
+[5,] "Planococcaceae"        "Kurthia"          NA            
+[6,] "Peptostreptococcaceae" "Romboutsia"       "hominis"     

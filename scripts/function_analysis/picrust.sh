@@ -7,6 +7,7 @@
 
 module load Miniconda3
 
+source /sw/arch/eb/software/Miniconda3/24.7.1-0/etc/profile.d/conda.sh
 conda activate picrust2
 
 picrust2_pipeline.py -s /home/haddock/private/Wolverine/data/ASV_abundance_sequences/rep_seqs.fna -i /home/haddock/private/Wolverine/data/ASV_abundance_sequences/table.biom -o /home/haddock/private/Wolverine/results/picrust2_output_26_11_2025/picrust2_out_pipeline_run -p 20

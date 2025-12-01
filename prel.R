@@ -102,6 +102,10 @@ meta <- data.frame(sample_data(ps_merged_1201))
 # Convert relevant variables to factors
 factor_vars <- c("Zoo", "Sex", "Sweden", "Meat", "Fish", "Fruit", "Individual")
 meta[factor_vars] <- lapply(meta[factor_vars], factor)
+meta$Latitude <- as.numeric(gsub(",", ".", meta$Latitude))
+
+numeric_vars <- c("Latitude", "Age", "Enclosure_size")
+meta[numeric_vars] <- lapply(meta[numeric_vars], function(x) as.numeric(as.character(x)))
 
 # Check missing values
 colSums(is.na(meta))
@@ -109,11 +113,10 @@ colSums(is.na(meta))
 adonis_results <- list()
 # Keep only samples with non-missing Sex
 for (col in colnames(meta)) {
-  if (length(unique(meta[[col]])) <= 1) next
+  # Remove NAs for this variable
+  meta_clean <- meta[!is.na(meta[[col]]), ]
   
-  # Keep only samples without NAs
-  meta_clean <- meta[complete.cases(meta[[col]]), ]
-  
+  # Skip if less than 2 unique values remain
   if (length(unique(meta_clean[[col]])) < 2) next
   
   # Subset distance matrix
@@ -121,15 +124,39 @@ for (col in colnames(meta)) {
   bc_dist_clean <- as.dist(as.matrix(bc_dist)[common_samples, common_samples])
   meta_clean <- meta_clean[common_samples, ]
   
-  # Construct formula dynamically
+  # Skip if less than 2 samples remain
+  if (nrow(meta_clean) < 2) next
+  
+  # Construct formula
   fmla <- as.formula(paste("bc_dist_clean ~", col))
   
   # Run PERMANOVA
   adonis_res <- adonis2(fmla, data = meta_clean, permutations = 999)
   
-  # Store results
+  # Store result
   adonis_results[[col]] <- adonis_res
 }
 adonis_results
-
 save(adonis_results, file = "C:/Users/Lovisa/Documents/Wolverine/data/adonis_result.txt")
+
+###Multivariate ADONIS
+# Define variables in the model
+model_vars <- c("Zoo", "Age")
+
+# Keep only rows with no NAs in these variables
+meta_clean2 <- meta_clean[complete.cases(meta_clean[, model_vars]), ]
+
+# Subset distance matrix to match these samples
+common_samples <- intersect(rownames(meta_clean2), rownames(as.matrix(bc_dist)))
+bc_dist_clean2 <- as.dist(as.matrix(bc_dist)[common_samples, common_samples])
+meta_clean2 <- meta_clean2[common_samples, ]
+
+# Run multivariable PERMANOVA
+adonis_res2 <- adonis2(
+  bc_dist_clean2 ~ Zoo + Age,
+  data = meta_clean2,
+  permutations = 999
+)
+
+adonis_res2
+

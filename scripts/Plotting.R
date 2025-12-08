@@ -1,3 +1,11 @@
+# Libraries / packages
+
+library(phyloseq)
+library(ggplot2)
+library(dplyr)
+library(ggpubr)  # for stat_compare_means / stat_kruskal_test
+
+
 ################################################################################
 ######################### Plotting and data-exploration ########################
 ################################################################################
@@ -6,35 +14,12 @@
 
 source("config.R")
 
-path_ps <- paste(home, "data/ps_no_ctrl_clean.RData", sep="")
+path_ps <- paste(home, "data/ps_1126.RData", sep="")
 
 load(path_ps)
-ps <- ps_no_ctrl
+ps <- ps_1126
 
-# Transforming swedish characters fo rreadability
-df <- as.data.frame(sample_data(ps))
-
-for (col in names(df)) {
-  if (is.character(df[[col]])) {
-    df[[col]] <- iconv(df[[col]], from = "latin1", to = "UTF-8")
-  }
-}
-
-sample_data(ps) <- df
-
-
-unique(sample_data(ps)$Zoo)
-unique(sample_data(ps)$User_ID)
-unique(sample_data(ps)$Date_sampled)
-
-
-sample_data(ps) <- df
-
-
-str(sample_data(ps))
-
-# Set color-palette for plotting, you can pick your own colors here, whatever
-# suits you!
+# Set color-palette for plotting
 
 color_list <- c(
   "Bacillota"      = "#FF9999",  # light red
@@ -45,6 +30,69 @@ color_list <- c(
   "Other"          = "#CCCCCC"   # grey
 )
 
+######################## Make rarefaction curve ################################
+
+# You can plot how many reads you need before most of the ASVs in a sample are
+# present, this guides how many reads to rarefy with
+
+# I chose to limit number of reads because the plot became quite illegible
+# however adapt this to your data set
+ps_rarecurve = prune_samples(sample_sums(ps)<=10000, ps)
+
+tab <- otu_table(ps_rarecurve)
+class(tab) <- "matrix" # as.matrix() will do nothing, you get a warning here, but this is what we need to have
+tab2 <- t(tab) # transpose observations to rows
+
+# Plot rarefaction curve, see where it levels out. It seems that my data set seems to
+# level out at around approx. 1000-2000 reads, but of course this will differ
+rare <- rarecurve(tab, step=1000, lwd=2, ylab="OTU",  label=F)
+
+########################### Rarefy reads #######################################
+
+# This takes x random reads from all samples (lowest number chosen) (which is
+# why we set seed), to control for different number of reads for samples
+
+# Alpha diversity calculations are sensitive to number of reads (makes sense),
+# so then creating an even (random) read depth reduces biases
+
+# Call it something that makes sense, in my case all my rarefied data is called
+# ps_rare in some form, all my normalized data is called ps_rel (relative abundance)
+
+set.seed(300) # chose random number
+# Set it to the lowest amount of reads you have, depends on your data set,
+# also can be guided by rarefaction curve
+
+# Checking lowest amount of reads = 7444, 12910 and 188325, we'll run it with 
+# 188325
+min(sample_sums(ps))
+
+sort(sample_sums(ps))[1:10]   # lowest 10
+
+# Removing the two low read samples ( P34104_331, P34104_333)
+
+ps_filtered <- prune_samples(sample_sums(ps) > 12910, ps)
+min(sample_sums(ps_filtered))
+
+# Rarefying
+
+ps_rare = rarefy_even_depth(ps, sample.size = 188325)
+
+# Saving ps_rare as file
+save(ps_rare, file = "ps_rare.RData")
+
+ntaxa(ps)
+ntaxa(ps_rare)
+
+# Now normalize by calculating the relative abundance of all the samples
+ps_rel = transform_sample_counts(ps_filtered, function(x) x / sum(x) )
+
+# ps_filtered = bad samples removed
+# ps_rare = for alpha diversity
+# ps_rel = for barplots and composition
+
+# I would save the work space at this stage and call it "Phyloseq_decontam" or
+# similar, so you can always re-load from this stage
+
 ################################################################################
 ######## Relative abundance box-plots ###########################################
 ################################################################################
@@ -54,35 +102,27 @@ color_list <- c(
 # and re-do it on family or genus level for example
 
 # Normalize
-ps_norm <- microbiome::transform(ps, "compositional")
+ps_norm <- microbiome::transform(ps_rel, "compositional")
 barplot_phylum <- psmelt(ps_norm)
 
-# Use the ps object that has been normalized!
-table(barplot_phylum$Phylum, useNA="ifany") # table of phyla
-barplot_phylum$Phylum[barplot_phylum$Phylum==""] <- "NA" # change if there are empty names to NA
-table(barplot_phylum$Phylum, useNA="ifany") # check
+# Replacing Sample_Type with NGI.ID
+# Turn sample_ID into factor, since they are numbers but don't want them to behave as numbers
+# or whatever you called that column
+# also turn whatever variable you're interested in comparing (for example location)
+# into a factor! For me it was sample type
+barplot_phylum$NGI.ID <- as.factor(barplot_phylum$NGI.ID)  
+barplot_phylum$Zoo <- as.factor(barplot_phylum$Zoo)
 
-# calculate sum of abundances
-taxa_summary <- aggregate(barplot_phylum$Abundance, by=list(Category= barplot_phylum$Phylum), FUN=sum)
-taxa_summary <- taxa_summary[order(-taxa_summary$x) ,]
-taxa_summary
-
-# Calculating sum of abundances and top phyla
+# Top phyla
 taxa_summary <- aggregate(Abundance ~ Phylum, data = barplot_phylum, sum)
 taxa_summary <- taxa_summary[order(-taxa_summary$Abundance), ]
-taxa_summary
-
-#Print off all top 5 phyla (choose your own cut-off)
-list(as.character(taxa_summary[c(1:5),1]))
-
-top_phyla <- as.character(c("Bacillota","Pseudomonadota","Actinomycetota","Bacteroidota","Chloroflexota" ))
-
-# Function
-'%!in%' <- function(x,y)!('%in%'(x,y))
+top_phyla <- as.character(taxa_summary$Phylum[1:5])
+top_phyla
 
 # For-loop and if then function that checks to see if any of the names in the list "top" is in the 
 # barplot_phylum$Phylum column, leaves unchanged if it is, changes it to "Other" if it isn't
 # Re-name all uncommon phyla as "Other"
+'%!in%' <- function(x,y)!('%in%'(x,y))
 for (i in seq_along(barplot_phylum$Phylum)) {
   if (barplot_phylum$Phylum[i] %!in% top_phyla) {
     barplot_phylum$Phylum[i] <- "Other"
@@ -91,109 +131,77 @@ for (i in seq_along(barplot_phylum$Phylum)) {
 
 # Re-name NA:s as "Other"
 barplot_phylum$Phylum[is.na(barplot_phylum$Phylum)] <- "Unassigned"
-
+barplot_phylum$Phylum <- factor(barplot_phylum$Phylum, levels= c(top_phyla, "Other"))
 
 # Change order so "Other" is last, change the rest to whichever order you prefer
 barplot_phylum$Phylum <- factor(barplot_phylum$Phylum, levels= c("Bacillota","Pseudomonadota","Actinomycetota","Bacteroidota","Chloroflexota", "Other"))
 levels(barplot_phylum$Phylum) # check
 
-# Turn sample_ID into factor, since they are numbers but don't want them to behave as numbers
-# or whatever you called that column
-barplot_phylum$NGI.ID <- as.factor(barplot_phylum$NGI.ID)
-
-# also turn whatever variable you're interested in comparing (for example location)
-# into a factor! For me it was sample type
-barplot_phylum$Zoo <- as.factor(barplot_phylum$Zoo)
-
 # Plot per individual sample sorted by sample type (or other variable)
 # In my case I have "Sample_ID", which is the number for all my samples, 
 # but your data set might have this organized differently
-
-ggplot(barplot_phylum, aes(x = NGI.ID, y=Abundance, order = Phylum)) + 
-  geom_bar((aes(fill=Phylum)), stat="identity", position="stack", width = 1) +
-  ylab("Relative abundance") + xlab("NGI ID") + theme_bw() +
-  # coord_flip() + # comment out this line if you want vertical bars
-  theme(panel.grid.minor=element_blank(), panel.grid.major=element_blank()) +
-  theme(axis.title.x = element_text(size=13), 
-        axis.title.y = element_text(size=13),
-        axis.text.y = element_text(size=12, color ="black"), 
-        axis.text.x = element_text(size=6)) +
-  theme(legend.title = element_text(size=14), 
-        legend.text = element_text(size=12),
-        legend.key.size=unit(0.7,"cm") ) +
-  theme(axis.text.x = element_text(angle = 90)) +
-  scale_fill_manual(values = color_list) + 
-  facet_grid(~Zoo, scales="free", space="free") + # change this per your liking!
-  scale_y_continuous(expand = c(0,0)) +
-  theme(strip.text.x = element_text(size = 8, color = "black"), 
-        strip.background = element_rect(fill = "#ffffff"))
-
+relab_plot <- ggplot(barplot_phylum, aes(x = NGI.ID, y=Abundance, fill=Phylum)) + 
+  geom_bar(stat="identity", position="stack") +
+  facet_grid(~Zoo, scales="free", space="free") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+relab_plot
 # I am also using something called "facet_grid", that separates out my variable of
 # interest (sample type) into different grids.
+
+# Saving plot
+ggsave("relative_abundance_plot.pdf", plot = relab_plot, width = 12, height = 6, units = "in")
 
 ########################## Merged barplot #######################################
 
 # This might be of interest for you, if you want to merge the samples by 
 # one variable, for example sex or location or in my case sample type
 
-sample_data(ps_norm)$Latitude <- as.numeric(gsub(",", ".", sample_data(ps_norm)$Latitude))
+colnames(sample_data(ps_norm))
 
-ps_merged_phylum <- merge_samples(ps_norm, "Zoo")
+# Merging all samples with the same Zoo value 
 
+sample_data(ps_norm)$Zoo <- as.factor(sample_data(ps_norm)$Zoo)
+table(sample_data(ps_norm)$Zoo, useNA="ifany")
 
-# Rel. abundance transformation
-merged_phylum_rel = transform_sample_counts(ps_merged_phylum, function(OTU) OTU/sum(OTU))
+# Merge raw counts by Zoo
+ps_merged_phylum <- merge_samples(ps, "Zoo")  
 
-# Now merge rare phyla into "Other" as we did before
+# Normalize after merging
+merged_phylum_rel <- transform_sample_counts(ps_merged_phylum, function(x) x / sum(x))
+
+# Melt for plotting
 barplot_phylum_merged <- psmelt(merged_phylum_rel)
-table(barplot_phylum_merged$Phylum, useNA="ifany") # table of phyla
-barplot_phylum_merged$Phylum[barplot_phylum_merged$Phylum==""] <- "NA" # change if there are empty names to NA
-table(barplot_phylum_merged$Phylum, useNA="ifany") # check
 
-# Calculate sum of abundances
-taxa_summary2 <- aggregate(barplot_phylum_merged$Abundance, by=list(Category = barplot_phylum_merged$Phylum), FUN=sum)
-taxa_summary2 <- taxa_summary[order(-taxa_summary$x) ,]
-taxa_summary2
-
-# Choose your own cut-off threshold. Copy all names for next revalue step.
-list(as.character(taxa_summary2[c(1:5),1]))
-
-# Make list of top 5 most abundant phyla, this will probably be the same as before
-top_phyla <- as.character(c("Actinobacteriota","Firmicutes","Bacteroidota","Proteobacteria","Desulfobacterota"))
-
-# Same function
+# Merge rare phyla into "Other"
+barplot_phylum_merged$Phylum[barplot_phylum_merged$Phylum==""] <- NA
 '%!in%' <- function(x,y)!('%in%'(x,y))
-
-for (i in seq_along(barplot_phylum_merged$Phylum)) {
-  if (barplot_phylum_merged$Phylum[i] %!in% top_phyla) {
+for(i in seq_along(barplot_phylum_merged$Phylum)) {
+  if(barplot_phylum_merged$Phylum[i] %!in% top_phyla) {
     barplot_phylum_merged$Phylum[i] <- "Other"
   }
 }
-
 barplot_phylum_merged$Phylum[is.na(barplot_phylum_merged$Phylum)] <- "Other"
+barplot_phylum_merged$Phylum <- factor(barplot_phylum_merged$Phylum, 
+                                       levels=c("Bacillota","Pseudomonadota","Actinomycetota",
+                                                "Bacteroidota","Chloroflexota","Other"))
 
-# change order so Other is last, change to whichever order you prefer
-barplot_phylum_merged$Phylum <- factor(barplot_phylum_merged$Phylum, levels= c("Actinobacteriota", "Firmicutes", "Proteobacteria", "Bacteroidota", "Desulfobacterota", "Other"))
-levels(barplot_phylum_merged$Phylum)
+# Plot using the Sample column already in barplot_phylum_merged
+merged_relab_plot_zoo <- ggplot(barplot_phylum_merged, aes(x = Sample, y = Abundance, fill = Phylum)) +
+  geom_bar(stat = "identity") +
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.title = element_text(size = 14),
+        axis.text = element_text(size = 12),
+        legend.title = element_text(size=12),
+        legend.text = element_text(size=10)) +
+  labs(x = "Zoo", y = "Relative Abundance") +
+  scale_y_continuous(limits = c(0, 1))
 
-# Have to turn sample_ID into factor or it won't plot right
-barplot_phylum_merged$Sample_ID <- as.factor(barplot_phylum_merged$Sample_ID)
+merged_relab_plot_zoo
 
-# Once again I'm plotting per sample type, so you need to change it to 
-# whatever other variable of interest you have
-ggplot(barplot_phylum_merged, aes(x = Sample, y = Abundance, fill = Phylum)) +
-  geom_bar(stat = "identity") + theme_light() +
-  theme(axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5)) +
-  labs(x = "Sample type", y = "Relative Abundance") +
-  theme(panel.grid.minor=element_blank(), panel.grid.major=element_blank()) +
-  theme(axis.title.x = element_text(size=12), 
-        axis.title.y = element_text(size=13),
-        axis.text.y = element_text(size=12, color ="black"), 
-        axis.text.x = element_text(size=10)) +
-  theme(legend.title = element_text(size=10), 
-        legend.text = element_text(size=8),
-        legend.key.size=unit(0.5,"cm")) +
-  scale_fill_manual(values=color_list[c(10,6,8,5,4,3)])
+# Saving plot
+ggsave("relative_abundance_merged_by_zoo.pdf", plot = merged_relab_plot_zoo, width = 12, height = 6, units = "in")
 
 ################################################################################
 ###### Plot different diversity indices ########################################
@@ -203,34 +211,70 @@ ggplot(barplot_phylum_merged, aes(x = Sample, y = Abundance, fill = Phylum)) +
 # change it to whatever else you want. The plots are somewhat ugly so if you
 # want to use it you may need to edit it more.
 
-Sample_type_div = plot_richness(ps_rare, x = "Sample_type", measures = c("Observed","Shannon", "Simpson"), color = "Sample_type", scales = "free_y") +
+Zoo_div_faceted <- plot_richness(ps_rare, x = "Zoo", measures = c("Shannon", "Simpson"), color = "Zoo") +
   geom_boxplot(width = 0.5) +
-  scale_color_manual(values = color_list[c(2,5,8)]) +
-  theme_bw() + 
-  theme(legend.position = "none") +
-  scale_x_discrete() +
-  theme(axis.title.y = element_text(size=8), 
-        axis.text.y = element_text(size=10)) +
-  theme(panel.grid.minor=element_blank(), panel.grid.major=element_blank())
+  theme_bw() +
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 10),
+        axis.text.y = element_text(size = 10),
+        axis.title.y = element_text(size = 12),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank()) +
+  facet_wrap(~variable, scales = "free_y")  # facet by diversity index
+
+Zoo_div_faceted
+
+# Saving plot
+ggsave("shannon_simpson_zoo.pdf", plot = Zoo_div_faceted, width = 12, height = 6, units = "in")
 
 ################################################################################
 ########## Box-plots for ASV richness ##########################################
 ################################################################################
 
 # Since we're using alpha diversity it's good to use the rarefied object
-Sampletype_boxplot <- plot_richness(ps_rare, x = "Sample_type", measures = "Observed")
 
-ggplot(Sampletype_boxplot$data, aes(x = Sample_type, y = value, fill = Sample_type)) +
+# Zoos
+Zoo_boxplot <- plot_richness(ps_rare, x = "Zoo", measures = "Observed")
+
+ggplot(Zoo_boxplot$data, aes(x = Zoo, y = value, fill = Zoo)) +
+  geom_boxplot(alpha = 1, color = "black", outlier.color = "white", outlier.size = 0, 
+               lwd=0.36, width = 0.7) +
+  geom_point(position = position_jitterdodge(jitter.width = 0.35),
+             alpha = 1, size = 1.25, color = "black", pch = 21) +
+  ylab("Alpha Diversity") + xlab("Zoo") + theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.title = element_text(size = 14)) +
+  theme(panel.border = element_rect(colour = "grey29"),
+        panel.grid.minor = element_blank(), panel.grid.major = element_blank()) +
+  theme(legend.title = element_text(size=15),
+        legend.text = element_text(size=14),
+        legend.key.size = unit(1,"cm")) +
+  theme(legend.position = "none") +
+  stat_kruskal_test(group.by = "x.var", label = "p.signif", label.y = 220) +
+  # Note here that I add in a statistical test to indicate significance
+  # It depends on your data which test you should use
+  ggtitle("Difference in ASV richness between Zoos")
+
+#wilcox pairwise
+
+# Sex
+Sex_boxplot <- plot_richness(ps_rare, x = "Sex", measures = "Observed")
+
+sample_data(ps_rare)$Sex <- factor(sample_data(ps_rare)$Sex,
+                                   levels = c(0,1),
+                                   labels = c("M", "F"))
+
+
+ggplot(Sex_boxplot$data, aes(x = Sex, y = value, fill = Sex)) +
   geom_boxplot(alpha = 1, color = "black", outlier.color = "white", outlier.size = 0, 
                lwd=0.36, width = 0.7) +
   geom_point(position = position_jitterdodge(jitter.width = 0.35),
              alpha = 1, size = 1.25, color = "black", pch = 21) +  
-  ylab("Richness") + xlab("Sample type") + theme_bw() +
-  theme(axis.title.x = element_text(size=18, margin=margin(t=7)), 
-        axis.title.y = element_text(size=18, margin=margin(r=8)),
-        axis.text.y  = element_text(size=18, color="black"), 
-        axis.text.x  = element_text(size=18, color="black"),
-        strip.text.x = element_blank()) +
+  ylab("Alpha Diversity (Observed ASVs)") + xlab("Sex") + theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.title = element_text(size = 14)) +
   theme(panel.border = element_rect(colour = "grey29"),
         panel.grid.minor = element_blank(), panel.grid.major = element_blank()) +
   scale_fill_manual(values = color_list[c(6,4,8)]) +
@@ -242,7 +286,32 @@ ggplot(Sampletype_boxplot$data, aes(x = Sample_type, y = value, fill = Sample_ty
   stat_kruskal_test(group.by = "x.var", label = "p.signif", label.y = 220) +
   # Note here that I add in a statistical test to indicate significance
   # It depends on your data which test you should use
-  ggtitle("Boxplot showing difference in ASV richness between sample-types")
+  ggtitle("Difference in ASV richness between Sex")
+
+# Diet
+Diet_boxplot <- plot_richness(ps_rare, x = "Diet", measures = "Observed")
+
+ggplot(Diet_boxplot$data, aes(x = Diet, y = value, fill = Diet)) +
+  geom_boxplot(alpha = 1, color = "black", outlier.color = "white", outlier.size = 0, 
+               lwd=0.36, width = 0.7) +
+  geom_point(position = position_jitterdodge(jitter.width = 0.35),
+             alpha = 1, size = 1.25, color = "black", pch = 21) +  
+  ylab("Alpha Diversity (Observed ASVs)") + xlab("Diet") + theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.title = element_text(size = 14)) +
+  theme(panel.border = element_rect(colour = "grey29"),
+        panel.grid.minor = element_blank(), panel.grid.major = element_blank()) +
+  scale_fill_manual(values = color_list[c(6,4,8)]) +
+  scale_color_manual(values = color_list) +
+  theme(legend.title = element_text(size=15),
+        legend.text = element_text(size=14),
+        legend.key.size = unit(1,"cm")) +
+  theme(legend.position = "none") +
+  stat_kruskal_test(group.by = "x.var", label = "p.signif", label.y = 220) +
+  # Note here that I add in a statistical test to indicate significance
+  # It depends on your data which test you should use
+  ggtitle("Difference in ASV richness between Diet")
 
 # Example on how you might plot two different box-plots in the same plot
 # using ggarrange. You can't use par(mfrow = c(2,2)) with ggplot 

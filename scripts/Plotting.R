@@ -333,6 +333,7 @@ ggarrange(plot1_name, plot2_name, nrow = 1, labels = c("A", "B"))
 sample_data(ps_norm)$Zoo <- as.factor(sample_data(ps_norm)$Zoo)
 sample_data(ps_norm)$Sex <- as.factor(sample_data(ps_norm)$Sex)
 
+
 ################################################################################
 # Elin's PcOA plot example
 

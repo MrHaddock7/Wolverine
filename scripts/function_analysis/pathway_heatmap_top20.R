@@ -33,6 +33,8 @@ pathway_abundance <- metacyc_abundance %>% tibble::column_to_rownames("pathway")
 
 keep <- rowSums(pathway_abundance > 0) >=3
 pathway_abundance <- pathway_abundance[keep, , drop = FALSE]
+pathway_abundance <- subset(pathway_abundance, select = -c(P34104_331,P34104_333))
+
 
 
 # Metadata table should only include the samples from the picrust output
@@ -78,4 +80,9 @@ ggplot2::ggsave(
   dpi = 300
 )
 
+ps.prop <- transform_sample_counts(daa_res_sig, function(otu) otu/sum(otu))
+ord.nmds.bray <- ordinate(ps.prop, method="NMDS", distance="bray")
 
+
+
+p <- plot_ordination(ps.prop, ord.nmds.bray, color="Zoo", title="Bray NMDS")

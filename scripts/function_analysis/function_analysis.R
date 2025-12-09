@@ -1,104 +1,78 @@
-library(ggpicrust2)
-library(phyloseq)
-library(dplyr)
-library(readr)
-library(MicrobiomeStat)
-library(ggplot2)
-library(tibble)
+#!/usr/bin/env Rscript
+suppressPackageStartupMessages({
+  library(ggpicrust2)
+  library(dplyr)
+  library(tibble)
+  library(readr)
+  library(ggplot2)
+  library(vegan)
+  library(tidyr)
+})
+
+# Laddar metadata och picrust2 abundance data
 source("config.R")
 
-
-metadata <- read.csv(paste(home, 'data/metadata.csv', sep = ''), sep = ';', fileEncoding = "latin1")
-rownames(metadata) <- metadata$NGI.ID
-
-metacyc_abundance <- read_tsv(
-  paste(home, "results/picrust2_output_26_11_2025/picrust2_out_pipeline_run/pathways_out/path_abun_unstrat.tsv.gz", sep = '')
+metadata_path <- file.path(home, "data", "metadata.csv")
+pathway_abun_path <- file.path(
+  home,
+  "results/picrust2_output_26_11_2025/picrust2_out_pipeline_run/pathways_out/path_abun_unstrat.tsv.gz"
 )
 
-# Första kolumnen brukar heta "pathway" – gör den till rownames:
-pathway_abundance <- metacyc_abundance %>%
-  tibble::column_to_rownames("pathway")
+metadata <- read.csv(metadata_path, sep = ";", fileEncoding = "latin1")
 
-head(metadata)
-head(pathway_abundance)
+rownames(metadata) <- metadata$NGI_ID
 
-
-## 3. Synka metadata och abundans (bara gemensamma prover)
-common_samples <- intersect(colnames(pathway_abundance), rownames(metadata))
-
-length(common_samples)
+metacyc_abundance <- readr::read_tsv(pathway_abun_path, show_col_types = FALSE)
+pathway_abundance <- metacyc_abundance %>% tibble::column_to_rownames("pathway")
 
 
-pathway_abundance <- pathway_abundance[, common_samples]
-metadata <- metadata[common_samples, ]
+# Låg statistisk kraft för vissa pathways som finns i färre än 3 samples
 
-## 4. Välj en gruppvariabel – t.ex. Zoo
-table(metadata$Zoo)
+keep <- rowSums(pathway_abundance > 0) >=3
+pathway_abundance <- pathway_abundance[keep, , drop = FALSE]
 
-# Om det ser ut som Skansen / Helsinki / Gaia / ... med flera prover per grupp
-# kan vi köra DAA så här:
+
+# Ta bort samples av dålig kvalite
+pathway_abundance <- subset(pathway_abundance, select = -c(P34104_331,P34104_333))
+
+
+# Få bort orelevanta prover från metadatan
+
+common <- intersect(colnames(pathway_abundance), rownames(metadata))
+if (length(common) == 0) stop("Inga gemensamma prov mellan metadata och abundans.")
+
+pathway_abundance <- pathway_abundance[, common, drop = FALSE]
+metadata <- metadata[common, , drop = FALSE]
+
+
+# Differential Abundance Analysis
 
 daa_res <- pathway_daa(
   abundance  = pathway_abundance,
-  metadata   = metadata,
-  group      = "Zoo",   # <-- VIKTIGT: en riktig grupp-kolumn, inte NGI.ID
-  daa_method = "LinDA"
-)
-
-## 5. Visualisera resultat
-visualize_daa(daa_res)
-
-
-
-
-
-
-
-
-keep <- rowSums(pathway_abundance > 0) >= 3  # eller >= 5 om du vill vara strängare
-sum(keep)  # hur många pathways överlever?
-
-pathway_abundance_filt <- pathway_abundance[keep, ]
-
-head(pathway_abundance_filt)
-
-daa_res <- pathway_daa(
-  abundance  = pathway_abundance_filt,
   metadata   = metadata,
   group      = "Zoo",
   daa_method = "LinDA"
 )
 
-
-head(daa_res$daa_results_df)
-colnames(daa_res$daa_results_df)
-
-
+daa_res_sig <- filter(daa_res, p_adjust<0.05, abs(log2FoldChange)>=1)
+nrow(daa_res)
+nrow(daa_res_sig)
 
 
+# Pathway daa_analysis
 
-path_tbl <- pathway_abundance_filt %>%
-  rownames_to_column("pathway")
-
-top20 <- path_tbl %>%
-  mutate(total = rowSums(across(-pathway))) %>%
-  arrange(desc(total)) %>%
-  slice_head(n = 20)
-
-pathway_abundance_top20 <- top20 %>%
-  select(-total) %>%
-  column_to_rownames("pathway")
-
-
-
-pathway_heatmap(
-  abundance = pathway_abundance_top20,
+annotated_daa_res <- pathway_daa(
+  abundance = pathway_abundance,
   metadata = metadata,
-  group = "Zoo",
+  group = 'Zoo',
+  daa_method = "ALDEx2"
+)
 
-) +
-  labs(title = "Pathway Abundance Heatmap")
+head(annotated_daa_res)
 
+annotations <- pathway_annotation(
+  daa_results_df = annotated_daa_res,
+  pathway = "MetaCyc",
+)
 
-
-
+head(annotation)

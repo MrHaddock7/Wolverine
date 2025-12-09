@@ -76,3 +76,5 @@ annotations <- pathway_annotation(
 )
 
 head(annotation)
+
+save(annotation, annotated_daa_res, daa_res, daa_res_sig, metadata, pathway_abundance, file = file.path(home, "data", "function_analysis_9_12.RData"))

@@ -1,3 +1,4 @@
+
 library("phyloseq")
 library("ggplot2")      # graphics
 library("readxl")       # necessary to import the data from Excel file
@@ -97,7 +98,8 @@ library(phyloseq)
 library(vegan)
 
 # Convert phyloseq sample data to a data.frame
-meta <- data.frame(sample_data(ps_merged_1201))
+meta <- data.frame(sample_data(ps_1126))
+bc_dist <- phyloseq::distance(ps_1126, method = "bray")
 
 # Convert relevant variables to factors
 factor_vars <- c("Zoo", "Sex", "Sweden", "Meat", "Fish", "Fruit", "Individual")
@@ -137,11 +139,11 @@ for (col in colnames(meta)) {
   adonis_results[[col]] <- adonis_res
 }
 adonis_results
-save(adonis_results, file = "C:/Users/Lovisa/Documents/Wolverine/data/adonis_result.txt")
+save(adonis_results, file = "C:/Users/Lovisa/Documents/Wolverine/data/adonis_result.RData")
 
 ###Multivariate ADONIS
 # Define variables in the model
-model_vars <- c("Zoo", "Age")
+model_vars <- c("Zoo", "Age", "Sex")
 
 # Keep only rows with no NAs in these variables
 meta_clean2 <- meta_clean[complete.cases(meta_clean[, model_vars]), ]
@@ -153,10 +155,63 @@ meta_clean2 <- meta_clean2[common_samples, ]
 
 # Run multivariable PERMANOVA
 adonis_res2 <- adonis2(
-  bc_dist_clean2 ~ Zoo + Age,
+  bc_dist_clean2 ~ Zoo + Sex + Age,
   data = meta_clean2,
-  permutations = 999
+  permutations = 999,
+  by = "margin"
 )
 
 adonis_res2
+
+
+###Pairwise adonis
+install.packages("devtools")
+devtools::install_github("pmartinezarbizu/pairwiseAdonis/pairwiseAdonis")
+
+
+library(phyloseq)
+library(vegan)
+library(pairwiseAdonis)
+
+# make sure ps is your phyloseq object
+# compute distance (Bray-Curtis)
+ps_no_gaia <- subset_samples(ps_1126, Zoo != "Gaia")
+bc <- phyloseq::distance(ps_1126, method = "bray")
+
+# extract metadata
+meta <- as(sample_data(ps_1126), "data.frame")
+meta
+
+bd <- betadisper(bc, meta$Zoo)
+bd
+boxplot(bd)
+plot(bd, hull = TRUE, col = rainbow(length(unique(meta$Zoo))))
+
+permutest(bd, permutations = 999)
+
+# ensure Zoo is factor
+meta$Zoo <- factor(meta$Zoo)
+
+# optional: drop levels with <2 samples (adonis needs at least 2 in group for pair)
+keep_zoo <- names(which(table(meta$Zoo) >= 2))
+meta <- meta[meta$Zoo %in% keep_zoo, ]
+bc_subset <- as.matrix(bc)[rownames(meta), rownames(meta)]
+bc_subset <- as.dist(bc_subset)
+
+# run pairwise adonis
+table(meta$Zoo)
+all(rownames(meta) == rownames(bc_subset))
+
+pw <- pairwise.adonis2(bc_subset ~ Zoo, data = meta, permutations = 999)
+print(pw)
+
+
+
+####
+
+#Run beta diversity analysis
+
+####
+
+
 

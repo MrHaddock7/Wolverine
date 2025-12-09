@@ -12,7 +12,8 @@ path_ps  <- file.path(home, "data", "ps_rare_1209.RData")
 save_path <- file.path(home, "plots_and_results")
 
 load(path_ps)
-ps <- ps_rel
+ls()
+ps <- ps_rare
 
 ################################################################################
 ###### Plot different diversity indices ########################################

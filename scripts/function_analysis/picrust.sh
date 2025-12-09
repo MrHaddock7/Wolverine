@@ -14,4 +14,4 @@ conda activate picrust2
 
 echo "Starting picrust"
 
-picrust2_pipeline.py -s /home/haddock/private/Wolverine/data/ASV_abundance_sequences/rep_seqs.fna -i /home/haddock/private/Wolverine/data/ASV_abundance_sequences/table.biom -o /home/haddock/private/Wolverine/results/picrust2_output_26_11_2025/picrust2_out_pipeline_run -p 20
+picrust2_pipeline.py -s /home/haddock/private/Wolverine/data/ASV_abundance_sequences/rep_seqs_1126.fna -i /home/haddock/private/Wolverine/data/ASV_abundance_sequences/table_1126.biom -o /home/haddock/private/Wolverine/results/picrust2_output_26_11_2025/picrust2_out_pipeline_run_1126_ps -p 20

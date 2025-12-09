@@ -11,25 +11,13 @@ params:
 knitr::opts_chunk$set(echo = FALSE)
 library(phyloseq)
 library(ggplot2)
+load("C:/Users/Lovisa/Documents/Wolverine/scripts/report_generation/div_df.RData")
+div_df <- final_df
 
 #plot_richness(ps, x = "Zoo", measures = c("Shannon", "Observed")) +
   #theme_bw()
 ```
 
-```{r}
-df_div <- data.frame(
-  zoo = c("Nordens Ark", "Kolmården", "Skansen", 
-          "Lycksele Zoo", "Orsa Predator Park",
-          "Nordens Ark", "Kolmården", "Skansen",
-          "Orsa Predator Park", "Orsa Predator Park"),
-  individual = c("W1", "W2", "W3",
-                 "W4", "W5",
-                 "W6", "W7",
-                 "W8", "W9", "W10"),
-  alpha = round(runif(10, 2.5, 4.5), 3),
-  beta  = round(runif(10, 0.1, 0.6), 3)
-)
-```
 
 The present report summarizes the gut microbiota profiles of wolverines housed at your institution, based on high-throughput sequencing of the fecal samples you sent us. The results are intended to provide a baseline overview of microbial diversity, composition, and potential patterns observed across individuals. While microbiota data alone cannot diagnose health issues, it can serve as a complementary tool supporting husbandry decisions, dietary evaluations, and long-term welfare assessments.\\
 
@@ -52,13 +40,14 @@ We thank you for your collaboration and hope that the findings contribute to ong
 write_microbiota_summary <- function(df, zoo_name) {
   
   # Filter to the zoo
-  df_zoo <- df[df$zoo == zoo_name, ]
+  df_zoo <- df[df$Zoo == zoo_name, ]
   
-  indivs  <- df_zoo$individual
-  alphas  <- df_zoo$alpha
+  indivs  <- df_zoo$Individual
+  alphas  <- round(df_zoo$alpha,3)
   betas   <- df_zoo$beta
   
   n <- length(indivs)
+  print(n)
   
   # --- Build alpha text ---
   if (n == 1) {
@@ -110,7 +99,6 @@ write_microbiota_summary <- function(df, zoo_name) {
     full_text      = paste(alpha_sentence, beta_sentence)
   )
 }
-summary_text <- write_microbiota_summary(df_div, params$zoo)
 
 ```
 

@@ -30,8 +30,11 @@ We thank you for your collaboration and hope that the findings contribute to ong
 
 #GRAF 1: Pie chart of composition: phylum and family
 
+The pie charts show the composition of gut microbiota for each individual wolverine. For each animal, the first chart displays the relative abundance of bacteria at the phylum level, providing an overview of the main bacterial groups present. The second chart shows the family level, giving a more detailed view of which bacterial families make up the microbiota. The size of each slice represents the proportion of that group in the gut, allowing us to compare which bacteria are most common in each individual.
+
 
 #GRAF 2: Functional analysis top 10
+
 
 ---
 #NMDS-plots:
@@ -49,8 +52,6 @@ ord.nmds.bray <- ordinate(ps.prop, method="NMDS", distance="bray")
 p <- plot_ordination(ps.prop, ord.nmds.bray, color="Zoo", title="Bray NMDS")
 
 tmp <- subset(p$data, Zoo == target_zoo)
-
-# Convert numeric Sex codes to text labels
 tmp$SexLabel <- ifelse(tmp$Sex == 1, "Female",
                        ifelse(tmp$Sex == 0, "Male", "Unknown"))
 

@@ -60,6 +60,17 @@ barplot_phylum$Phylum <- factor(barplot_phylum$Phylum, levels= c(top_phyla, "Oth
 barplot_phylum$Phylum <- factor(barplot_phylum$Phylum, levels= c("Bacillota","Pseudomonadota","Actinomycetota","Bacteroidota","Chloroflexota", "Other"))
 levels(barplot_phylum$Phylum) # check
 
+# Colours 
+top_colors <- c(
+  "Bacillota"       = "#009E73",
+  "Pseudomonadota"  = "#56B4E9",
+  "Actinomycetota"  = "#F0E442",
+  "Bacteroidota"    = "#0072B2",
+  "Chloroflexota"   = "#D55E00",
+  "Other"           = "#E69F00"
+)
+
+
 # Plot per individual sample sorted by sample type (or other variable)
 # In my case I have "Sample_ID", which is the number for all my samples, 
 # but your data set might have this organized differently
@@ -67,7 +78,9 @@ relab_plot <- ggplot(barplot_phylum, aes(x = NGI.ID, y=Abundance, fill=Phylum)) 
   geom_bar(stat="identity", position="stack") +
   facet_grid(~Zoo, scales="free", space="free") +
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_fill_manual(values = top_colors)
+
 relab_plot
 # I am also using something called "facet_grid", that separates out my variable of
 # interest (sample type) into different grids.
@@ -125,7 +138,8 @@ merged_relab_plot_zoo <- ggplot(barplot_phylum_merged, aes(x = Sample, y = Abund
         legend.title = element_text(size=12),
         legend.text = element_text(size=10)) +
   labs(x = "Zoo", y = "Relative Abundance") +
-  scale_y_continuous(limits = c(0, 1))
+  scale_y_continuous(limits = c(0, 1)) +
+  scale_fill_manual(values = top_colors)
 
 merged_relab_plot_zoo
 

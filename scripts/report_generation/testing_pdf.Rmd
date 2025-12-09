@@ -5,14 +5,17 @@ date: "January 7, 2025"
 output: pdf_document
 params:
   zoo: Helsinki
-  div_df_path: 
 ---
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(phyloseq)
 library(ggplot2)
+library(dplyr)
+
 load("C:/Users/Lovisa/Documents/Wolverine/scripts/report_generation/div_df.RData")
 div_df <- final_df
+load("C:/Users/Lovisa/Documents/Wolverine/data/ps_filtered_1209.RData")
+ps <- ps_filtered
 
 #plot_richness(ps, x = "Zoo", measures = c("Shannon", "Observed")) +
   #theme_bw()
@@ -30,16 +33,57 @@ We thank you for your collaboration and hope that the findings contribute to ong
 
 #GRAF 2: Functional analysis top 10
 
-#Graf 3: NMDS plot of taxonomical distribution, the relevant individuals are circled. 
+---
+#NMDS-plots:
+---
+
+
+```{r, echo=FALSE , message=FALSE, warning=FALSE, results='hide'}
+target_zoo <- as.character(params$zoo)
+
+ps.prop <- transform_sample_counts(ps, function(otu) otu/sum(otu))
+ord.nmds.bray <- ordinate(ps.prop, method="NMDS", distance="bray")
+
+
+
+p <- plot_ordination(ps.prop, ord.nmds.bray, color="Zoo", title="Bray NMDS")
+
+tmp <- subset(p$data, Zoo == target_zoo)
+
+# Convert numeric Sex codes to text labels
+tmp$SexLabel <- ifelse(tmp$Sex == 1, "Female",
+                       ifelse(tmp$Sex == 0, "Male", "Unknown"))
+
+p + 
+  geom_point(
+    data = tmp,
+    aes(x = NMDS1, y = NMDS2),
+    shape = 21,
+    size = 10,
+    stroke = 1.5,
+    colour = "black",
+    fill = NA,
+    inherit.aes = FALSE
+  )+
+  geom_text(
+    data = tmp,
+    aes(x = NMDS1, y = NMDS2, label = SexLabel),
+    size = 4,
+    vjust = -2,
+    hjust = 0.5,
+    inherit.aes = FALSE
+  )
+```
+This plot shows how similar or different the gut microbiomes are within each zoo. Each point represents an individual animal, and the distance between points reflects how different their microbiomes are: points that are close together indicate animals with similar gut bacteria, while those far apart have more distinct bacterial communities. The individuals from `r params$zoo` are encircled in black. 
+
 
 ---
-#his generates a sentence on the alpha and beta diversity based on a dataframe passed as params with the columns individual, zoo, alpha and beta
+#This generates a sentence on the alpha and beta diversity based on a dataframe passed as params with the columns individual, zoo, alpha and beta:
 ---
 
 ```{r}
 write_microbiota_summary <- function(df, zoo_name) {
   
-  # Filter to the zoo
   df_zoo <- df[df$Zoo == zoo_name, ]
   
   indivs  <- df_zoo$Individual
@@ -47,9 +91,7 @@ write_microbiota_summary <- function(df, zoo_name) {
   betas   <- df_zoo$beta
   
   n <- length(indivs)
-  print(n)
   
-  # --- Build alpha text ---
   if (n == 1) {
     alpha_text <- alphas
     
@@ -64,7 +106,6 @@ write_microbiota_summary <- function(df, zoo_name) {
     )
   }
   
-  # Ending for alpha: only add ", each." for >2 individuals
   ending_alpha <- ifelse(n > 2, ", each.", ".")
   
   alpha_sentence <- paste0(
@@ -73,8 +114,6 @@ write_microbiota_summary <- function(df, zoo_name) {
     ending_alpha
   )
   
-  # --- Beta diversity summary ---
-  # You can change this to unique(df_zoo$beta) if beta is per-zoo, not per-individual
   beta_value <- mean(df_zoo$beta, na.rm = TRUE)
   beta_value <- round(beta_value, 3)
   
@@ -92,20 +131,18 @@ write_microbiota_summary <- function(df, zoo_name) {
     beta_comment
   )
   
-  # --- Return both sentences as a list or full text block ---
   list(
     alpha_sentence = alpha_sentence,
     beta_sentence  = beta_sentence,
     full_text      = paste(alpha_sentence, beta_sentence)
   )
 }
+summary_text <- write_microbiota_summary(div_df, params$zoo)
 
 ```
 
 
 `r summary_text$full_text`
-
-
 
 
 

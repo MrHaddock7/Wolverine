@@ -11,14 +11,14 @@ asv_per_sample
 
 
 ###Check sample depth
-sample_depths <- sample_sums(ps_1126)
+sample_depths <- sample_sums(ps_filtered)
 sample_depths
 bad_depth <- names(sample_depths[sample_depths < 15000])
 bad_depth
 
 ###Check alpha diversity and observed ASV count per sample
 library(phyloseq)
-alpha <- estimate_richness(ps_no_ctrl, measures=c("Shannon", "Observed"))
+alpha <- estimate_richness(ps_1126, measures=c("Shannon", "Observed"))
 alpha
 write.csv(alpha, "alpha_diversity.csv", row.names = TRUE)
 
@@ -98,8 +98,8 @@ library(phyloseq)
 library(vegan)
 
 # Convert phyloseq sample data to a data.frame
-meta <- data.frame(sample_data(ps_1126))
-bc_dist <- phyloseq::distance(ps_1126, method = "bray")
+meta <- data.frame(sample_data(ps_filtered))
+bc_dist <- phyloseq::distance(ps_filtered, method = "bray")
 
 # Convert relevant variables to factors
 factor_vars <- c("Zoo", "Sex", "Sweden", "Meat", "Fish", "Fruit", "Individual")
@@ -206,12 +206,6 @@ pw <- pairwise.adonis2(bc_subset ~ Zoo, data = meta, permutations = 999)
 print(pw)
 
 
-
-####
-
-#Run beta diversity analysis
-
-####
 
 
 

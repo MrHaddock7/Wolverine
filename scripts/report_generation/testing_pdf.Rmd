@@ -4,15 +4,26 @@ author: "XXX, Uppsala University"
 date: "January 7, 2025"
 output: pdf_document
 params:
-  zoo: Helsinki
-  div_df_path: 
+  zoo: "Helsinki"
+  sample_ids: ["P34104_301", "P34104_302"]
 ---
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(phyloseq)
 library(ggplot2)
-load("C:/Users/Lovisa/Documents/Wolverine/scripts/report_generation/div_df.RData")
-div_df <- final_df
+library(dplyr)
+library(microbiome)
+library(patchwork)
+
+
+load("C:/Users/anton/Desktop/Applied Bioinformatics/Wolverine/scripts/report_generation/div_df.RData") 
+div_df <- final_df 
+
+load("C:/Users/anton/Desktop/Applied Bioinformatics/Wolverine/data/ps_filtered_1209.RData") 
+ps <- ps_filtered 
+
+load("C:/Users/anton/Desktop/Applied Bioinformatics/Wolverine/data/ps_rel_1209.RData")
+
 
 #plot_richness(ps, x = "Zoo", measures = c("Shannon", "Observed")) +
   #theme_bw()
@@ -23,23 +34,136 @@ The present report summarizes the gut microbiota profiles of wolverines housed a
 
 We thank you for your collaboration and hope that the findings contribute to ongoing efforts to optimize care for captive wolverines and support collaborative knowledge-sharing across institutions. \\
 
+---
+# Pie-Plots
+---
+```{r pie-function, echo=FALSE, warning=FALSE, message=FALSE}
+make_pie_plot <- function(ps_rel, sample_ids, top_n = 5) {
+  
+  ps_norm <- microbiome::transform(ps_rel, "compositional")
+  df <- psmelt(ps_norm)
+  
+  missing <- setdiff(sample_ids, unique(df$NGI.ID))
+  if(length(missing) > 0) stop(paste("Sample IDs not found:", paste(missing, collapse=",")))
+  
+  output_list <- list()
+  
+  make_single_pie <- function(df_sub, tax_level, sample_id) {
+    
+    taxa_summary <- aggregate(Abundance ~ ., data=df_sub[c(tax_level, "Abundance")], sum)
+    taxa_summary <- taxa_summary[order(-taxa_summary$Abundance), ]
+    top_taxa <- as.character(taxa_summary[[tax_level]][1:min(nrow(taxa_summary), top_n)])
+    
+    df_sub[[tax_level]] <- as.character(df_sub[[tax_level]])
+    df_sub[[tax_level]][!(df_sub[[tax_level]] %in% top_taxa)] <- "Other"
+    df_sub[[tax_level]][is.na(df_sub[[tax_level]])] <- "Unassigned"
+    
+    df_clean <- aggregate(Abundance ~ ., data=df_sub[c(tax_level, "Abundance")], sum)
+    df_clean$Percent <- df_clean$Abundance * 100
+    
+    legend_order <- c(top_taxa, "Unassigned", "Other")
+    legend_order <- legend_order[legend_order %in% df_clean[[tax_level]]]
+    df_clean[[tax_level]] <- factor(df_clean[[tax_level]], levels=legend_order)
+    
+    top_colors <- c("#009E73", "#56B4E9", "#F0E442", "#0072B2", "#D55E00", "#E69F00")
+    tax_levels <- unique(df_clean[[tax_level]])
+    tax_colors <- setNames(rep("#999999", length(tax_levels)), tax_levels)
+    
+    for(i in seq_along(top_taxa)) if(i <= length(top_colors)) tax_colors[top_taxa[i]] <- top_colors[i]
+    if("Other" %in% tax_levels) tax_colors["Other"] <- "#999999"
+    if("Unassigned" %in% tax_levels) tax_colors["Unassigned"] <- "#CC79A7"
+    
+    pie <- ggplot(df_clean, aes(x = "", y = Abundance, fill = !!sym(tax_level))) +
+      geom_col(width = 1, color = "white") +
+      coord_polar(theta = "y") +
+      theme_void() +
+      ggtitle(paste("Relative Abundance (", tax_level, "): ", sample_id, sep="")) +
+      theme(plot.title = element_text(hjust = 0.5, size = 14),
+            legend.title = element_blank()) +
+      scale_fill_manual(values = tax_colors)
+    
+    return(pie)
+  }
+  
+  for(sample_id in sample_ids) {
+    df_sub <- df %>% filter(NGI.ID == sample_id)
+    pie_phylum <- make_single_pie(df_sub, "Phylum", sample_id)
+    pie_family <- make_single_pie(df_sub, "Family", sample_id)
+    combined <- pie_phylum + pie_family + plot_layout(ncol = 2)
+    
+    output_list[[paste0(sample_id, "_Phylum")]] <- pie_phylum
+    output_list[[paste0(sample_id, "_Family")]] <- pie_family
+    output_list[[paste0(sample_id, "_Combined")]] <- combined
+  }
+  
+  return(output_list)
+}
+```
+```{r pie-charts, fig.width=10, fig.height=6, warning=FALSE, message=FALSE}
+pies <- make_pie_plot(ps_rel, params$sample_ids)
+
+for(sid in params$sample_ids){
+  print(pies[[paste0(sid, "_Combined")]])
+}
 
 
 #GRAF 1: Pie chart of composition: phylum and family
+```
+The pie charts show the composition of gut microbiota for each individual wolverine. For each animal, the first chart displays the relative abundance of bacteria at the phylum level, providing an overview of the main bacterial groups present. The second chart shows the family level, giving a more detailed view of which bacterial families make up the microbiota. The size of each slice represents the proportion of that group in the gut, allowing us to compare which bacteria are most common in each individual.
 
 
 #GRAF 2: Functional analysis top 10
 
-#Graf 3: NMDS plot of taxonomical distribution, the relevant individuals are circled. 
 
 ---
-#his generates a sentence on the alpha and beta diversity based on a dataframe passed as params with the columns individual, zoo, alpha and beta
+#NMDS-plots:
+---
+
+
+```{r, echo=FALSE , message=FALSE, warning=FALSE, results='hide'}
+target_zoo <- as.character(params$zoo)
+
+ps.prop <- transform_sample_counts(ps, function(otu) otu/sum(otu))
+ord.nmds.bray <- ordinate(ps.prop, method="NMDS", distance="bray")
+
+
+
+p <- plot_ordination(ps.prop, ord.nmds.bray, color="Zoo", title="Bray NMDS")
+
+tmp <- subset(p$data, Zoo == target_zoo)
+tmp$SexLabel <- ifelse(tmp$Sex == 1, "Female",
+                       ifelse(tmp$Sex == 0, "Male", "Unknown"))
+
+p + 
+  geom_point(
+    data = tmp,
+    aes(x = NMDS1, y = NMDS2),
+    shape = 21,
+    size = 10,
+    stroke = 1.5,
+    colour = "black",
+    fill = NA,
+    inherit.aes = FALSE
+  )+
+  geom_text(
+    data = tmp,
+    aes(x = NMDS1, y = NMDS2, label = SexLabel),
+    size = 4,
+    vjust = -2,
+    hjust = 0.5,
+    inherit.aes = FALSE
+  )
+```
+This plot shows how similar or different the gut microbiomes are within each zoo. Each point represents an individual animal, and the distance between points reflects how different their microbiomes are: points that are close together indicate animals with similar gut bacteria, while those far apart have more distinct bacterial communities. The individuals from `r params$zoo` are encircled in black. 
+
+
+---
+#This generates a sentence on the alpha and beta diversity based on a dataframe passed as params with the columns individual, zoo, alpha and beta:
 ---
 
 ```{r}
 write_microbiota_summary <- function(df, zoo_name) {
   
-  # Filter to the zoo
   df_zoo <- df[df$Zoo == zoo_name, ]
   
   indivs  <- df_zoo$Individual
@@ -47,9 +171,7 @@ write_microbiota_summary <- function(df, zoo_name) {
   betas   <- df_zoo$beta
   
   n <- length(indivs)
-  print(n)
   
-  # --- Build alpha text ---
   if (n == 1) {
     alpha_text <- alphas
     
@@ -64,7 +186,6 @@ write_microbiota_summary <- function(df, zoo_name) {
     )
   }
   
-  # Ending for alpha: only add ", each." for >2 individuals
   ending_alpha <- ifelse(n > 2, ", each.", ".")
   
   alpha_sentence <- paste0(
@@ -73,8 +194,6 @@ write_microbiota_summary <- function(df, zoo_name) {
     ending_alpha
   )
   
-  # --- Beta diversity summary ---
-  # You can change this to unique(df_zoo$beta) if beta is per-zoo, not per-individual
   beta_value <- mean(df_zoo$beta, na.rm = TRUE)
   beta_value <- round(beta_value, 3)
   
@@ -92,20 +211,18 @@ write_microbiota_summary <- function(df, zoo_name) {
     beta_comment
   )
   
-  # --- Return both sentences as a list or full text block ---
   list(
     alpha_sentence = alpha_sentence,
     beta_sentence  = beta_sentence,
     full_text      = paste(alpha_sentence, beta_sentence)
   )
 }
+summary_text <- write_microbiota_summary(div_df, params$zoo)
 
 ```
 
 
 `r summary_text$full_text`
-
-
 
 
 

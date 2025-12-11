@@ -1,0 +1,9 @@
+Skapa en rarefaction curve för att säkerställa om vi har tillräckligt med reads för att få korrekt mängd ASVs.
+
+Beräkna ASVs per X reads. Lägg till fler och fler reads och plotta. Ser vi att grafen planar ut, alltså fler reads 
+ger inte mer ASVs så har vi ett tillräckligt sekvenseringsdjup
+
+
+
+Använda PCoA istället för PCA. PCA försöker hitta linjära kombinationer vilket är svårt i något så diversielt som
+mikrobiom. PCA jobbar på detaljnivå medans PCoA mer i en överblicksynvinkel 

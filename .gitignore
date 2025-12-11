@@ -379,3 +379,6 @@ old_files/
 runs/run_trimming_taxa_17112025_57525331
 runs/run_trimming_taxa_EE2_4_17112025_57525403
 config.R
+.RData
+.RHistory
+AGENTS.md

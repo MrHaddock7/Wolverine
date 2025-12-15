@@ -7,6 +7,7 @@ suppressPackageStartupMessages({
   library(ggplot2)
   library(vegan)
   library(tidyr)
+  library(scales)
 })
 
 # Laddar metadata och picrust2 abundance data
@@ -18,9 +19,9 @@ pathway_abun_path <- file.path(
   "results/picrust2_output_26_11_2025/picrust2_out_pipeline_run/pathways_out/path_abun_unstrat.tsv.gz"
 )
 
-metadata <- read.csv(metadata_path, sep = ";", fileEncoding = "latin1")
+metadata <- read.csv(metadata_path, sep = ";", fileEncoding = "UTF-8")
 
-rownames(metadata) <- metadata$NGI_ID
+rownames(metadata) <- metadata$NGI.ID
 
 metacyc_abundance <- readr::read_tsv(pathway_abun_path, show_col_types = FALSE)
 pathway_abundance <- metacyc_abundance %>% tibble::column_to_rownames("pathway")
@@ -75,6 +76,21 @@ annotations <- pathway_annotation(
   pathway = "MetaCyc",
 )
 
-head(annotation)
+# Save run so you dont have to redo the analysis
+head(annotations)
+save(annotations, annotated_daa_res, daa_res, daa_res_sig, metadata, pathway_abundance, file = file.path(home, "data", "function_analysis_9_12.RData"))
 
-save(annotation, annotated_daa_res, daa_res, daa_res_sig, metadata, pathway_abundance, file = file.path(home, "data", "function_analysis_9_12.RData"))
+
+# Filter for significants
+annotations <- filter(annotations, p_adjust<0.05, description = 'NA')
+
+
+
+
+# Plot DAA pairwise
+
+annotations_pair <- pathway_annotation(
+  daa_results_df = daa_res_sig,
+  pathway = "MetaCyc",
+)
+

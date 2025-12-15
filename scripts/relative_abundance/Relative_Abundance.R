@@ -146,7 +146,7 @@ merged_relab_plot_zoo
 # Saving plot, change dates
 ggsave(
   filename = file.path(save_path, "relative_abundance_merged_by_zoo_1209.png"),
-  plot = relab_plot,
+  plot = merged_relab_plot_zoo,
   width = 12,
   height = 6,
   units = "in"

@@ -96,7 +96,7 @@ adonis_result
 ###Adonis2
 library(phyloseq)
 library(vegan)
-
+sample_data(ps_filtered)
 # Convert phyloseq sample data to a data.frame
 meta <- data.frame(sample_data(ps_filtered))
 bc_dist <- phyloseq::distance(ps_filtered, method = "bray")

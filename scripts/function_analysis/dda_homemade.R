@@ -12,13 +12,17 @@ source("config.R")
 metadata <- read.csv(file.path(home, "data", "metadata.csv"), sep = ";", fileEncoding = "UTF-8")
 rownames(metadata) <- metadata$NGI.ID
 
+pathway_out <- readr::read_tsv("results/picrust2_output_26_11_2025/picrust2_out_pipeline_run/pathways_out/path_abun_unstrat.tsv")
+ref <- ggpicrust2:::load_reference_data("MetaCyc")
+
+
 tax_df <- data.frame(
-  Kingdom = rownames(pathway_abundance),
-  row.names = rownames((pathway_abundance)),
+  Kingdom = df1$description,
+  row.names = df1$pathway,
   stringsAsFactors = FALSE
 )
 
-tax <- tax_table(as.matrix(tax_df))
+tax <- tax_table(as.matrix(tax_df)) 
 
 samples <- otu_table(as.matrix(pathway_abundance), taxa_are_rows = TRUE)
 

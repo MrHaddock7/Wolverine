@@ -2,7 +2,7 @@
 title: "Gut Microbiota Report `r params$zoo`"
 author: "XXX, Uppsala University"
 date: "January 7, 2025"
-output: pdf_document
+output: html_document
 params:
   zoo: "Helsinki"
   
@@ -61,9 +61,9 @@ ps_zoo <- prune_samples(samples_in_zoo, ps_merged)
 ```
 
 
-The present report summarizes the gut microbiota profiles of wolverines housed at your institution, based on high-throughput sequencing of the fecal samples you sent us. The results are intended to provide a baseline overview of microbial diversity, composition, and potential patterns observed across individuals. While microbiota data alone cannot diagnose health issues, it can serve as a complementary tool supporting husbandry decisions, dietary evaluations, and long-term welfare assessments.\\
+The present report summarizes the gut microbiota profiles of wolverines housed at your institution, based on high-throughput sequencing of the fecal samples you sent us. The results are intended to provide a baseline overview of microbial diversity, composition, and potential patterns observed across individuals. While microbiota data alone cannot diagnose health issues, it can serve as a complementary tool supporting husbandry decisions, dietary evaluations, and long-term welfare assessments.
 
-We thank you for your collaboration and hope that the findings contribute to ongoing efforts to optimize care for captive wolverines and support collaborative knowledge-sharing across institutions. \\
+We thank you for your collaboration and hope that the findings contribute to ongoing efforts to optimize care for captive wolverines and support collaborative knowledge-sharing across institutions. 
 
 ---
 # Pie-Plots
@@ -136,7 +136,7 @@ make_pie_plot <- function(ps_object, top_n = 5) {
 }
 
 ```
-```{r pie-charts, fig.width=10, fig.height=6, warning=FALSE, message=FALSE}
+```{r pie-charts, fig.width=10, fig.height=6, fig.cap="Figure 1. Pie charts showing the composition of gut microbiota for each individual wolverine. For each individual, the left chart displays the relative abundance of bacteria at the phylum level, providing an overview of the main bacterial groups present. The right chart shows the family level, giving a more detailed view of which bacterial families make up the microbiota. The size of each slice represents the proportion of that group in the gut, allowing us to compare which bacteria are most common in each individual.", warning=FALSE, message=FALSE}
 pies <- make_pie_plot(ps_zoo)
 
 for(sid in names(pies)){
@@ -145,20 +145,14 @@ for(sid in names(pies)){
   }
 }
 
-#GRAF 1: Pie chart of composition: phylum and family
 ```
-The pie charts show the composition of gut microbiota for each individual wolverine. For each animal, the first chart displays the relative abundance of bacteria at the phylum level, providing an overview of the main bacterial groups present. The second chart shows the family level, giving a more detailed view of which bacterial families make up the microbiota. The size of each slice represents the proportion of that group in the gut, allowing us to compare which bacteria are most common in each individual.
-
-
-#GRAF 2: Functional analysis top 10
-
 
 ---
 #NMDS-plots:
 ---
 
 
-```{r nmds-plot, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6, fig.align='center'}
+```{r nmds-plot, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6, fig.cap="Figure 2. Ordination (NMDS) plot showing how similar or different the gut microbiomes are within each zoo. Each point represents an individual animal, and the distance between points reflects how different their microbiomes are: points that are close together indicate animals with similar gut bacteria, while those far apart have more distinct bacterial communities. The individuals from your are encircled in black.", fig.align='center'}
 target_zoo <- as.character(params$zoo)
 
 # Transform phyloseq object to relative abundance
@@ -207,8 +201,6 @@ p +
 
 
 ```
-This plot shows how similar or different the gut microbiomes are within each zoo. Each point represents an individual animal, and the distance between points reflects how different their microbiomes are: points that are close together indicate animals with similar gut bacteria, while those far apart have more distinct bacterial communities. The individuals from `r params$zoo` are encircled in black. 
-
 
 ---
 #This generates a sentence on the alpha and beta diversity based on a dataframe passed as params with the columns individual, zoo, alpha and beta:
@@ -221,7 +213,7 @@ write_microbiota_summary <- function(df, zoo_name) {
   
   indivs  <- df_zoo$Individual
   alphas  <- round(df_zoo$alpha,3)
-  betas   <- df_zoo$beta
+  #betas   <- df_zoo$beta
   
   n <- length(indivs)
   
@@ -247,27 +239,27 @@ write_microbiota_summary <- function(df, zoo_name) {
     ending_alpha
   )
   
-  beta_value <- mean(df_zoo$beta, na.rm = TRUE)
-  beta_value <- round(beta_value, 3)
+  #beta_value <- mean(df_zoo$beta, na.rm = TRUE)
+  #beta_value <- round(beta_value, 3)
   
   # Interpretation based on thresholds TA EV BORT DETTA 
-  beta_comment <- dplyr::case_when(
-    beta_value < 0.2 ~ "This indicates that the gut microbiota of your individuals is very similar.",
-    beta_value < 0.4 ~ "This reflects a moderate level of difference between individuals.",
-    TRUE             ~ "This suggests substantial variation in gut microbiota between your individuals."
-  )
+  #beta_comment <- dplyr::case_when(
+    #beta_value < 0.2 ~ "This indicates that the gut microbiota of your individuals is very similar.",
+   # beta_value < 0.4 ~ "This reflects a moderate level of difference between individuals.",
+   # TRUE             ~ "This suggests substantial variation in gut microbiota between your individuals."
+#  )
   
-  beta_sentence <- paste0(
-    "In total, your zoo has a beta diversity of ",
-    beta_value,
-    ". ",
-    beta_comment
-  )
+ # beta_sentence <- paste0(
+    #"In total, your zoo has a beta diversity of ",
+   # beta_value,
+   # ". ",
+   # beta_comment
+  #)
   
   list(
     alpha_sentence = alpha_sentence,
-    beta_sentence  = beta_sentence,
-    full_text      = paste(alpha_sentence, beta_sentence)
+    #beta_sentence  = beta_sentence,
+    full_text      = paste(alpha_sentence)
   )
 }
 summary_text <- write_microbiota_summary(div_df, params$zoo)

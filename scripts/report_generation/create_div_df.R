@@ -3,21 +3,24 @@ library(phyloseq)
 sample_names(ps_rare)
 sample_data(ps_rare)["P34104_257", "Individual"] <- "SK-U"
 
+names_df <- read.csv("C:/Users/Lovisa/Documents/Wolverine/data/NGI_ID_to_Name.csv", sep = ";", stringsAsFactors = FALSE)
+
+
 ps_filt <- prune_samples(!(sample_names(ps_rare) %in% c("P34104_331", "P34104_333")), ps_rare)
 sample_names(ps_filt)
 ps_merged <- merge_samples(ps_filt, "Individual")
 meta <- data.frame(sample_data(ps_filt))
+meta$Name <- names_df$Name[match(rownames(meta), names_df$NGI.ID)]
 meta_merged <- meta[!duplicated(meta$Individual), ]
 rownames(meta_merged) <- meta_merged$Individual
 sample_data(ps_merged) <- sample_data(meta_merged)
-sample_names(ps_merged)
 
 # Calculate alpha diversity (Shannon index in this example)
 alpha_div <- estimate_richness(ps_merged, measures = "Shannon")
 
 # Extract metadata for individual and zoo
 meta <- as.data.frame(sample_data(ps_merged))
-meta_subset <- meta[, c("Individual", "Zoo")]
+meta_subset <- meta[, c("Individual", "Zoo", "Name")]
 
 # Combine metadata with alpha diversity
 alpha_df <- cbind(meta_subset, alpha_div)

@@ -155,13 +155,12 @@ meta_clean2 <- meta_clean2[common_samples, ]
 
 # Run multivariable PERMANOVA
 adonis_res2 <- adonis2(
-  bc_dist_clean2 ~ Zoo + Sex + Age,
+  bc_dist_clean2 ~ Sex + Zoo + Age,
   data = meta_clean2,
   permutations = 999,
   by = "margin"
 )
 
-adonis_res2
 
 
 ###Pairwise adonis

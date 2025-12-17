@@ -2,9 +2,9 @@
 title: "Gut Microbiota Report `r params$zoo`"
 author: "XXX, Uppsala University"
 date: "January 7, 2025"
-output: html_document
+output: pdf_document
 params:
-  zoo: "Helsinki"
+  zoo: "Kolmården"
   
 ---
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
@@ -14,23 +14,25 @@ library(ggplot2)
 library(dplyr)
 library(microbiome)
 library(patchwork)
+library(ggrepel)
 
+proj_dir <- "C:/Users/Lovisa/Documents/Wolverine"
 
-load("C:/Users/anton/Desktop/Applied Bioinformatics/Wolverine/scripts/report_generation/div_df.RData") 
+load(file.path(proj_dir, "scripts/report_generation/div_df.RData")) 
 div_df <- final_df 
 
-load("C:/Users/anton/Desktop/Applied Bioinformatics/Wolverine/data/ps_filtered_1209.RData") 
+load(file.path(proj_dir, "data/ps_filtered_1209.RData")) 
 ps <- ps_filtered 
 
-load("C:/Users/anton/Desktop/Applied Bioinformatics/Wolverine/data/ps_rel_1209.RData")
+load(file.path(proj_dir, "data/ps_rel_1209.RData"))
 
-load("C:/Users/anton/Desktop/Applied Bioinformatics/Wolverine/data/ps_merged_1201.RData")
+load(file.path(proj_dir, "data/ps_merged_1201.RData"))
 ps_merged <- ps_merged_1201
 
 df <- psmelt(ps_merged)
 
 name_metadata <- read.csv(
-  "C:/Users/anton/Desktop/Applied Bioinformatics/Wolverine/data/NGI_ID_to_Name.csv",
+  file.path(proj_dir, "data/NGI_ID_to_Name.csv"),
   sep = ";",
   stringsAsFactors = FALSE,
   header = TRUE
@@ -49,6 +51,7 @@ sample_data(ps_merged) <- sd
 target_zoo <- as.character(params$zoo)
 
 # Get sample names for the zoo
+
 samples_in_zoo <- rownames(subset(sample_data(ps_merged), Zoo == target_zoo))
 if(length(samples_in_zoo) == 0) stop(paste("No samples found for zoo:", target_zoo))
 
@@ -59,7 +62,16 @@ ps_zoo <- prune_samples(samples_in_zoo, ps_merged)
 #plot_richness(ps, x = "Zoo", measures = c("Shannon", "Observed")) +
   #theme_bw()
 ```
+```{r, echo=FALSE, out.width="70%", fig.align="center"}
+img_path <- file.path(
+  proj_dir, "scripts", "report_generation",
+  paste0(params$zoo, ".JPG")
+)
 
+if (file.exists(img_path)) {
+  knitr::include_graphics(img_path)
+}
+```
 
 The present report summarizes the gut microbiota profiles of wolverines housed at your institution, based on high-throughput sequencing of the fecal samples you sent us. The results are intended to provide a baseline overview of microbial diversity, composition, and potential patterns observed across individuals. While microbiota data alone cannot diagnose health issues, it can serve as a complementary tool supporting husbandry decisions, dietary evaluations, and long-term welfare assessments.
 
@@ -68,6 +80,7 @@ We thank you for your collaboration and hope that the findings contribute to ong
 ---
 # Pie-Plots
 ---
+## Bacterial Composition
 ```{r pie-function, echo=FALSE, warning=FALSE, message=FALSE}
 make_pie_plot <- function(ps_object, top_n = 5) {
 
@@ -136,7 +149,8 @@ make_pie_plot <- function(ps_object, top_n = 5) {
 }
 
 ```
-```{r pie-charts, fig.width=10, fig.height=6, fig.cap="Figure 1. Pie charts showing the composition of gut microbiota for each individual wolverine. For each individual, the left chart displays the relative abundance of bacteria at the phylum level, providing an overview of the main bacterial groups present. The right chart shows the family level, giving a more detailed view of which bacterial families make up the microbiota. The size of each slice represents the proportion of that group in the gut, allowing us to compare which bacteria are most common in each individual.", warning=FALSE, message=FALSE}
+
+```{r pie-charts, fig.width=10, fig.height=6,, warning=FALSE, message=FALSE}
 pies <- make_pie_plot(ps_zoo)
 
 for(sid in names(pies)){
@@ -146,13 +160,14 @@ for(sid in names(pies)){
 }
 
 ```
+Pie charts showing the composition of gut microbiota for each individual wolverine. For each individual, the left chart displays the relative abundance of bacteria at the phylum level, providing an overview of the main bacterial groups present. The right chart shows the family level, giving a more detailed view of which bacterial families make up the microbiota. The size of each slice represents the proportion of that group in the samples, allowing us to compare which bacteria are most common in each individual.
 
 ---
 #NMDS-plots:
 ---
 
 
-```{r nmds-plot, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6, fig.cap="Figure 2. Ordination (NMDS) plot showing how similar or different the gut microbiomes are within each zoo. Each point represents an individual animal, and the distance between points reflects how different their microbiomes are: points that are close together indicate animals with similar gut bacteria, while those far apart have more distinct bacterial communities. The individuals from your are encircled in black.", fig.align='center'}
+```{r nmds-plot, echo=FALSE, warning=FALSE, message=FALSE, fig.width=7, fig.height=6, fig.cap="Ordination (NMDS) plot showing how similar or different the gut microbiomes are within each zoo. Each point represents an individual animal, and the distance between points reflects how different their microbiomes are: points that are close together indicate animals with similar gut bacteria, while those far apart have more distinct bacterial communities. The individuals from your institution are encircled in black.", fig.align='center'}
 target_zoo <- as.character(params$zoo)
 
 # Transform phyloseq object to relative abundance
@@ -190,11 +205,15 @@ p +
     fill = NA,
     inherit.aes = FALSE
   ) +
-  geom_text(
+  geom_text_repel(
     data = tmp,
     aes(x = NMDS1, y = NMDS2, label = Label),
     size = 4,
+    box.padding = 0.8,
+    point.padding = 2,
+    force = 2.5,
     vjust = -2,
+    max.overlaps = Inf,
     hjust = 0.5,
     inherit.aes = FALSE
   )
@@ -213,7 +232,12 @@ write_microbiota_summary <- function(df, zoo_name) {
   
   indivs  <- df_zoo$Individual
   alphas  <- round(df_zoo$alpha,3)
-  #betas   <- df_zoo$beta
+  betas   <- df_zoo$beta
+  names   <- df_zoo$Name 
+  
+  if (all(is.na(names))) {
+  names <- character(0) 
+  }
   
   n <- length(indivs)
   
@@ -230,41 +254,76 @@ write_microbiota_summary <- function(df, zoo_name) {
       alphas[n]
     )
   }
+  n2 <- length(names)
+  if (n2 == 1) {name_text <- names}
+    else if (n2 == 2) {name_text <- paste(names, collapse = " and ")}
+    else {name_text <- ""  }
   
   ending_alpha <- ifelse(n > 2, ", each.", ".")
   
   alpha_sentence <- paste0(
-    "Your individuals have an alpha diversity of ",
+    "Your individuals ",
+    name_text,
+    " have an alpha diversity of ",
     alpha_text,
     ending_alpha
   )
+   # ---- Alpha comparison across zoos ----
+  zoo_mean_alpha <- mean(df_zoo$alpha, na.rm = TRUE)
+  all_alpha      <- df$alpha
   
-  #beta_value <- mean(df_zoo$beta, na.rm = TRUE)
-  #beta_value <- round(beta_value, 3)
+  q25 <- quantile(all_alpha, 0.25, na.rm = TRUE)
+  q75 <- quantile(all_alpha, 0.75, na.rm = TRUE)
+  
+  alpha_comparison <- dplyr::case_when(
+    zoo_mean_alpha < q25 ~
+      "Overall, the alpha diversity at your zoo is lower than that observed in most other zoos.",
+    zoo_mean_alpha > q75 ~
+      "Overall, the alpha diversity at your zoo is higher than that observed in most other zoos.",
+    TRUE ~
+      "Overall, the alpha diversity at your zoo is comparable to that observed in most other zoos."
+  )
+  
+  beta_value <- mean(df_zoo$beta, na.rm = TRUE)
+  beta_value <- round(beta_value, 3)
   
   # Interpretation based on thresholds TA EV BORT DETTA 
-  #beta_comment <- dplyr::case_when(
-    #beta_value < 0.2 ~ "This indicates that the gut microbiota of your individuals is very similar.",
-   # beta_value < 0.4 ~ "This reflects a moderate level of difference between individuals.",
-   # TRUE             ~ "This suggests substantial variation in gut microbiota between your individuals."
-#  )
+  beta_comment <- dplyr::case_when(
+    beta_value < 0.2 ~ "This indicates that the gut microbiota of your individuals is very similar.",
+   beta_value < 0.4 ~ "This reflects a moderate level of difference between individuals.",
+   TRUE             ~ "This suggests substantial variation in gut microbiota between your individuals."
+    )
   
- # beta_sentence <- paste0(
-    #"In total, your zoo has a beta diversity of ",
-   # beta_value,
-   # ". ",
-   # beta_comment
-  #)
+  beta_sentence <- paste0(
+    "In total, your zoo has a beta diversity of ",
+    beta_value,
+    ". ",
+    beta_comment
+  )
   
   list(
     alpha_sentence = alpha_sentence,
-    #beta_sentence  = beta_sentence,
-    full_text      = paste(alpha_sentence)
+    beta_sentence  = beta_sentence,
+    alpha_comparison = alpha_comparison,
+    alpha_text = paste(alpha_sentence, alpha_comparison),
+    full_text      = paste(alpha_sentence,beta_sentence)
   )
 }
 summary_text <- write_microbiota_summary(div_df, params$zoo)
 
 ```
 
+# Alpha Diversity
 
-`r summary_text$full_text`
+Alpha diversity describes how many different types of microorganisms are present within a single individual
+and how evenly these microorganisms are distributed.
+Higher values generally reflect a more diverse microbial community,
+but alpha diversity alone does not describe which microorganisms are present or their function.  
+
+`r summary_text$alpha_text`  
+
+However, alpha diversity is a summary measure and can be influenced by many factors,
+including species, diet, age, season, and technical aspects of sampling and analysis.
+Therefore, alpha diversity should not be interpreted as inherently 'good' or 'bad',
+but rather as one piece of information that is best interpreted in context and together with other microbiome measures.
+

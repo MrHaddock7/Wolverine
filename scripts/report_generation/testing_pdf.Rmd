@@ -56,7 +56,6 @@ sample_data(ps_merged) <- sd
 target_zoo <- as.character(params$zoo)
 
 # Get sample names for the zoo
-
 samples_in_zoo <- rownames(subset(sample_data(ps_merged), Zoo == target_zoo))
 if(length(samples_in_zoo) == 0) stop(paste("No samples found for zoo:", target_zoo))
 

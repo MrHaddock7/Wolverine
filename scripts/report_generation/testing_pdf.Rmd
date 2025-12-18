@@ -1,10 +1,15 @@
 ---
 title: "Gut Microbiota Report `r params$zoo`"
-author: "Anton Hagström, Lovisa Hambäck, William Wallén, Charlotte Enkvist, Elin, Uppsala University"
-date: "January 7, 2025"
+author: 
+  - Anton Hagström, Lovisa Hambäck, William Wallén,  
+    IBG, Uppsala University
+  - Charlotte Enkvist, Elin Videvall, 
+    IEG, Uppsala University
+
+date: "December, 2025"
 output: pdf_document
 params:
-  zoo: "Kolmården"
+  zoo: "Helsinki"
   
 ---
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
@@ -78,7 +83,7 @@ The present report summarizes the gut microbiota profiles of wolverines housed a
 We thank you for your collaboration and hope that the findings contribute to ongoing efforts to optimize care for captive wolverines and support collaborative knowledge-sharing across institutions. 
 
 ---
-# Pie-Plots
+# Pie-Charts
 ---
 ## Bacterial Composition
 ```{r pie-function, echo=FALSE, warning=FALSE, message=FALSE}
@@ -160,7 +165,14 @@ for(sid in names(pies)){
 }
 
 ```
-Pie charts showing the composition of gut microbiota for each individual wolverine. For each individual, the left chart displays the relative abundance of bacteria at the phylum level, providing an overview of the main bacterial groups present. The right chart shows the family level, giving a more detailed view of which bacterial families make up the microbiota. The size of each slice represents the proportion of that group in the samples, allowing us to compare which bacteria are most common in each individual.
+Pie charts showing the composition of gut microbiota for each individual wolverine. For each individual, the left chart displays the relative abundance of bacteria at the phylum level, providing an overview of the main bacterial groups present. The right chart shows the family level, giving a more detailed view of which bacterial families make up the microbiota. The size of each slice represents the proportion of that group in the samples, allowing us to compare which bacteria are most common in each individual.  
+The following plot will show you the relative abundance of different phyla for all zoos that participated in this study, so you can see how your individuals varied. The samples were merged per zoo as to provide a relative abundance per zoo instead of per individual.
+
+```{r, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(file.path(proj_dir, "plots_and_results/relative_abundance_merged_by_zoo_1209.png"))
+```
+
+
 
 ---
 #NMDS-plots:

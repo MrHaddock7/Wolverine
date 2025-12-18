@@ -143,7 +143,7 @@ save(adonis_results, file = "C:/Users/Lovisa/Documents/Wolverine/data/adonis_res
 
 ###Multivariate ADONIS
 # Define variables in the model
-model_vars <- c("Zoo", "Age", "Sex")
+model_vars <- c("Zoo", "Age", "Sex", "Latitude")
 
 # Keep only rows with no NAs in these variables
 meta_clean2 <- meta_clean[complete.cases(meta_clean[, model_vars]), ]
@@ -155,14 +155,13 @@ meta_clean2 <- meta_clean2[common_samples, ]
 
 # Run multivariable PERMANOVA
 adonis_res2 <- adonis2(
-  bc_dist_clean2 ~ Sex + Zoo + Age,
+  bc_dist_clean2 ~ Sex + Zoo + Age + Latitude,
   data = meta_clean2,
   permutations = 999,
   by = "margin"
 )
 
-
-
+adonis_res2
 ###Pairwise adonis
 install.packages("devtools")
 devtools::install_github("pmartinezarbizu/pairwiseAdonis/pairwiseAdonis")

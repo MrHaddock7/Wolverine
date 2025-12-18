@@ -70,6 +70,7 @@ ps_zoo <- prune_samples(samples_in_zoo, ps_merged)
 ```{r, echo=FALSE, out.width="70%", fig.align="center"}
 zoo_correct <- function(x) {stri_trans_general(x, "Latin-ASCII")}
 
+
 img_path <- file.path(
   proj_dir, "scripts", "report_generation",
   paste0(zoo_correct(params$zoo), ".JPG")

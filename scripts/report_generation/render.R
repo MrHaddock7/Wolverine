@@ -12,7 +12,6 @@ zoos <- tibble(zoo = c(
   "Osnabrück",
   "Duisburg",
   "Salzburg",
-  "Ústí nad Labem",
   "Nordens ark",
   "Lycksele",
   "Vildriket",

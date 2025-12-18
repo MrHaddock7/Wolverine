@@ -1,6 +1,6 @@
 ---
 title: "Gut Microbiota Report `r params$zoo`"
-author: "XXX, Uppsala University"
+author: "Anton Hagström, Lovisa Hambäck, William Wallén, Charlotte Enkvist, Elin, Uppsala University"
 date: "January 7, 2025"
 output: pdf_document
 params:

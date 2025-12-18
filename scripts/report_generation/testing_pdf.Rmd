@@ -9,7 +9,7 @@ author:
 date: "December, 2025"
 output: pdf_document
 params:
-  zoo: "Borås"
+  zoo: "Kolmården"
   
 ---
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}

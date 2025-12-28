@@ -9,7 +9,7 @@ author:
 date: "December, 2025"
 output: pdf_document
 params:
-  zoo: "Helsinki"
+  zoo: "Kolmården"
   
 ---
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
@@ -20,6 +20,7 @@ library(dplyr)
 library(microbiome)
 library(patchwork)
 library(ggrepel)
+library(stringi)
 
 proj_dir <- "C:/Users/Lovisa/Documents/Wolverine"
 
@@ -67,9 +68,12 @@ ps_zoo <- prune_samples(samples_in_zoo, ps_merged)
   #theme_bw()
 ```
 ```{r, echo=FALSE, out.width="70%", fig.align="center"}
+zoo_correct <- function(x) {stri_trans_general(x, "Latin-ASCII")}
+
+
 img_path <- file.path(
   proj_dir, "scripts", "report_generation",
-  paste0(params$zoo, ".JPG")
+  paste0(zoo_correct(params$zoo), ".JPG")
 )
 
 if (file.exists(img_path)) {

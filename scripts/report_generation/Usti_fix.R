@@ -1,0 +1,340 @@
+---
+  title: "Gut Microbiota Report `r params$zoo`"
+author: 
+  - Anton Hagström, Lovisa Hambäck, William Wallén,  
+IBG, Uppsala University
+- Charlotte Enkvist, Elin Videvall, 
+IEG, Uppsala University
+
+date: "December, 2025"
+output: pdf_document
+params:
+  zoo: "Helsinki"
+
+---
+  ```{r, echo=FALSE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(phyloseq)
+library(ggplot2)
+library(dplyr)
+library(microbiome)
+library(patchwork)
+library(ggrepel)
+
+proj_dir <- "C:/Users/Lovisa/Documents/Wolverine"
+
+load(file.path(proj_dir, "scripts/report_generation/div_df.RData")) 
+div_df <- final_df 
+
+load(file.path(proj_dir, "data/ps_filtered_1209.RData")) 
+ps <- ps_filtered 
+
+load(file.path(proj_dir, "data/ps_rel_1209.RData"))
+
+load(file.path(proj_dir, "data/ps_merged_1201.RData"))
+ps_merged <- ps_merged_1201
+
+df <- psmelt(ps_merged)
+
+name_metadata <- read.csv(
+  file.path(proj_dir, "data/NGI_ID_to_Name.csv"),
+  sep = ";",
+  stringsAsFactors = FALSE,
+  header = TRUE
+)
+
+# Extract sample_data
+sd <- sample_data(ps_merged)
+
+# Map wolverine names
+sd$Name <- name_metadata$Name[match(sd$NGI.ID, name_metadata$NGI.ID)]
+
+# Update phyloseq object
+sample_data(ps_merged) <- sd
+
+# Select samples belonging to the target zoo
+target_zoo <- as.character(params$zoo)
+
+# Get sample names for the zoo
+samples_in_zoo <- rownames(subset(sample_data(ps_merged), Zoo == target_zoo))
+if(length(samples_in_zoo) == 0) stop(paste("No samples found for zoo:", target_zoo))
+
+# Subset phyloseq object
+ps_zoo <- prune_samples(samples_in_zoo, ps_merged)
+
+
+#plot_richness(ps, x = "Zoo", measures = c("Shannon", "Observed")) +
+#theme_bw()
+```
+```{r, echo=FALSE, out.width="70%", fig.align="center"}
+img_path <- file.path(
+  proj_dir, "scripts", "report_generation",
+  paste0(params$zoo, ".JPG")
+)
+
+if (file.exists(img_path)) {
+  knitr::include_graphics(img_path)
+}
+```
+
+The present report summarizes the gut microbiota profiles of wolverines housed at your institution, based on high-throughput sequencing of the fecal samples you sent us. The results are intended to provide a baseline overview of microbial diversity, composition, and potential patterns observed across individuals. While microbiota data alone cannot diagnose health issues, it can serve as a complementary tool supporting husbandry decisions, dietary evaluations, and long-term welfare assessments.
+
+We thank you for your collaboration and hope that the findings contribute to ongoing efforts to optimize care for captive wolverines and support collaborative knowledge-sharing across institutions. 
+
+---
+  # Pie-Charts
+  ---
+  ## Bacterial Composition
+  ```{r pie-function, echo=FALSE, warning=FALSE, message=FALSE}
+make_pie_plot <- function(ps_object, top_n = 5) {
+  
+  # Transform to relative abundance
+  ps_norm <- microbiome::transform(ps_object, "compositional")
+  df <- psmelt(ps_norm)
+  
+  output_list <- list()
+  sample_ids <- sample_names(ps_object)
+  
+  make_single_pie <- function(df_sub, tax_level, sample_label) {
+    taxa_summary <- aggregate(Abundance ~ ., data=df_sub[c(tax_level, "Abundance")], sum)
+    taxa_summary <- taxa_summary[order(-taxa_summary$Abundance), ]
+    top_taxa <- as.character(taxa_summary[[tax_level]][1:min(nrow(taxa_summary), top_n)])
+    
+    df_sub[[tax_level]] <- as.character(df_sub[[tax_level]])
+    df_sub[[tax_level]][!(df_sub[[tax_level]] %in% top_taxa)] <- "Other"
+    df_sub[[tax_level]][is.na(df_sub[[tax_level]])] <- "Unassigned"
+    
+    df_clean <- aggregate(Abundance ~ ., data=df_sub[c(tax_level, "Abundance")], sum)
+    df_clean$Percent <- df_clean$Abundance * 100
+    
+    legend_order <- c(top_taxa, "Unassigned", "Other")
+    legend_order <- legend_order[legend_order %in% df_clean[[tax_level]]]
+    df_clean[[tax_level]] <- factor(df_clean[[tax_level]], levels=legend_order)
+    
+    top_colors <- c("#009E73", "#56B4E9", "#F0E442", "#0072B2", "#D55E00", "#E69F00")
+    tax_levels <- unique(df_clean[[tax_level]])
+    tax_colors <- setNames(rep("#999999", length(tax_levels)), tax_levels)
+    for(i in seq_along(top_taxa)) if(i <= length(top_colors)) tax_colors[top_taxa[i]] <- top_colors[i]
+    if("Other" %in% tax_levels) tax_colors["Other"] <- "#999999"
+    if("Unassigned" %in% tax_levels) tax_colors["Unassigned"] <- "#CC79A7"
+    
+    pie <- ggplot(df_clean, aes(x = "", y = Abundance, fill = !!sym(tax_level))) +
+      geom_col(width = 1, color = "white") +
+      coord_polar(theta = "y") +
+      theme_void() +
+      ggtitle(paste("Relative Abundance (", tax_level, "): ", sample_label, sep="")) +
+      theme(plot.title = element_text(hjust = 0.5, size = 14),
+            legend.title = element_blank()) +
+      scale_fill_manual(values = tax_colors)
+    
+    
+    return(pie)
+  }
+  
+  # Generate pies per sample
+  for(sid in sample_ids){
+    df_sub <- df[df$Sample == sid, , drop = FALSE]
+    
+    # Get the wolverine name for this sample
+    wolverine_name <- unique(df_sub$Name)  # should be one per sample
+    
+    pie_phylum <- make_single_pie(df_sub, "Phylum", wolverine_name)
+    pie_family <- make_single_pie(df_sub, "Family", wolverine_name)
+    combined <- pie_phylum + pie_family + patchwork::plot_layout(ncol = 2)
+    
+    output_list[[paste0(sid, "_Phylum")]] <- pie_phylum
+    output_list[[paste0(sid, "_Family")]] <- pie_family
+    output_list[[paste0(sid, "_Combined")]] <- combined
+  }
+  
+  
+  
+  return(output_list)
+}
+
+```
+
+```{r pie-charts, fig.width=10, fig.height=6,, warning=FALSE, message=FALSE}
+pies <- make_pie_plot(ps_zoo)
+
+for(sid in names(pies)){
+  if(grepl("_Combined$", sid)){
+    print(pies[[sid]])
+  }
+}
+
+```
+Pie charts showing the composition of gut microbiota for each individual wolverine. For each individual, the left chart displays the relative abundance of bacteria at the phylum level, providing an overview of the main bacterial groups present. The right chart shows the family level, giving a more detailed view of which bacterial families make up the microbiota. The size of each slice represents the proportion of that group in the samples, allowing us to compare which bacteria are most common in each individual.  
+The following plot will show you the relative abundance of different phyla for all zoos that participated in this study, so you can see how your individuals varied. The samples were merged per zoo as to provide a relative abundance per zoo instead of per individual.
+
+```{r, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(file.path(proj_dir, "plots_and_results/relative_abundance_merged_by_zoo_1209.png"))
+```
+
+
+
+---
+  #NMDS-plots:
+  ---
+  
+  
+  ```{r nmds-plot, echo=FALSE, warning=FALSE, message=FALSE, fig.width=7, fig.height=6, fig.cap="Ordination (NMDS) plot showing how similar or different the gut microbiomes are within each zoo. Each point represents an individual animal, and the distance between points reflects how different their microbiomes are: points that are close together indicate animals with similar gut bacteria, while those far apart have more distinct bacterial communities. The individuals from your institution are encircled in black.", fig.align='center'}
+target_zoo <- as.character(params$zoo)
+
+# Transform phyloseq object to relative abundance
+ps.prop <- microbiome::transform(ps_merged, "compositional")
+
+# Compute NMDS and fully suppress all console output
+ord.nmds.bray <- suppressMessages(
+  suppressWarnings(
+    invisible(
+      capture.output({
+        ord <- ordinate(ps.prop, method = "NMDS", distance = "bray")
+      }, type = "output")
+    )
+  )
+)
+
+# Use ord for plotting
+p <- plot_ordination(ps.prop, ord, color = "Zoo", title = "Bray NMDS")
+
+# Highlight target zoo samples
+nmds_data <- plot_ordination(ps.prop, ord, color = "Zoo")$data
+tmp <- nmds_data[nmds_data$Zoo == target_zoo, ]
+tmp$SexLabel <- ifelse(tmp$Sex == 1, "Female",
+                       ifelse(tmp$Sex == 0, "Male", "Unknown"))
+tmp$Label <- tmp$Name  # use wolverine names
+
+p +
+  geom_point(
+    data = tmp,
+    aes(x = NMDS1, y = NMDS2),
+    shape = 21,
+    size = 10,
+    stroke = 1.5,
+    colour = "black",
+    fill = NA,
+    inherit.aes = FALSE
+  ) +
+  geom_text_repel(
+    data = tmp,
+    aes(x = NMDS1, y = NMDS2, label = Label),
+    size = 4,
+    box.padding = 0.8,
+    point.padding = 2,
+    force = 2.5,
+    vjust = -2,
+    max.overlaps = Inf,
+    hjust = 0.5,
+    inherit.aes = FALSE
+  )
+
+
+```
+
+---
+  #This generates a sentence on the alpha and beta diversity based on a dataframe passed as params with the columns individual, zoo, alpha and beta:
+  ---
+  
+  ```{r}
+write_microbiota_summary <- function(df, zoo_name) {
+  
+  df_zoo <- df[df$Zoo == zoo_name, ]
+  
+  indivs  <- df_zoo$Individual
+  alphas  <- round(df_zoo$alpha,3)
+  betas   <- df_zoo$beta
+  names   <- df_zoo$Name 
+  
+  if (all(is.na(names))) {
+    names <- character(0) 
+  }
+  
+  n <- length(indivs)
+  
+  if (n == 1) {
+    alpha_text <- alphas
+    
+  } else if (n == 2) {
+    alpha_text <- paste(alphas, collapse = " and ")
+    
+  } else {
+    alpha_text <- paste(
+      paste(alphas[-n], collapse = ", "),
+      "and",
+      alphas[n]
+    )
+  }
+  n2 <- length(names)
+  if (n2 == 1) {name_text <- names}
+  else if (n2 == 2) {name_text <- paste(names, collapse = " and ")}
+  else {name_text <- ""  }
+  
+  ending_alpha <- ifelse(n > 2, ", each.", ".")
+  
+  alpha_sentence <- paste0(
+    "Your individuals ",
+    name_text,
+    " have an alpha diversity of ",
+    alpha_text,
+    ending_alpha
+  )
+  # ---- Alpha comparison across zoos ----
+  zoo_mean_alpha <- mean(df_zoo$alpha, na.rm = TRUE)
+  all_alpha      <- df$alpha
+  
+  q25 <- quantile(all_alpha, 0.25, na.rm = TRUE)
+  q75 <- quantile(all_alpha, 0.75, na.rm = TRUE)
+  
+  alpha_comparison <- dplyr::case_when(
+    zoo_mean_alpha < q25 ~
+      "Overall, the alpha diversity at your zoo is lower than that observed in most other zoos.",
+    zoo_mean_alpha > q75 ~
+      "Overall, the alpha diversity at your zoo is higher than that observed in most other zoos.",
+    TRUE ~
+      "Overall, the alpha diversity at your zoo is comparable to that observed in most other zoos."
+  )
+  
+  beta_value <- mean(df_zoo$beta, na.rm = TRUE)
+  beta_value <- round(beta_value, 3)
+  
+  # Interpretation based on thresholds TA EV BORT DETTA 
+  beta_comment <- dplyr::case_when(
+    beta_value < 0.2 ~ "This indicates that the gut microbiota of your individuals is very similar.",
+    beta_value < 0.4 ~ "This reflects a moderate level of difference between individuals.",
+    TRUE             ~ "This suggests substantial variation in gut microbiota between your individuals."
+  )
+  
+  beta_sentence <- paste0(
+    "In total, your zoo has a beta diversity of ",
+    beta_value,
+    ". ",
+    beta_comment
+  )
+  
+  list(
+    alpha_sentence = alpha_sentence,
+    beta_sentence  = beta_sentence,
+    alpha_comparison = alpha_comparison,
+    alpha_text = paste(alpha_sentence, alpha_comparison),
+    full_text      = paste(alpha_sentence,beta_sentence)
+  )
+}
+summary_text <- write_microbiota_summary(div_df, params$zoo)
+
+```
+
+# Alpha Diversity
+
+Alpha diversity describes how many different types of microorganisms are present within a single individual
+and how evenly these microorganisms are distributed.
+Higher values generally reflect a more diverse microbial community,
+but alpha diversity alone does not describe which microorganisms are present or their function.  
+
+`r summary_text$alpha_text`  
+
+However, alpha diversity is a summary measure and can be influenced by many factors,
+including species, diet, age, season, and technical aspects of sampling and analysis.
+Therefore, alpha diversity should not be interpreted as inherently 'good' or 'bad',
+but rather as one piece of information that is best interpreted in context and together with other microbiome measures.
+

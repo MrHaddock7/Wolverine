@@ -1,3 +1,5 @@
+###This script is used to automatically knit together all reports for the zoos.
+
 library(rmarkdown)
 library(tibble)
 library(dplyr)

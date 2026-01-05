@@ -1,3 +1,6 @@
+###This script was used to create the alpha & beta diversity dataframe to be 
+###used for the report generation
+
 library(phyloseq)
 #Merge ps 
 sample_names(ps_rare)

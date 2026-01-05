@@ -68,7 +68,7 @@ wilcox_total_zoo
 wilcox_turnover_zoo
 wilcox_nested_zoo
 
-# 8️⃣ Visualization
+# Visualization
 plot_beta <- function(df, beta_col, title){
   ggplot(df, aes(x = within_ind, y = .data[[beta_col]])) +
     geom_boxplot() +
@@ -100,7 +100,7 @@ plot_beta_zoo(beta_df, "beta_nestedness", "Beta diversity - Nestedness (Zoo)")
 
 
 
-# ---- NMDS PLOT OF BETAPART SØRENSEN ----
+# ---- NMDS PLOT OF BETAPART SØRENSEN ---- (Was not used)
 
 library(vegan)
 

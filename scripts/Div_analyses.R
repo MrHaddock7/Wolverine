@@ -52,45 +52,22 @@ ggplot(alpha_meta, aes(x = Zoo, y = Shannon, fill = Zoo)) +
 ggsave("alpha_box_per_zoo.png", width = 6, height = 5, dpi = 300)
 
 ### Transform data to proportions as appropriate for Bray-Curtis distances
-ps.prop <- transform_sample_counts(ps_1126, function(otu) otu/sum(otu))
+ps.prop <- transform_sample_counts(ps_merged_1201, function(otu) otu/sum(otu))
 ord.nmds.bray <- ordinate(ps.prop, method="NMDS", distance="bray")
 
 p <- plot_ordination(ps.prop, ord.nmds.bray, color="Zoo", title="Bray NMDS")
 
-p + geom_label(aes(label = NGI.ID), 
+p + geom_label(aes(label = Individual), 
                size = 3, 
-               alpha = 0.7)
+               alpha = 0.7)  + ggtitle(
+  paste0(
+    "Bray–Curtis NMDS (stress = ",
+    round(ord.nmds.bray$stress, 3),
+    ")"
+  )
+)
 
 ggsave("NMDS_zoo_individual.png", width = 6, height = 5, dpi = 300)
-
-####
-
-
-top40 <- names(sort(taxa_sums(ps_no_ctrl), decreasing=TRUE))[1:40]
-ps.top40 <- transform_sample_counts(ps_no_ctrl, function(OTU) OTU/sum(OTU))
-ps.top40 <- prune_taxa(top40, ps.top40)
-plot_bar(ps.top40, x="Age", fill="Phylum") + facet_wrap(~Zoo, scales="free_x")  +
-  geom_bar(stat="identity", color=NA) 
-
-
-##Plot beta diversity
-library(phyloseq)
-library(vegan)
-library(ggplot2)   
-sample_data(ps_1126)$Zoo <- as.factor(sample_data(ps_1126)$Zoo)
-bc_dist <- phyloseq::distance(ps_1126, method = "bray")
-ordination <- ordinate(ps_1126, method = "PCoA", distance = bc_dist)
-p <- plot_ordination(ps_1126, ordination, color = "Zoo") +
-  geom_point(size = 4, alpha = 0.8) +
-  theme_minimal() +
-  labs(title = "Beta Diversity (PCoA) of Wolverines in Zoos")
-
-print(p)
-
-
-metadata <- as(sample_data(ps_1126), "data.frame")
-adonis_result <- vegan::adonis2(bc_dist ~ Zoo, data = metadata)
-adonis_result
 
 
 ###Adonis2
@@ -98,8 +75,15 @@ library(phyloseq)
 library(vegan)
 sample_data(ps_filtered)
 # Convert phyloseq sample data to a data.frame
-meta <- data.frame(sample_data(ps_filtered))
-bc_dist <- phyloseq::distance(ps_filtered, method = "bray")
+ps_filtered2 <- subset_samples(
+  ps_filtered,
+  Zoo %in% c("Vildriket", "Helsinki", "Ähtäri", "Borås")
+)
+sample_data(ps_filtered2)
+
+meta <- data.frame(sample_data(ps_filtered2))
+ps_rel <- phyloseq::transform_sample_counts(ps_filtered2,  function(x) x / sum(x))
+bc_dist <- phyloseq::distance(ps_rel, method = "bray")
 
 # Convert relevant variables to factors
 factor_vars <- c("Zoo", "Sex", "Sweden", "Meat", "Fish", "Fruit", "Individual")
@@ -162,6 +146,9 @@ adonis_res2 <- adonis2(
 )
 
 adonis_res2
+
+
+
 ###Pairwise adonis
 install.packages("devtools")
 devtools::install_github("pmartinezarbizu/pairwiseAdonis/pairwiseAdonis")
@@ -171,37 +158,15 @@ library(phyloseq)
 library(vegan)
 library(pairwiseAdonis)
 
-# make sure ps is your phyloseq object
-# compute distance (Bray-Curtis)
-ps_no_gaia <- subset_samples(ps_1126, Zoo != "Gaia")
-bc <- phyloseq::distance(ps_1126, method = "bray")
-
-# extract metadata
-meta <- as(sample_data(ps_1126), "data.frame")
-meta
-
-bd <- betadisper(bc, meta$Zoo)
-bd
-boxplot(bd)
-plot(bd, hull = TRUE, col = rainbow(length(unique(meta$Zoo))))
-
-permutest(bd, permutations = 999)
-
-# ensure Zoo is factor
-meta$Zoo <- factor(meta$Zoo)
-
-# optional: drop levels with <2 samples (adonis needs at least 2 in group for pair)
-keep_zoo <- names(which(table(meta$Zoo) >= 2))
-meta <- meta[meta$Zoo %in% keep_zoo, ]
-bc_subset <- as.matrix(bc)[rownames(meta), rownames(meta)]
-bc_subset <- as.dist(bc_subset)
-
 # run pairwise adonis
-table(meta$Zoo)
-all(rownames(meta) == rownames(bc_subset))
 
-pw <- pairwise.adonis2(bc_subset ~ Zoo, data = meta, permutations = 999)
+ps_rel <- phyloseq::transform_sample_counts(ps_filtered,  function(x) x / sum(x))
+bc_dist <- phyloseq::distance(ps_rel, method = "bray")
+
+pw <- pairwise.adonis(bc_dist, phyloseq::sample_data(ps_rel)$Zoo)
 print(pw)
+
+?pairwise.adonis2
 
 
 

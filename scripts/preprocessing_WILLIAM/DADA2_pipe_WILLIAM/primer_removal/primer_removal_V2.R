@@ -1,4 +1,8 @@
 
+## This script takes the paired-end amplicon sequencing reads and removes
+## ambigous bases, checks the primer orientantions and removes primer sequences
+## using cutadapt then verifies that primers have been correctly trimmed.
+
 args <- commandArgs(trailingOnly = TRUE)
 
 if (length(args) != 1) {

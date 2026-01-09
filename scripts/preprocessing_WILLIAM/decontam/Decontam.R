@@ -1,3 +1,7 @@
+## This script is used to create a decontaminated phyloseq object using
+## the DADA2 ASV output as an input. Contaminants, low-quality samples
+## were filtered out for further downstream analysis.
+
 # Install DADA2 package
 
 if (!requireNamespace("BiocManager", quietly = TRUE))
@@ -16,7 +20,7 @@ install.packages("microbiomeutilities")
 library(microbiomeutilities)
 
 
-# load packages, check which version you have 
+# Load packages, check which version you have 
 
 library(dada2); packageVersion("dada2")
 library(ShortRead)
@@ -51,13 +55,14 @@ metadata <- read.csv(
   stringsAsFactors = FALSE
 )
 
+### 2. Extracting and cleaning sample names so they match the metadata identifiers
+
 # Set rownames to NGI.ID
 rownames(metadata) <- metadata$NGI.ID
 
-### 2. Extract sample names from seqtab.nochim --------------------------------
+# Extract sample names from seqtab.nochim 
 samples.out <- rownames(seqtab.nochim)
 
-### 3. Clean sample names to match metadata -----------------------------------
 # Remove trailing underscore
 samples.clean <- sub("_$", "", samples.out)
 
@@ -67,13 +72,13 @@ samples.clean <- sub("_S[0-9]+$", "", samples.clean)
 # Now assign cleaned names to seqtab.nochim
 rownames(seqtab.nochim) <- samples.clean
 
-### 4. Filter metadata to only samples that have ASV data ----------------------
+# Filter metadata to only samples that have ASV data 
 metadata.filtered <- metadata[samples.clean, ]
 
 # Ensure rownames match
 rownames(metadata.filtered) <- samples.clean
 
-### 5. Build phyloseq object --------------------------------------------------
+### 3. Build phyloseq object --------------------------------------------------
 
 ps_raw <- phyloseq(
   otu_table(seqtab.nochim, taxa_are_rows = FALSE),
@@ -81,7 +86,7 @@ ps_raw <- phyloseq(
   tax_table(taxa)
 )
 
-### 6. Convert sequences into ASV names ---------------------------------------
+### 4. Convert sequences into ASV names ---------------------------------------
 
 dna <- Biostrings::DNAStringSet(taxa_names(ps_raw))
 names(dna) <- taxa_names(ps_raw)
@@ -89,7 +94,7 @@ ps_raw <- merge_phyloseq(ps_raw, dna)
 
 taxa_names(ps_raw) <- paste0("ASV", seq(ntaxa(ps_raw)))
 
-### 7. Clean up workspace (optional) ------------------------------------------
+### 5. Clean up workspace (optional) ------------------------------------------
 
 rm(
   dadaFs, dadaRs, errF, errR, mergers, out_trim, seqtab, seqtab2, track2,
@@ -98,7 +103,8 @@ rm(
 
 ps_raw
 
-####Cleaning PS#####
+### 6. Identify and remove unwanted taxa ------------------------------------------
+
 get_taxa_unique(ps_raw, "Family")
 get_taxa_unique(ps_raw, "Class")
 get_taxa_unique(ps_raw, "Order")
@@ -180,6 +186,8 @@ rm(mitochondria, chloroplast, allTaxa, goodTaxa, badTaxa)
 # The prevalence method requires a column in your metadata that says whether your
 # sample is a true sample or control. 
 
+### 7. Prepare metadata for detecting contaminants ------------------------------------
+
 # Check metadata
 head(sample_data(ps_raw))
 
@@ -200,6 +208,8 @@ df$User_ID <- iconv(df$User_ID, from = "", to = "UTF-8")
 df$Sample_or_Control <- ifelse(grepl("^Control_", df$User_ID),
                                "Control",
                                "Sample")
+
+### 8. Identifying and visualizing contaminants -------------------------------------
 
 # Plot library sizes colored by Sample_or_Control
 ggplot(df, aes(x = Index, y = LibrarySize, color = Sample_or_Control)) +
@@ -236,6 +246,8 @@ ggplot(data=df.pa, aes(x = pa.neg, y = pa.pos, color = contaminant)) +
   geom_point() +
   xlab("Prevalence (Negative Controls)") +
   ylab("Prevalence (True Samples)")
+
+### 9. Removing contaminants ------------------------------------------
 
 # Prune contaminants
 ps_noncontam <- prune_taxa(!contamdf.prev$contaminant, ps_raw)

@@ -1,3 +1,9 @@
+
+## This script plots the reads and calculates which read depth is needed for the ASVs.
+## The lowest amount of reads is check and a limit is set, all samples with reads below
+## the limit are removed. The result is 3 phyloseq objects that are used for alpha 
+## diversity and plotting of compositions.
+
 # Libraries / packages
 
 library(phyloseq)

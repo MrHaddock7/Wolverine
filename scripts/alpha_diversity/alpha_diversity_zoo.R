@@ -1,3 +1,7 @@
+
+## This code is used to create the plot for visualising what the Shannon and Simpson
+## Index using the zoo variable
+
 # Libraries
 
 library(phyloseq)

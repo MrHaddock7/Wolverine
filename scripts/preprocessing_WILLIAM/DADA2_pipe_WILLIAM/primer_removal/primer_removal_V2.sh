@@ -1,3 +1,7 @@
+
+## This is a SLURM batch script for runing the primer-trimming script on all the 
+## FASTQ directories. It's performed on the HPC cluster
+
 #!/bin/bash
 
 #SBATCH -A uppmax2025-2-344

@@ -1,3 +1,8 @@
+
+## This script plots the microbiome composition through
+## relative-abundance bar plots at the phylum level both for
+## individual samples and for these samples merged by zoo
+
 # Libraries / packages
 
 library(phyloseq)
